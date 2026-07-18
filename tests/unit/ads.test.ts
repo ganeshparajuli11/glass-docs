@@ -12,3 +12,12 @@ describe("ad configuration", () => {
     expect(adConfig.clientId).toBeNull();
   });
 });
+
+describe("placement slot validation", () => {
+  it("placements without a slot ID can never activate", () => {
+    // Even if the global switch were on, empty slot IDs keep placements off.
+    for (const p of Object.values(adConfig.placements)) {
+      expect(p.slotId).toBe("");
+    }
+  });
+});

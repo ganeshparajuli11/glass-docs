@@ -2,7 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* GlassDocs design tokens */
+/* GlassTools design tokens */
 
 :root {
   --bg-base: #f4f6fb;

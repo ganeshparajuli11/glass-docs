@@ -10,12 +10,18 @@ const categories = [
   { key: "all", label: "All" },
   { key: "pdf", label: "PDF" },
   { key: "image", label: "Images" },
+  { key: "text", label: "Text" },
+  { key: "calculator", label: "Calculators" },
+  { key: "student", label: "Student" },
 ] as const;
 
 export function ToolsExplorer() {
   const params = useSearchParams();
   const [query, setQuery] = useState(params.get("q") ?? "");
-  const [category, setCategory] = useState<(typeof categories)[number]["key"]>("all");
+  const initialCat = params.get("c");
+  const [category, setCategory] = useState<(typeof categories)[number]["key"]>(
+    categories.some((c) => c.key === initialCat) ? (initialCat as (typeof categories)[number]["key"]) : "all",
+  );
 
   const results = useMemo(() => {
     const byQuery = searchTools(query);

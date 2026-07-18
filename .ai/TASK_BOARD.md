@@ -42,3 +42,19 @@ None — local milestone complete. T-102 is Review (AdSlot done locally; Supabas
 ## Next Ready task
 
 T-200/T-202 locally, or T-100/T-210 with user credentials.
+
+## Expansion backlog (added 2026-07-18, from owner's feature plan)
+
+| ID | Task | Status | Notes |
+|---|---|---|---|
+| T-300 | 16 new tools (image/text/calculator/student) | Done | 29 total live |
+| T-310 | Multi-tool workspace (chain: delete -> reorder -> numbers -> download) | Backlog | valuable; needs shared in-memory doc state |
+| T-311 | Batch processing + ZIP download | Backlog | requires reviewed ZIP dependency (license/size audit first) |
+| T-312 | Session-only recent files + clear-all | Backlog | memory only; explicit privacy copy |
+| T-313 | Local tool history (no documents stored) | Backlog | localStorage, lightweight metadata only |
+| T-314 | Presets (email attachment, university submission, WhatsApp…) | Backlog | thin layer over existing options |
+| T-315 | Remaining student kit (checklist, page estimator, citation templates, deadline countdown) | Backlog | |
+| T-316 | Guides for the 16 new tools | Backlog | needed before AdSense application |
+| T-317 | Drag-handle crop UI upgrade | Backlog | sliders are the accessible v1 |
+
+Explicitly out of scope until backend exists: PDF↔Word, OCR, repair, advanced compression, e-signatures, AI features, cloud storage (do not list as working).

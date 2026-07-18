@@ -3,7 +3,7 @@ import { site } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Privacy",
-  description: "How GlassDocs handles your files and data: local processing by default, no accounts, minimal analytics.",
+  description: "How GlassTools handles your files and data: local processing by default, no accounts, minimal analytics.",
 };
 
 export default function PrivacyPage() {

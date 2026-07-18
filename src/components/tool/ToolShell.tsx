@@ -13,14 +13,14 @@ export function ToolShell({ children }: { children: ReactNode }) {
   );
 }
 
-export function LocalBadge() {
+export function LocalBadge({ fileless = false }: { fileless?: boolean }) {
   return (
     <span
       className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold text-success"
       style={{ background: "var(--success-soft)" }}
     >
       <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
-      Local — files stay on your device
+      {fileless ? "Local — runs entirely in your browser" : "Local — files stay on your device"}
     </span>
   );
 }

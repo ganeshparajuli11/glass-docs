@@ -7,8 +7,8 @@ describe("tool registry", () => {
     expect(validateRegistry()).toEqual([]);
   });
 
-  it("contains all 13 MVP tools", () => {
-    expect(tools.length).toBe(13);
+  it("contains all 29 launch tools", () => {
+    expect(tools.length).toBe(29);
   });
 
   it("every tool is local processing for MVP", () => {
@@ -18,6 +18,8 @@ describe("tool registry", () => {
   it("finds tools by keyword synonyms", () => {
     expect(searchTools("combine").map((t) => t.slug)).toContain("merge-pdf");
     expect(searchTools("jpg to pdf").map((t) => t.slug)).toContain("images-to-pdf");
+    expect(searchTools("gpa").map((t) => t.slug)).toContain("gpa-calculator");
+    expect(searchTools("passport").map((t) => t.slug)).toContain("passport-photo");
   });
 
   it("returns undefined for unknown slug", () => {

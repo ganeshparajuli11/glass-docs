@@ -6,7 +6,7 @@
 - Node/package manager: Node 22 LTS / npm 10.9.8
 - lint: PASS (eslint, 0 problems)
 - typecheck: PASS (tsc --noEmit, strict)
-- unit: PASS (25 tests: ranges, registry, validation, format, errors, ads)
+- unit: PASS (58 total incl. text/calc/layout/cover-page suites; previously 25: ranges, registry, validation, format, errors, ads)
 - integration: PASS (17 tests: merge/organize/split/watermark/page-numbers/images-to-pdf/metadata semantic verification via pdf-lib re-parse)
 - E2E Chromium: NOT RUN (browser download blocked by sandbox network allowlist; CI job configured)
 - E2E Firefox/WebKit: NOT RUN

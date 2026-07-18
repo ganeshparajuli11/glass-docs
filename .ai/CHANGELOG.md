@@ -15,7 +15,15 @@
 - New: 42 unit/integration tests, Playwright smoke specs, GitHub Actions CI.
 - Ads: AdSlot abstraction present and disabled by default; no ad scripts load.
 
-## 2026-07-18 — Branding refresh
-- New: custom GlassDocs brand mark in the header instead of the generic file icon.
-- New: app-router icon at `src/app/icon.svg` so the browser tab uses project branding.
-- Changed: homepage browser title now matches the navbar brand exactly by using `site.name` as the default title.
+## 2026-07-18 (later) — Launch preparation
+- Rebrand to GlassTools / glasstools.net.
+- Static export mode (DEPLOY_TARGET=static) for Cloudflare Pages.
+- AdSlot upgraded to real AdSense integration behind the existing kill switch (still off); ads.txt.example added.
+- DEPLOYMENT_STEPS.md owner checklist added.
+
+## 2026-07-18 (expansion) — 29-tool launch set
+- New image tools: compressor, resizer, crop, converter, passport-photo sheet.
+- New text tools: word counter, case converter, remove spaces, dedupe lines, compare.
+- New calculators: GPA, assignment grade, attendance, percentage, EMI.
+- New student tool: assignment cover-page generator.
+- GlassTools logo/favicon; homepage category browsing; 6 category filters.

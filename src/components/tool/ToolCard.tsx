@@ -1,6 +1,22 @@
 import Link from "next/link";
 import {
   FileText,
+  Minimize2,
+  Scaling,
+  Crop,
+  Repeat,
+  UserSquare,
+  WholeWord,
+  CaseSensitive,
+  Eraser,
+  ListX,
+  GitCompare,
+  GraduationCap,
+  Target,
+  CalendarCheck,
+  Percent,
+  Landmark,
+  BookMarked,
   Scissors,
   RotateCw,
   ArrowUpDown,
@@ -30,6 +46,22 @@ const icons: Record<string, typeof FileText> = {
   "pdf-viewer": Eye,
   "pdf-metadata": Info,
   "extract-text": Type,
+  "image-compressor": Minimize2,
+  "image-resizer": Scaling,
+  "crop-image": Crop,
+  "image-converter": Repeat,
+  "passport-photo": UserSquare,
+  "word-counter": WholeWord,
+  "case-converter": CaseSensitive,
+  "remove-spaces": Eraser,
+  "dedupe-lines": ListX,
+  "text-compare": GitCompare,
+  "gpa-calculator": GraduationCap,
+  "grade-calculator": Target,
+  "attendance-calculator": CalendarCheck,
+  "percentage-calculator": Percent,
+  "emi-calculator": Landmark,
+  "cover-page": BookMarked,
 };
 
 export function ToolCard({ tool }: { tool: ToolDefinition }) {
@@ -44,7 +76,9 @@ export function ToolCard({ tool }: { tool: ToolDefinition }) {
       </span>
       <h3 className="mt-3 font-semibold">{tool.name}</h3>
       <p className="mt-1 text-sm text-fg-muted">{tool.shortDescription}</p>
-      <p className="mt-2 text-xs font-medium text-success">Local · no upload</p>
+      <p className="mt-2 text-xs font-medium text-success">
+        {tool.acceptedMimeTypes.length > 0 ? "Local · no upload" : "Runs in your browser"}
+      </p>
     </Link>
   );
 }

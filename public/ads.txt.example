@@ -1,0 +1,4 @@
+# Rename this file to ads.txt AFTER AdSense gives you your publisher ID.
+# Replace pub-0000000000000000 with YOUR real ID from AdSense > Account.
+# Never invent an ID. The file must be reachable at https://glasstools.net/ads.txt
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

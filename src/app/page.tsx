@@ -10,10 +10,18 @@ const popularSlugs = [
   "merge-pdf",
   "split-pdf",
   "images-to-pdf",
-  "pdf-to-images",
-  "rotate-pdf",
-  "watermark-pdf",
+  "image-compressor",
+  "word-counter",
+  "gpa-calculator",
 ];
+
+const categorySections = [
+  { key: "pdf", title: "PDF tools", blurb: "Merge, split, organise, watermark, convert." },
+  { key: "image", title: "Image tools", blurb: "Compress, resize, crop, convert, passport sheets." },
+  { key: "text", title: "Text tools", blurb: "Count, clean, convert, and compare text." },
+  { key: "calculator", title: "Calculators", blurb: "GPA, grades, attendance, percentages, EMI." },
+  { key: "student", title: "Student toolkit", blurb: "Cover pages and assignment helpers." },
+] as const;
 
 export default function HomePage() {
   const popular = popularSlugs
@@ -38,7 +46,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust strip */}
-      <section aria-label="Why GlassDocs" className="mx-auto max-w-4xl">
+      <section aria-label="Why GlassTools" className="mx-auto max-w-4xl">
         <ul className="grid gap-3 sm:grid-cols-3">
           {[
             {
@@ -82,6 +90,29 @@ export default function HomePage() {
           {popular.map((tool) => (
             <ToolCard key={tool.slug} tool={tool} />
           ))}
+        </div>
+      </section>
+
+      {/* Category exploration */}
+      <section aria-labelledby="categories-heading" className="mx-auto mt-12 max-w-6xl">
+        <h2 id="categories-heading" className="text-2xl font-bold">
+          Browse by category
+        </h2>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {categorySections.map((cat) => {
+            const count = tools.filter((t) => t.category === cat.key).length;
+            return (
+              <Link
+                key={cat.key}
+                href={`/tools?c=${cat.key}`}
+                className="glass-soft card-hover block p-5"
+              >
+                <h3 className="font-semibold">{cat.title}</h3>
+                <p className="mt-1 text-sm text-fg-muted">{cat.blurb}</p>
+                <p className="mt-2 text-xs font-medium text-accent">{count} tools →</p>
+              </Link>
+            );
+          })}
         </div>
       </section>
 

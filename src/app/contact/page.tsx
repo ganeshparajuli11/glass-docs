@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "How to reach the GlassDocs team.",
+  description: "How to reach the GlassTools team.",
 };
 
 export default function ContactPage() {

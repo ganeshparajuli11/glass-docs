@@ -3,7 +3,7 @@ import { site } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Terms of use",
-  description: "The terms that apply when you use GlassDocs tools.",
+  description: "The terms that apply when you use GlassTools tools.",
 };
 
 export default function TermsPage() {

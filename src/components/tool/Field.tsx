@@ -28,3 +28,7 @@ export const inputClass =
   "border-(--glass-strong-border) focus:border-accent";
 
 export const selectClass = inputClass;
+
+export const textareaClass =
+  "mt-1 w-full rounded-(--radius-sm) border bg-raised p-3 text-sm font-mono " +
+  "border-(--glass-strong-border) focus:border-accent min-h-40 resize-y";

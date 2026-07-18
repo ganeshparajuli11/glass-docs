@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import Script from "next/script";
 import { adConfig, isPlacementActive, type AdPlacementKey } from "@/config/ads";
 import { cn } from "@/lib/utils";
 
@@ -7,15 +11,41 @@ interface AdSlotProps {
   context?: "homepage" | "tool" | "article";
 }
 
+declare global {
+  interface Window {
+    adsbygoogle?: unknown[];
+  }
+}
+
 /**
- * Renders nothing when ads are disabled (the default). When enabled, it
- * reserves a bounded area to prevent layout shift and is clearly labelled.
- * Never rendered inside the tool workspace.
+ * Renders nothing when ads are disabled (the default) or when the
+ * placement/client/slot configuration is invalid. When enabled, it loads the
+ * AdSense script once, reserves a bounded area to prevent layout shift, and
+ * is clearly labelled. Never rendered inside the tool workspace, never
+ * auto-refreshed.
  */
 export function AdSlot({ placement, className }: AdSlotProps) {
-  if (!isPlacementActive(placement)) return null;
+  const active = isPlacementActive(placement);
+  const pushed = useRef(false);
 
-  const { minHeight } = adConfig.placements[placement];
+  useEffect(() => {
+    if (!active || pushed.current) return;
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      pushed.current = true;
+    } catch {
+      // Ad blocker or script not loaded — the page must keep working.
+    }
+  }, [active]);
+
+  if (!active) {
+    if (process.env.NODE_ENV !== "production" && adConfig.enabled) {
+      console.warn(`AdSlot "${placement}" inactive: missing/invalid slot ID.`);
+    }
+    return null;
+  }
+
+  const { minHeight, slotId } = adConfig.placements[placement];
 
   return (
     <aside
@@ -24,12 +54,26 @@ export function AdSlot({ placement, className }: AdSlotProps) {
       style={{
         minHeight,
         background: "var(--ad-bg)",
-        border: "1px dashed var(--ad-border)",
+        border: "1px solid var(--ad-border)",
         borderRadius: "var(--radius-md)",
+        overflow: "hidden",
       }}
     >
-      <p className="p-2 text-center text-xs text-fg-subtle">Advertisements</p>
-      {/* AdSense ins tag is injected here only after approval and policy review. */}
+      <p className="p-1 text-center text-[11px] text-fg-subtle">Advertisements</p>
+      <Script
+        id="adsense-loader"
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adConfig.clientId}`}
+        strategy="lazyOnload"
+        crossOrigin="anonymous"
+      />
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block", minHeight: minHeight - 24 }}
+        data-ad-client={adConfig.clientId ?? undefined}
+        data-ad-slot={slotId}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
     </aside>
   );
 }

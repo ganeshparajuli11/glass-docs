@@ -30,6 +30,22 @@ const components: Record<string, ComponentType<object>> = {
   "extract-text": lazy(() => import("@/features/extract-text/ExtractTextTool")),
   "pdf-metadata": lazy(() => import("@/features/metadata/MetadataTool")),
   "pdf-viewer": lazy(() => import("@/features/pdf-viewer/PdfViewerTool")),
+  "image-compressor": lazy(() => import("@/features/image-compressor/ImageCompressorTool")),
+  "image-resizer": lazy(() => import("@/features/image-resizer/ImageResizerTool")),
+  "crop-image": lazy(() => import("@/features/crop-image/CropImageTool")),
+  "image-converter": lazy(() => import("@/features/image-converter/ImageConverterTool")),
+  "passport-photo": lazy(() => import("@/features/passport-photo/PassportPhotoTool")),
+  "word-counter": lazy(() => import("@/features/word-counter/WordCounterTool")),
+  "case-converter": lazy(() => import("@/features/case-converter/CaseConverterTool")),
+  "remove-spaces": lazy(() => import("@/features/remove-spaces/RemoveSpacesTool")),
+  "dedupe-lines": lazy(() => import("@/features/dedupe-lines/DedupeLinesTool")),
+  "text-compare": lazy(() => import("@/features/text-compare/TextCompareTool")),
+  "gpa-calculator": lazy(() => import("@/features/gpa-calculator/GpaCalculatorTool")),
+  "grade-calculator": lazy(() => import("@/features/grade-calculator/GradeCalculatorTool")),
+  "attendance-calculator": lazy(() => import("@/features/attendance-calculator/AttendanceCalculatorTool")),
+  "percentage-calculator": lazy(() => import("@/features/percentage-calculator/PercentageCalculatorTool")),
+  "emi-calculator": lazy(() => import("@/features/emi-calculator/EmiCalculatorTool")),
+  "cover-page": lazy(() => import("@/features/cover-page/CoverPageTool")),
 };
 
 const organizeModes: Record<string, "rotate" | "reorder" | "delete" | "extract"> = {

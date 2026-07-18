@@ -60,7 +60,7 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
         <h1 className="mt-3 text-3xl font-bold">{tool.name}</h1>
         <p className="mt-2 max-w-2xl text-fg-muted">{tool.shortDescription}</p>
         <div className="mt-3">
-          <LocalBadge />
+          <LocalBadge fileless={tool.acceptedMimeTypes.length === 0} />
         </div>
       </div>
 
@@ -75,10 +75,12 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
             Good to know
           </h2>
           <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-fg-muted">
-            <li>
-              Recommended file size: up to {tool.maxRecommendedSizeMb} MB for
-              smooth in-browser processing.
-            </li>
+            {tool.acceptedMimeTypes.length > 0 ? (
+              <li>
+                Recommended file size: up to {tool.maxRecommendedSizeMb} MB for
+                smooth in-browser processing.
+              </li>
+            ) : null}
             {tool.knownLimitations.map((limit) => (
               <li key={limit}>{limit}</li>
             ))}

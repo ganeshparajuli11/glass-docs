@@ -9,7 +9,7 @@ import { site } from "@/config/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: site.name,
+    default: `${site.name} — Free private PDF tools in your browser`,
     template: `%s — ${site.name}`,
   },
   description: site.description,

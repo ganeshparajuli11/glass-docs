@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
-import { BrandMark } from "./BrandMark";
 import { site } from "@/config/site";
 
 const nav = [
@@ -17,9 +16,14 @@ export function Header() {
           href="/"
           className="flex items-center gap-2 text-lg font-semibold tracking-tight"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-accent text-accent-contrast">
-            <BrandMark className="h-4.5 w-4.5" />
-          </span>
+          <svg viewBox="0 0 64 64" className="h-8 w-8 rounded-xl" aria-hidden="true" focusable="false">
+            <rect x="4" y="4" width="56" height="56" rx="16" fill="var(--accent)" />
+            <rect x="18" y="14" width="24" height="32" rx="4" fill="var(--accent-contrast)" opacity="0.55" />
+            <rect x="24" y="20" width="24" height="32" rx="4" fill="var(--accent-contrast)" opacity="0.95" />
+            <line x1="30" y1="30" x2="42" y2="30" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" />
+            <line x1="30" y1="37" x2="42" y2="37" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" />
+            <line x1="30" y1="44" x2="38" y2="44" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" />
+          </svg>
           {site.name}
         </Link>
         <nav aria-label="Main navigation" className="flex items-center gap-1">
