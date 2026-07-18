@@ -4,6 +4,7 @@ import { site } from "@/config/site";
 export const metadata: Metadata = {
   title: "Privacy",
   description: "How GlassTools handles your files and data: local processing by default, no accounts, minimal analytics.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

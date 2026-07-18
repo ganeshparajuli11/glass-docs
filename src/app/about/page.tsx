@@ -4,6 +4,7 @@ import { site } from "@/config/site";
 export const metadata: Metadata = {
   title: "About",
   description: "Why GlassTools exists and the principles it is built on.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

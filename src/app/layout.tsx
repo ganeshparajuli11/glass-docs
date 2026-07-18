@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/shell/ThemeProvider";
 import { Aurora } from "@/components/shell/Aurora";
@@ -10,6 +9,7 @@ import { adConfig } from "@/config/ads";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  other: { "google-adsense-account": "ca-pub-2661645060530542" },
   title: {
     default: `${site.name} — Free private PDF tools in your browser`,
     template: `%s — ${site.name}`,
@@ -29,13 +29,13 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         {adConfig.clientId ? (
           // Site-wide AdSense loader: required by Google for site verification
-          // and review. Whether ad UNITS render is still controlled by
-          // NEXT_PUBLIC_ADSENSE_ENABLED + per-placement slot IDs (see AdSlot).
-          <Script
+          // and review. React hoists this async script into <head> in the
+          // prerendered HTML so Google's crawler sees the literal tag.
+          // Ad UNITS still render only when enabled (see AdSlot).
+          <script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adConfig.clientId}`}
             crossOrigin="anonymous"
-            strategy="afterInteractive"
           />
         ) : null}
         <ThemeProvider>

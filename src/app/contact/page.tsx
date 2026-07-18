@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description: "How to reach the GlassTools team.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

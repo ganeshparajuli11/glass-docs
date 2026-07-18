@@ -1,12 +1,14 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { ToolsExplorer } from "@/components/tool/ToolsExplorer";
+import { pageMeta } from "@/lib/seo/meta";
 
-export const metadata: Metadata = {
-  title: "All PDF tools",
+export const metadata: Metadata = pageMeta({
+  title: "All tools — PDF, image, text, calculators",
   description:
-    "Browse every free tool: merge, split, rotate, reorder, watermark, page numbers, image conversion, text extraction and more — all processed locally in your browser.",
-};
+    "Browse 29 free tools: merge, split, rotate and watermark PDFs, compress and convert images, count words, calculate GPA and more — processed in your browser.",
+  path: "/tools",
+});
 
 export default function ToolsPage() {
   return (

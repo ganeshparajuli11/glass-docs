@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { articles } from "@/content/articles";
 
-export const metadata: Metadata = {
-  title: "Guides",
-  description: "Practical guides for common PDF tasks — written around what the tools actually do.",
-};
+import { pageMeta } from "@/lib/seo/meta";
+
+export const metadata: Metadata = pageMeta({
+  title: "Guides — practical help for PDF and document tasks",
+  description:
+    "Short, practical guides for PDF, image, and document tasks — written around what the tools actually do, including their limits.",
+  path: "/learn",
+});
 
 export default function LearnPage() {
   return (

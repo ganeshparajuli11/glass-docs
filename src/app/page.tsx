@@ -5,6 +5,15 @@ import { ToolCard } from "@/components/tool/ToolCard";
 import { ToolSearch } from "@/components/tool/ToolSearch";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { site } from "@/config/site";
+import { pageMeta } from "@/lib/seo/meta";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = pageMeta({
+  title: `${site.name} — Free private PDF, image & student tools in your browser`,
+  description:
+    "29 free tools that run on your device: merge and split PDFs, compress images, count words, calculate GPA and more. No signup, no upload by default.",
+  path: "/",
+});
 
 const popularSlugs = [
   "merge-pdf",
@@ -16,11 +25,11 @@ const popularSlugs = [
 ];
 
 const categorySections = [
-  { key: "pdf", title: "PDF tools", blurb: "Merge, split, organise, watermark, convert." },
-  { key: "image", title: "Image tools", blurb: "Compress, resize, crop, convert, passport sheets." },
-  { key: "text", title: "Text tools", blurb: "Count, clean, convert, and compare text." },
-  { key: "calculator", title: "Calculators", blurb: "GPA, grades, attendance, percentages, EMI." },
-  { key: "student", title: "Student toolkit", blurb: "Cover pages and assignment helpers." },
+  { key: "pdf", href: "/pdf-tools", title: "PDF tools", blurb: "Merge, split, organise, watermark, convert." },
+  { key: "image", href: "/image-tools", title: "Image tools", blurb: "Compress, resize, crop, convert, passport sheets." },
+  { key: "text", href: "/text-tools", title: "Text tools", blurb: "Count, clean, convert, and compare text." },
+  { key: "calculator", href: "/calculators", title: "Calculators", blurb: "GPA, grades, attendance, percentages, EMI." },
+  { key: "student", href: "/student-tools", title: "Student toolkit", blurb: "Cover pages and assignment helpers." },
 ] as const;
 
 export default function HomePage() {
@@ -104,7 +113,7 @@ export default function HomePage() {
             return (
               <Link
                 key={cat.key}
-                href={`/tools?c=${cat.key}`}
+                href={cat.href}
                 className="glass-soft card-hover block p-5"
               >
                 <h3 className="font-semibold">{cat.title}</h3>
@@ -117,6 +126,23 @@ export default function HomePage() {
       </section>
 
       <AdSlot placement="homepage-content-break" context="homepage" className="mt-12" />
+
+      {/* Common tasks with descriptive anchors */}
+      <section aria-labelledby="tasks-heading" className="mx-auto mt-12 max-w-4xl">
+        <h2 id="tasks-heading" className="text-2xl font-bold">
+          Jump straight to a task
+        </h2>
+        <ul className="mt-4 grid gap-x-8 gap-y-2 text-[15px] sm:grid-cols-2">
+          <li><Link className="text-accent underline hover:no-underline" href="/tools/merge-pdf">Merge PDF files into one document</Link></li>
+          <li><Link className="text-accent underline hover:no-underline" href="/tools/split-pdf">Split a PDF by page ranges</Link></li>
+          <li><Link className="text-accent underline hover:no-underline" href="/tools/delete-pages">Remove pages from a PDF</Link></li>
+          <li><Link className="text-accent underline hover:no-underline" href="/tools/images-to-pdf">Convert JPG images to PDF</Link></li>
+          <li><Link className="text-accent underline hover:no-underline" href="/tools/pdf-to-images">Convert PDF pages to JPG or PNG</Link></li>
+          <li><Link className="text-accent underline hover:no-underline" href="/tools/image-compressor">Compress an image for email</Link></li>
+          <li><Link className="text-accent underline hover:no-underline" href="/tools/word-counter">Count words and reading time</Link></li>
+          <li><Link className="text-accent underline hover:no-underline" href="/tools/gpa-calculator">Calculate your GPA</Link></li>
+        </ul>
+      </section>
 
       {/* How local processing works */}
       <section aria-labelledby="how-heading" className="mx-auto mt-12 max-w-4xl">
@@ -140,6 +166,26 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: site.name,
+              url: site.url,
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: site.name,
+              url: site.url,
+              logo: `${site.url}/icon.svg`,
+            },
+          ]).replace(/</g, "\\u003c"),
+        }}
+      />
     </div>
   );
 }

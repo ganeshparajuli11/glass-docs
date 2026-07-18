@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy choices & cookies",
   description: "What is stored in your browser and what choices you have.",
+  alternates: { canonical: "/cookies" },
 };
 
 export default function CookiesPage() {

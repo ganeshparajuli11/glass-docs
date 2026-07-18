@@ -34,3 +34,6 @@
 
 ## 2026-07-18 (adsense) — Verification wiring
 - Site-wide AdSense loader with real publisher ID; ads.txt published; CSP allows Google ad domains. Ad display still gated off.
+
+## 2026-07-18 (seo) — SEO foundation + AdSense verification fix
+- Canonicals, category pages, structured data, 7 guides, internal-link system, docs/seo/* (10 files), export audit script, adsense meta tag.

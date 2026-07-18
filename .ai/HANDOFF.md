@@ -1,5 +1,20 @@
 # Current Handoff
 
+## Session update (2026-07-18, SEO foundation + AdSense verify fix)
+
+- AdSense: all 3 Google verification methods now in the build — literal head script tag, google-adsense-account meta tag, live ads.txt (confirmed live). Verification failed earlier because the deployed build predates the literal-tag fix; passes after next push. Fallback: choose the Ads.txt method in the AdSense dialog.
+- SEO shipped: self-canonicals + unique OG/Twitter metadata sitewide (lib/seo/meta.ts); 5 root category landing pages; JSON-LD (WebSite, Organization, BreadcrumbList, WebApplication, CollectionPage, Article + existing FAQPage); 4 new guides (7 total) with two-way tool↔guide linking (toolGuides map); homepage task anchors; last-reviewed dates; sitemap now 49 URLs incl. categories.
+- docs/seo/ created: 10 documents (master plan + 9 supporting). Honest constraints recorded: Google Trends protocol is an owner action; Lighthouse/rich-results tests need live URLs.
+- New script: scripts/audit-seo-export.mjs — audits every exported page (unique title/description, single h1, canonical). Current run: 49 pages, 0 problems.
+- Deliberately NOT built: pages for word-to-pdf/pdf-to-word/compress-pdf/protect-pdf (tools don't exist — see KEYWORD-RESEARCH.md). compress-pdf is the top build item next.
+- Verified: build ✓ export ✓ tests 58/58 ✓ lint ✓ tsc ✓ audit 0 problems ✓.
+
+## Session update (2026-07-18, AdSense verification tag fix)
+
+- Replaced next/script with a literal hoisted <script async> in the root layout: the exact AdSense snippet now appears in the <head> of every prerendered page (verified in out/index.html and tool pages) so Google's ownership verifier sees it in raw HTML.
+- Owner next: push to GitHub (auto-deploys), wait a few minutes, then click Verify in AdSense, then Request review.
+- Verified: tests 58/58 ✓ typecheck ✓ static export ✓ literal tag confirmed.
+
 ## Session update (2026-07-18, AdSense verification wiring)
 
 - Publisher ID ca-pub-2661645060530542 (owner's real AdSense account) is now the default client ID in src/config/ads.ts (env-overridable).

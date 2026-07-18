@@ -20,7 +20,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) return {};
-  return { title: article.title, description: article.description };
+  return {
+    title: article.title,
+    description: article.description,
+    alternates: { canonical: `/learn/${article.slug}` },
+    openGraph: { title: article.title, description: article.description, type: "article" },
+  };
 }
 
 export default async function ArticlePage({ params }: { params: Promise<Params> }) {
@@ -41,6 +46,20 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
         <div className="article-body mt-6 space-y-4 text-fg-muted">{article.body}</div>
       </article>
       <AdSlot placement="article-content-break" context="article" className="mt-8" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: article.title,
+            description: article.description,
+            datePublished: "2026-07-18",
+            author: { "@type": "Organization", name: "GlassTools" },
+            mainEntityOfPage: `https://glasstools.net/learn/${article.slug}`,
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
     </div>
   );
 }

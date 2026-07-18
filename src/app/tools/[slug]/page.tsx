@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTool, tools } from "@/lib/tools/registry";
+import { articles, toolGuides } from "@/content/articles";
 import { ToolHost } from "@/components/tool/ToolHost";
 import { ToolShell, LocalBadge } from "@/components/tool/ToolShell";
 import { ToolCard } from "@/components/tool/ToolCard";
@@ -23,9 +24,14 @@ export async function generateMetadata({
   const { slug } = await params;
   const tool = getTool(slug);
   if (!tool) return {};
+  const title = `${tool.name} — free & private, in your browser`;
+  const description = `${tool.shortDescription} Runs locally in your browser; your file is not uploaded.`;
   return {
-    title: `${tool.name} — free & private, in your browser`,
-    description: `${tool.shortDescription} Runs locally in your browser; your file is not uploaded.`,
+    title,
+    description,
+    alternates: { canonical: `/tools/${tool.slug}` },
+    openGraph: { title, description, url: `/tools/${tool.slug}`, type: "website" },
+    twitter: { card: "summary", title, description },
   };
 }
 
@@ -34,9 +40,34 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
   const tool = getTool(slug);
   if (!tool) notFound();
 
+  const guides = (toolGuides[tool.slug] ?? [])
+    .map((slug) => articles.find((a) => a.slug === slug))
+    .filter((g): g is NonNullable<typeof g> => g !== undefined);
+
   const related = tool.relatedTools
     .map((s) => tools.find((t) => t.slug === s))
     .filter((t): t is NonNullable<typeof t> => t !== undefined);
+
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Tools", item: "https://glasstools.net/tools" },
+        { "@type": "ListItem", position: 2, name: tool.name, item: `https://glasstools.net/tools/${tool.slug}` },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: `${tool.name} — GlassTools`,
+      url: `https://glasstools.net/tools/${tool.slug}`,
+      applicationCategory: "UtilitiesApplication",
+      operatingSystem: "Any (web browser)",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      description: tool.shortDescription,
+    },
+  ];
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -85,6 +116,9 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
               <li key={limit}>{limit}</li>
             ))}
           </ul>
+          <p className="mt-3 text-xs text-fg-subtle">
+            Last reviewed: {tool.lastVerifiedAt}
+          </p>
         </section>
 
         <section aria-labelledby="faq-heading" className="solid-reading p-6">
@@ -114,12 +148,32 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
           </section>
         ) : null}
 
+        {guides.length > 0 ? (
+          <section aria-labelledby="guides-heading" className="solid-reading p-6">
+            <h2 id="guides-heading" className="text-xl font-bold">
+              Related guides
+            </h2>
+            <ul className="mt-3 space-y-2">
+              {guides.map((g) => (
+                <li key={g.slug}>
+                  <Link href={`/learn/${g.slug}`} className="text-accent underline hover:no-underline">
+                    {g.title}
+                  </Link>
+                  <p className="mt-0.5 text-sm text-fg-muted">{g.description}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
         <AdSlot placement="tool-post-workflow" context="tool" />
       </div>
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([...structuredData, faqJsonLd]).replace(/</g, "\\u003c"),
+        }}
       />
     </div>
   );

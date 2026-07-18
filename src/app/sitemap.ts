@@ -6,7 +6,10 @@ import { site } from "@/config/site";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/tools", "/learn", "/about", "/contact", "/privacy", "/terms", "/cookies"];
+  const staticRoutes = [
+    "", "/tools", "/pdf-tools", "/image-tools", "/text-tools", "/calculators",
+    "/student-tools", "/learn", "/about", "/contact", "/privacy", "/terms", "/cookies",
+  ];
   return [
     ...staticRoutes.map((path) => ({
       url: `${site.url}${path}`,
