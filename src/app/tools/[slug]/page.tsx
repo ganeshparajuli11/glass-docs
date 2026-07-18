@@ -119,7 +119,7 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
     </div>
   );

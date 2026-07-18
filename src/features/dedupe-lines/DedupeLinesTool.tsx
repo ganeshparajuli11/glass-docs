@@ -20,7 +20,7 @@ export default function DedupeLinesTool() {
     <div>
       <Field label="Lines" hint="One item per line — lists, emails, references…">
         {(id) => (
-          <textarea id={id} className={textareaClass} value={text} onChange={(e) => setText(e.target.value)} rows={8} placeholder={"apple\nbanana\napple"} />
+          <textarea id={id} maxLength={200000} className={textareaClass} value={text} onChange={(e) => setText(e.target.value)} rows={8} placeholder={"apple\nbanana\napple"} />
         )}
       </Field>
       <div className="mt-3 flex flex-wrap gap-5">

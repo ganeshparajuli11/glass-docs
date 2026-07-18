@@ -28,7 +28,8 @@ export interface AdConfig {
   placements: Record<AdPlacementKey, AdPlacement>;
 }
 
-const rawClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "";
+/** AdSense publisher ID for glasstools.net (public by design; env can override). */
+const rawClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "ca-pub-2661645060530542";
 const validClientId = /^ca-pub-\d{10,}$/.test(rawClientId) ? rawClientId : null;
 
 export const adConfig: AdConfig = {

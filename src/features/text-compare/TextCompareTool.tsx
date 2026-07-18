@@ -14,10 +14,10 @@ export default function TextCompareTool() {
     <div>
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Original text">
-          {(id) => <textarea id={id} className={textareaClass} value={a} onChange={(e) => setA(e.target.value)} rows={10} />}
+          {(id) => <textarea id={id} maxLength={200000} className={textareaClass} value={a} onChange={(e) => setA(e.target.value)} rows={10} />}
         </Field>
         <Field label="Changed text">
-          {(id) => <textarea id={id} className={textareaClass} value={b} onChange={(e) => setB(e.target.value)} rows={10} />}
+          {(id) => <textarea id={id} maxLength={200000} className={textareaClass} value={b} onChange={(e) => setB(e.target.value)} rows={10} />}
         </Field>
       </div>
       {diff.length > 0 ? (
@@ -32,7 +32,7 @@ export default function TextCompareTool() {
             {diff.map((line, i) => (
               <div
                 key={i}
-                className="whitespace-pre-wrap px-2"
+                className="whitespace-pre-wrap break-anywhere px-2"
                 style={{
                   background:
                     line.type === "added"

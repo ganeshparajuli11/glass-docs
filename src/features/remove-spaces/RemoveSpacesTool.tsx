@@ -14,7 +14,7 @@ export default function RemoveSpacesTool() {
     <div>
       <Field label="Your text" hint="Collapses repeated spaces/tabs, trims line ends, and reduces runs of blank lines.">
         {(id) => (
-          <textarea id={id} className={textareaClass} value={text} onChange={(e) => setText(e.target.value)} rows={8} placeholder="Paste messy text…" />
+          <textarea id={id} maxLength={200000} className={textareaClass} value={text} onChange={(e) => setText(e.target.value)} rows={8} placeholder="Paste messy text…" />
         )}
       </Field>
       <Field label="Cleaned result">

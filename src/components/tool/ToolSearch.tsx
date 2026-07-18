@@ -29,7 +29,7 @@ export function ToolSearch() {
       />
       <button
         type="submit"
-        className="min-h-11 shrink-0 rounded-full bg-accent px-5 text-sm font-semibold text-accent-contrast hover:bg-accent-hover"
+        className="min-h-11 shrink-0 rounded-full bg-accent px-4 text-sm font-semibold text-accent-contrast hover:bg-accent-hover sm:px-5"
       >
         Search
       </button>

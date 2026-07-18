@@ -1,5 +1,23 @@
 # Current Handoff
 
+## Session update (2026-07-18, AdSense verification wiring)
+
+- Publisher ID ca-pub-2661645060530542 (owner's real AdSense account) is now the default client ID in src/config/ads.ts (env-overridable).
+- AdSense loader script renders site-wide from the root layout — required by Google for site verification/review. Confirmed present in every exported page's HTML.
+- public/ads.txt published with the real ID (example file removed).
+- CSP in public/_headers extended with Google ad domains so the loader isn't blocked.
+- Ad DISPLAY remains off: NEXT_PUBLIC_ADSENSE_ENABLED unset + empty slot IDs → AdSlot renders null. After approval: create 3 ad units, paste slot IDs into src/config/ads.ts, set NEXT_PUBLIC_ADSENSE_ENABLED=true, redeploy.
+- Owner reminders: keep Auto ads OFF in AdSense (or exclude /tools/*) per ad-placement spec; verify https://glasstools.net/ads.txt after deploy; review takes days-weeks.
+- Verified: tests 58/58 ✓ typecheck ✓ lint ✓ static export ✓ (script + ads.txt confirmed in out/).
+
+## Session update (2026-07-18, mobile + security pass)
+
+- Mobile: header wraps safely at 320px with 44px targets; hero search compacted; 16px inputs on small screens (no iOS focus-zoom); touch-action manipulation; long filenames/diff lines wrap (break-anywhere); result rows wrap.
+- Security: public/_headers added (CSP default-src 'self' + object-src 'none' + frame-ancestors 'none', HSTS, nosniff, referrer/permissions policies, COOP) with AdSense-ready CSP variant commented; immutable caching for /_next/static; JSON-LD < escaped; text inputs capped 200k chars.
+- SECURITY.md documents the model: static site + client-side processing = no SQL/auth/server attack surface; scale is CDN-bound, not server-bound; untrusted-file handling summarized.
+- Verified: tests 58/58 ✓ typecheck ✓ lint ✓ static export ✓ (29 tool pages, _headers included).
+- Owner: after redeploy, spot-check headers at securityheaders.com.
+
 ## Session update (2026-07-18, expansion)
 
 - Site expanded from 13 to 29 stable tools across five categories:

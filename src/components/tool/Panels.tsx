@@ -99,7 +99,7 @@ export function SuccessPanel({
       <ul className="mt-3 space-y-2">
         {results.map((r) => (
           <li key={r.url} className="flex flex-wrap items-center justify-between gap-2">
-            <span className="text-sm">
+            <span className="break-anywhere min-w-0 flex-1 text-sm">
               {r.fileName}{" "}
               <span className="text-fg-subtle">({formatBytes(r.blob.size)})</span>
             </span>

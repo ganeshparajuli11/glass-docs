@@ -21,7 +21,7 @@ export default function CaseConverterTool() {
     <div>
       <Field label="Your text">
         {(id) => (
-          <textarea id={id} className={textareaClass} value={text} onChange={(e) => setText(e.target.value)} rows={8} placeholder="Paste text to convert…" />
+          <textarea id={id} maxLength={200000} className={textareaClass} value={text} onChange={(e) => setText(e.target.value)} rows={8} placeholder="Paste text to convert…" />
         )}
       </Field>
       <div className="mt-4 max-w-xs">

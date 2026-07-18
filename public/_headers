@@ -1,0 +1,24 @@
+# Security + caching headers for Cloudflare Pages / Workers static assets.
+# Verify after deploy at https://securityheaders.com
+# CSP includes the Google AdSense domains (loader is site-wide for
+# verification/review; ad units render only when enabled in src/config/ads.ts).
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.googletagservices.com https://ep2.adtrafficquality.google; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://ep1.adtrafficquality.google https://csi.gstatic.com; font-src 'self'; connect-src 'self' https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google https://csi.gstatic.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://ep2.adtrafficquality.google; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+
+# Hashed build assets never change — cache forever
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# pdf.js worker is versioned by deploys; long cache with revalidation
+/pdf.worker.min.mjs
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/icon.svg
+  Cache-Control: public, max-age=86400

@@ -27,7 +27,7 @@ export function FileList({ files, onMove, onRemove, reorderable }: FileListProps
           style={{ borderColor: "var(--glass-strong-border)" }}
         >
           <div className="min-w-0">
-            <p className="truncate text-sm font-medium">{f.file.name}</p>
+            <p className="break-anywhere text-sm font-medium">{f.file.name}</p>
             <p className="text-xs text-fg-muted">
               {formatBytes(f.file.size)}
               {f.pageCount !== undefined ? ` · ${f.pageCount} pages` : ""}

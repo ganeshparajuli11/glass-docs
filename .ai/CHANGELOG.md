@@ -27,3 +27,10 @@
 - New calculators: GPA, assignment grade, attendance, percentage, EMI.
 - New student tool: assignment cover-page generator.
 - GlassTools logo/favicon; homepage category browsing; 6 category filters.
+
+## 2026-07-18 (hardening) — Mobile + security pass
+- 320px-safe shell, iOS-friendly inputs, overflow guards.
+- Security/caching headers (_headers), JSON-LD escaping, input caps, SECURITY.md.
+
+## 2026-07-18 (adsense) — Verification wiring
+- Site-wide AdSense loader with real publisher ID; ads.txt published; CSP allows Google ad domains. Ad display still gated off.

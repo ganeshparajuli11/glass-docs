@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Script from "next/script";
 import { adConfig, isPlacementActive, type AdPlacementKey } from "@/config/ads";
 import { cn } from "@/lib/utils";
 
@@ -60,12 +59,6 @@ export function AdSlot({ placement, className }: AdSlotProps) {
       }}
     >
       <p className="p-1 text-center text-[11px] text-fg-subtle">Advertisements</p>
-      <Script
-        id="adsense-loader"
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adConfig.clientId}`}
-        strategy="lazyOnload"
-        crossOrigin="anonymous"
-      />
       <ins
         className="adsbygoogle"
         style={{ display: "block", minHeight: minHeight - 24 }}

@@ -237,3 +237,23 @@ body {
   font-size: 0.85em;
 }
 .article-body strong { color: var(--fg); }
+
+
+/* Mobile robustness */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+.article-body,
+.reading-col {
+  overflow-wrap: break-word;
+}
+.break-anywhere {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+/* Keep >=16px inputs on small screens so iOS doesn't zoom on focus */
+@media (max-width: 640px) {
+  input, select, textarea {
+    font-size: 16px;
+  }
+}

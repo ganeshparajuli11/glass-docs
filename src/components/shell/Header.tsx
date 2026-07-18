@@ -11,10 +11,10 @@ const nav = [
 export function Header() {
   return (
     <header className="sticky top-0 z-40 px-3 pt-3 sm:px-6">
-      <div className="glass-soft mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-2.5 sm:px-6">
+      <div className="glass-soft mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-2 gap-y-1 px-3 py-2 sm:px-6 sm:py-2.5">
         <Link
           href="/"
-          className="flex items-center gap-2 text-lg font-semibold tracking-tight"
+          className="flex min-h-11 items-center gap-2 text-base font-semibold tracking-tight sm:text-lg"
         >
           <svg viewBox="0 0 64 64" className="h-8 w-8 rounded-xl" aria-hidden="true" focusable="false">
             <rect x="4" y="4" width="56" height="56" rx="16" fill="var(--accent)" />
@@ -31,7 +31,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-fg-muted transition-colors hover:bg-accent-soft hover:text-fg"
+              className="flex min-h-11 items-center rounded-full px-2.5 py-2 text-sm font-medium text-fg-muted transition-colors hover:bg-accent-soft hover:text-fg sm:px-3"
             >
               {item.label}
             </Link>
