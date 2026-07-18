@@ -1,5 +1,5 @@
 {
-  "name": "glassdocs",
+  "name": "glasstools",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "verify": "npm run lint && npm run typecheck && npm run test && npm run build"
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "build:static": "node scripts/copy-pdf-worker.mjs && node scripts/build-static.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
