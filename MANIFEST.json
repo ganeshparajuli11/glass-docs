@@ -1,0 +1,149 @@
+{
+  "generated": "2026-07-18",
+  "files": [
+    {
+      "path": ".agents/admin-connector-agent.md",
+      "bytes": 595
+    },
+    {
+      "path": ".agents/design-agent.md",
+      "bytes": 605
+    },
+    {
+      "path": ".agents/frontend-agent.md",
+      "bytes": 487
+    },
+    {
+      "path": ".agents/orchestrator-agent.md",
+      "bytes": 659
+    },
+    {
+      "path": ".agents/pdf-engine-agent.md",
+      "bytes": 615
+    },
+    {
+      "path": ".agents/qa-agent.md",
+      "bytes": 450
+    },
+    {
+      "path": ".agents/seo-monetization-agent.md",
+      "bytes": 545
+    },
+    {
+      "path": ".ai/CHANGELOG.md",
+      "bytes": 415
+    },
+    {
+      "path": ".ai/DECISIONS.md",
+      "bytes": 1629
+    },
+    {
+      "path": ".ai/FILE_MAP.md",
+      "bytes": 1571
+    },
+    {
+      "path": ".ai/HANDOFF.md",
+      "bytes": 1433
+    },
+    {
+      "path": ".ai/PROJECT_STATE.md",
+      "bytes": 1108
+    },
+    {
+      "path": ".ai/TASK_BOARD.md",
+      "bytes": 4123
+    },
+    {
+      "path": ".ai/TEST_REPORT.md",
+      "bytes": 300
+    },
+    {
+      "path": "00_MASTER_BUILD_PROMPT.md",
+      "bytes": 8312
+    },
+    {
+      "path": "01_PRODUCT_BRIEF.md",
+      "bytes": 5185
+    },
+    {
+      "path": "02_TECH_SETUP.md",
+      "bytes": 7470
+    },
+    {
+      "path": "03_ARCHITECTURE_AND_FILE_STRUCTURE.md",
+      "bytes": 8894
+    },
+    {
+      "path": "04_UI_UX_AND_AD_PLACEMENT.md",
+      "bytes": 8574
+    },
+    {
+      "path": "05_FEATURE_CATALOG_AND_ROADMAP.md",
+      "bytes": 6852
+    },
+    {
+      "path": "06_ADMIN_AND_CONNECTORS.md",
+      "bytes": 7479
+    },
+    {
+      "path": "07_AGENT_SYSTEM.md",
+      "bytes": 5703
+    },
+    {
+      "path": "08_DEVELOPMENT_LOOP_AND_HANDOFF.md",
+      "bytes": 6003
+    },
+    {
+      "path": "09_TESTING_SECURITY_PERFORMANCE.md",
+      "bytes": 7123
+    },
+    {
+      "path": "10_DEPLOYMENT_SEO_ADSENSE.md",
+      "bytes": 6997
+    },
+    {
+      "path": "11_ACCEPTANCE_CRITERIA.md",
+      "bytes": 4893
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 713
+    },
+    {
+      "path": "README.md",
+      "bytes": 823
+    },
+    {
+      "path": "START_HERE.md",
+      "bytes": 3624
+    },
+    {
+      "path": "VERSIONS_SNAPSHOT.md",
+      "bytes": 1218
+    },
+    {
+      "path": "skills/deployment/SKILL.md",
+      "bytes": 491
+    },
+    {
+      "path": "skills/pdf-engine/SKILL.md",
+      "bytes": 519
+    },
+    {
+      "path": "skills/seo-adsense/SKILL.md",
+      "bytes": 524
+    },
+    {
+      "path": "skills/supabase-admin/SKILL.md",
+      "bytes": 487
+    },
+    {
+      "path": "skills/testing/SKILL.md",
+      "bytes": 450
+    },
+    {
+      "path": "skills/ui-design/SKILL.md",
+      "bytes": 574
+    }
+  ]
+}
