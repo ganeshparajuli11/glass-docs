@@ -56,5 +56,6 @@ T-200/T-202 locally, or T-100/T-210 with user credentials.
 | T-315 | Remaining student kit (checklist, page estimator, citation templates, deadline countdown) | Backlog | |
 | T-316 | Guides for the 16 new tools | Backlog | needed before AdSense application |
 | T-317 | Drag-handle crop UI upgrade | Backlog | sliders are the accessible v1 |
+| SEO-1 | Prerender the `/tools` hub links for crawlers | Done | Static export contains all 29 tool links; category exports contain every assigned tool; search/filter remains client-enhanced |
 
 Explicitly out of scope until backend exists: PDF↔Word, OCR, repair, advanced compression, e-signatures, AI features, cloud storage (do not list as working).

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-07-20 — SEO-1 static tools hub
+
+- Removed the `useSearchParams` client-render bailout from the `/tools` explorer so its complete 29-tool grid is present in the static HTML export.
+- Preserved `?q=` and `?c=` URL initialization through hydration-safe location state while keeping interactive search and category filters.
+- Verified the static export contains all 29 registered `/tools/<slug>` links and that every category export contains each tool assigned to that category.
+- Verification: ESLint passed with one unrelated pre-existing warning, TypeScript passed, 58 Vitest tests passed, and the `DEPLOY_TARGET=static` production build generated all 55 static pages.
+
 ## 2026-07-18 — SPEC-001
 
 - Created complete GlassDocs product/build specification.

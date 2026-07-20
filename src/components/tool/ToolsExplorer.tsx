@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { Search } from "lucide-react";
 import { searchTools, tools } from "@/lib/tools/registry";
 import { ToolCard } from "@/components/tool/ToolCard";
@@ -15,13 +14,35 @@ const categories = [
   { key: "student", label: "Student" },
 ] as const;
 
+function subscribeToLocation(callback: () => void) {
+  window.addEventListener("popstate", callback);
+  return () => window.removeEventListener("popstate", callback);
+}
+
+function getLocationSearch() {
+  return window.location.search;
+}
+
+function getServerLocationSearch() {
+  return "";
+}
+
 export function ToolsExplorer() {
-  const params = useSearchParams();
-  const [query, setQuery] = useState(params.get("q") ?? "");
-  const initialCat = params.get("c");
-  const [category, setCategory] = useState<(typeof categories)[number]["key"]>(
-    categories.some((c) => c.key === initialCat) ? (initialCat as (typeof categories)[number]["key"]) : "all",
+  const locationSearch = useSyncExternalStore(
+    subscribeToLocation,
+    getLocationSearch,
+    getServerLocationSearch,
   );
+  const params = new URLSearchParams(locationSearch);
+  const paramCategory = params.get("c");
+  const initialCategory = categories.some((item) => item.key === paramCategory)
+    ? (paramCategory as (typeof categories)[number]["key"])
+    : "all";
+  const [queryOverride, setQueryOverride] = useState<string | null>(null);
+  const [categoryOverride, setCategoryOverride] =
+    useState<(typeof categories)[number]["key"] | null>(null);
+  const query = queryOverride ?? params.get("q") ?? "";
+  const category = categoryOverride ?? initialCategory;
 
   const results = useMemo(() => {
     const byQuery = searchTools(query);
@@ -35,7 +56,7 @@ export function ToolsExplorer() {
         <input
           type="search"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => setQueryOverride(e.target.value)}
           placeholder="Search by name or task…"
           aria-label="Search tools"
           className="min-h-11 w-full bg-transparent text-sm outline-none placeholder:text-fg-subtle"
@@ -46,7 +67,7 @@ export function ToolsExplorer() {
           <button
             key={c.key}
             type="button"
-            onClick={() => setCategory(c.key)}
+            onClick={() => setCategoryOverride(c.key)}
             aria-pressed={category === c.key}
             className={
               category === c.key

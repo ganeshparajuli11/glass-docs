@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { ToolsExplorer } from "@/components/tool/ToolsExplorer";
 import { pageMeta } from "@/lib/seo/meta";
@@ -19,9 +18,7 @@ export default function ToolsPage() {
         uploaded.
       </p>
       <div className="mt-6">
-        <Suspense fallback={null}>
-          <ToolsExplorer />
-        </Suspense>
+        <ToolsExplorer />
       </div>
     </div>
   );
