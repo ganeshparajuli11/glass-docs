@@ -137,6 +137,25 @@ body {
   box-shadow: var(--shadow-raised);
 }
 
+.header-glass {
+  background: color-mix(in srgb, var(--bg-raised) 84%, transparent);
+  border: 1px solid color-mix(in srgb, var(--glass-strong-border) 82%, transparent);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  box-shadow: var(--shadow-raised);
+  isolation: isolate;
+}
+
+.header-glass a:first-child {
+  color: var(--fg);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.dark .header-glass a:first-child {
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.28);
+}
+
 .solid-reading {
   background: var(--solid-reading-bg);
   border: 1px solid var(--glass-soft-border);
@@ -146,11 +165,13 @@ body {
 
 @supports not (backdrop-filter: blur(1px)) {
   .glass-soft, .glass-strong { background: var(--bg-raised); }
+  .header-glass { background: var(--bg-raised); }
 }
 
 @media (max-width: 640px) {
   .glass-soft { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
   .glass-strong { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .header-glass { backdrop-filter: blur(18px) saturate(145%); -webkit-backdrop-filter: blur(18px) saturate(145%); }
 }
 
 .aurora {

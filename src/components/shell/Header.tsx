@@ -11,10 +11,10 @@ const nav = [
 export function Header() {
   return (
     <header className="sticky top-0 z-40 px-3 pt-3 sm:px-6">
-      <div className="glass-soft mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-2 gap-y-1 px-3 py-2 sm:px-6 sm:py-2.5">
+      <div className="header-glass mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-2 gap-y-1 px-3 py-2 sm:px-6 sm:py-2.5">
         <Link
           href="/"
-          className="flex min-h-11 items-center gap-2 text-base font-semibold tracking-tight sm:text-lg"
+          className="flex min-h-11 items-center gap-2 text-base font-semibold tracking-tight text-fg sm:text-lg"
         >
           <svg viewBox="0 0 64 64" className="h-8 w-8 rounded-xl" aria-hidden="true" focusable="false">
             <rect x="4" y="4" width="56" height="56" rx="16" fill="var(--accent)" />
