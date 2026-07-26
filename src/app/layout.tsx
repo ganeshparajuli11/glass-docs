@@ -27,10 +27,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="h-full antialiased">
       <body className="flex min-h-full flex-col">
-        {adConfig.clientId ? (
-          // Site-wide AdSense loader: required by Google for site verification
-          // and review. React hoists this async script into <head> in the
-          // prerendered HTML so Google's crawler sees the literal tag.
+        {adConfig.loadScript ? (
+          // Site-wide AdSense loader. Present only while Google is verifying
+          // the site (adConfig.verifying) or once ads are genuinely enabled
+          // (adConfig.enabled) — never merely because a publisher ID exists.
+          //
+          // Deliberately a plain <script>, not next/script: React hoists this
+          // into <head> in the PRERENDERED HTML, so Google's verification
+          // crawler sees the literal tag. next/script injects after hydration
+          // and would be invisible to it.
+          //
           // Ad UNITS still render only when enabled (see AdSlot).
           <script
             async

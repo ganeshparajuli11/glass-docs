@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { articles, getArticle } from "@/content/articles";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { site } from "@/config/site";
+import { absoluteUrl } from "@/lib/seo/url";
 
 interface Params {
   slug: string;
@@ -54,9 +56,19 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
             "@type": "Article",
             headline: article.title,
             description: article.description,
+            // TODO (SCHEMA-001): move to per-article publishedAt/updatedAt.
+            // Correct today only because every guide was written on this date.
             datePublished: "2026-07-18",
-            author: { "@type": "Organization", name: "GlassTools" },
-            mainEntityOfPage: `https://glasstools.net/learn/${article.slug}`,
+            author: { "@type": "Person", name: site.operator.name },
+            publisher: {
+              "@type": "Organization",
+              name: site.name,
+              logo: {
+                "@type": "ImageObject",
+                url: absoluteUrl("/icon.svg"),
+              },
+            },
+            mainEntityOfPage: absoluteUrl(`/learn/${article.slug}`),
           }).replace(/</g, "\\u003c"),
         }}
       />

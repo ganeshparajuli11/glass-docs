@@ -4,6 +4,7 @@ import { tools } from "@/lib/tools/registry";
 import { articles } from "@/content/articles";
 import { ToolCard } from "@/components/tool/ToolCard";
 import { pageMeta } from "@/lib/seo/meta";
+import { absoluteUrl } from "@/lib/seo/url";
 import type { CategoryPage } from "@/lib/seo/categories";
 
 export function categoryMetadata(page: CategoryPage): Metadata {
@@ -21,8 +22,8 @@ export function CategoryLanding({ page }: { page: CategoryPage }) {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Tools", item: "https://glasstools.net/tools" },
-        { "@type": "ListItem", position: 2, name: page.title, item: `https://glasstools.net${page.path}` },
+        { "@type": "ListItem", position: 1, name: "Tools", item: absoluteUrl("/tools") },
+        { "@type": "ListItem", position: 2, name: page.title, item: absoluteUrl(page.path) },
       ],
     },
     {
@@ -30,7 +31,7 @@ export function CategoryLanding({ page }: { page: CategoryPage }) {
       "@type": "CollectionPage",
       name: page.metaTitle,
       description: page.description,
-      url: `https://glasstools.net${page.path}`,
+      url: absoluteUrl(page.path),
     },
   ];
 

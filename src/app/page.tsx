@@ -8,8 +8,14 @@ import { site } from "@/config/site";
 import { pageMeta } from "@/lib/seo/meta";
 import type { Metadata } from "next";
 
+/**
+ * The root layout's `title.template` does NOT apply to this segment — Next.js
+ * only applies a template to CHILD segments — so the homepage title must
+ * carry the brand itself. It appears exactly once, at the end, matching the
+ * shape the template produces on every other page (audit finding META-001).
+ */
 export const metadata: Metadata = pageMeta({
-  title: `${site.name} — Free private PDF, image & student tools in your browser`,
+  title: `Free Private PDF & Image Tools in Your Browser — ${site.name}`,
   description:
     "29 free tools that run on your device: merge and split PDFs, compress images, count words, calculate GPA and more. No signup, no upload by default.",
   path: "/",
@@ -174,14 +180,24 @@ export default function HomePage() {
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: site.name,
+              alternateName: site.alternateName,
               url: site.url,
+              description: site.description,
             },
             {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: site.name,
+              alternateName: site.alternateName,
               url: site.url,
               logo: `${site.url}/icon.svg`,
+              description:
+                "GlassTools is a browser-based collection of private PDF and image utilities. Supported tools process files locally on the user's device.",
+              founder: {
+                "@type": "Person",
+                name: site.operator.name,
+              },
+              sameAs: [site.operator.repository],
             },
           ]).replace(/</g, "\\u003c"),
         }}

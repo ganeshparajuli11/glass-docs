@@ -7,6 +7,8 @@ import { ToolHost } from "@/components/tool/ToolHost";
 import { ToolShell, LocalBadge } from "@/components/tool/ToolShell";
 import { ToolCard } from "@/components/tool/ToolCard";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { site } from "@/config/site";
+import { absoluteUrl } from "@/lib/seo/url";
 
 interface Params {
   slug: string;
@@ -53,15 +55,15 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Tools", item: "https://glasstools.net/tools" },
-        { "@type": "ListItem", position: 2, name: tool.name, item: `https://glasstools.net/tools/${tool.slug}` },
+        { "@type": "ListItem", position: 1, name: "Tools", item: absoluteUrl("/tools") },
+        { "@type": "ListItem", position: 2, name: tool.name, item: absoluteUrl(`/tools/${tool.slug}`) },
       ],
     },
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      name: `${tool.name} — GlassTools`,
-      url: `https://glasstools.net/tools/${tool.slug}`,
+      name: `${tool.name} — ${site.name}`,
+      url: absoluteUrl(`/tools/${tool.slug}`),
       applicationCategory: "UtilitiesApplication",
       operatingSystem: "Any (web browser)",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
