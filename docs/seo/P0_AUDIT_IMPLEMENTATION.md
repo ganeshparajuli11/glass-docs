@@ -141,17 +141,20 @@ on push.
 
 ## 3. Your actions — these cannot be done from code
 
-### a. Make `hello@glasstools.net` actually work — do this first
+### a. Keep the published contact address working — done, but verify
 
-The contact, privacy and terms pages now publish this address. Until routing
-exists, it bounces, which is worse than the placeholder it replaced.
+The contact, privacy and terms pages all render `site.contact.email` from
+`src/config/site.ts`. Whatever is in that field must be a mailbox that is
+actually read; a bouncing address is worse than the placeholder it replaced.
 
-1. Cloudflare dashboard → glasstools.net → **Email** → Email Routing → enable.
-2. Add the MX and TXT records Cloudflare offers (one click if it runs your DNS).
-3. Create a custom address: `hello@glasstools.net` → forward to
-   `ganeshparajuli2059@gmail.com`.
-4. Confirm the verification email Cloudflare sends to that Gmail address.
-5. Send a test message from an unrelated account and confirm it arrives.
+Currently a Zoho mailbox. Send a test message from an unrelated account and
+confirm it arrives, including checking spam.
+
+Worth doing later: an address on the domain itself (`hello@glasstools.net`)
+reads as more credible on a trust page than a free-provider address. Zoho's
+free plan supports a custom domain, or Cloudflare Email Routing forwards
+domain addresses to any mailbox at no cost. Changing it means editing one line
+in `src/config/site.ts`.
 
 ### b. Deploy
 
@@ -193,15 +196,17 @@ blur/animation work later has something to compare against.
 
 ---
 
-## 4. Two things to correct if I got them wrong
+## 4. Worth double-checking
 
-- **Name spelling.** You wrote "Ganesh Patajuli"; I used **Ganesh Parajuli**, matching
-  your GitHub handle `ganeshparajuli11`. If the first spelling was right, change
-  `site.operator.name` in `src/config/site.ts` — it is the only place it lives.
-- **Repository visibility.** `/about`, `/contact` and `/terms` link to
-  `github.com/ganeshparajuli11/glass-docs` and the terms page refers to its
-  licence. If the repo is private, either make it public or remove
-  `site.operator.repository` and those links.
+- **Operator name.** `site.operator.name` is the single place the name appears;
+  `/about`, `/privacy` and `/terms` all read from it.
+- **Repository visibility.** `/about`, `/contact` and `/terms` link to the
+  repository, and the terms page refers to its licence. Those links only make
+  sense while the repo is public — if it goes private, remove
+  `site.operator.repository` and the links that use it.
+- **Licence.** The terms page points at "the licence stated in that
+  repository". There is no `LICENSE` file yet, so that sentence currently
+  refers to nothing. Either add one or reword it.
 
 ---
 

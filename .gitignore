@@ -40,6 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# playwright artefacts — regenerated on every run, never commit
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
 # local project specification docs (keep locally, do not publish)
 /00_MASTER_BUILD_PROMPT.md
 /01_PRODUCT_BRIEF.md
@@ -54,4 +60,9 @@ next-env.d.ts
 /10_DEPLOYMENT_SEO_ADSENSE.md
 /11_ACCEPTANCE_CRITERIA.md
 /AGENTS.md
+/DEPLOYMENT_STEPS.md
 /START_HERE.md
+/GLASSTOOLS_SEO_DEVELOPER_AUDIT.md
+
+# one-off maintenance script, not part of the project
+/cleanup-push.ps1

@@ -17,7 +17,11 @@ export const site = {
     repository: "https://github.com/ganeshparajuli11/glass-docs",
   },
   contact: {
-    /** Forwards to a monitored mailbox via Cloudflare Email Routing. */
+    /**
+     * Published on the contact, privacy and terms pages. Must be a mailbox
+     * that is actually read — it is the only route users have for reporting
+     * a broken tool or a privacy concern.
+     */
     email: "glasstools@zohomail.com",
   },
   /** Date the current public legal and trust pages took effect. */
