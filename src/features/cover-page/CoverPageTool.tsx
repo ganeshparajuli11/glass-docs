@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Field, inputClass } from "@/components/tool/Field";
 import { ErrorPanel, SuccessPanel } from "@/components/tool/Panels";
 import type { ToolState } from "@/lib/pdf/contracts";
-import { toolError } from "@/lib/pdf/errors";
 import { generateCoverPage } from "@/lib/pdf/operations/cover-page";
 import { PdfOperationError } from "@/lib/pdf/operations/load";
 import { makeResult, revokeResult } from "@/lib/files/download";

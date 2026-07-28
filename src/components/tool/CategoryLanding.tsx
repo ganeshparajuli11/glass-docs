@@ -5,7 +5,9 @@ import { articles } from "@/content/articles";
 import { ToolCard } from "@/components/tool/ToolCard";
 import { pageMeta } from "@/lib/seo/meta";
 import { absoluteUrl } from "@/lib/seo/url";
-import type { CategoryPage } from "@/lib/seo/categories";
+import { categoryPages, type CategoryPage } from "@/lib/seo/categories";
+import { workflowsForCategory } from "@/lib/seo/workflows";
+import { WorkflowBlocks } from "@/components/tool/WorkflowBlocks";
 
 export function categoryMetadata(page: CategoryPage): Metadata {
   return pageMeta({ title: page.metaTitle, description: page.description, path: page.path });
@@ -54,6 +56,12 @@ export function CategoryLanding({ page }: { page: CategoryPage }) {
           <ToolCard key={tool.slug} tool={tool} />
         ))}
       </div>
+      <WorkflowBlocks
+        items={workflowsForCategory(page.category)}
+        heading="Common jobs these tools are used for"
+        intro="Few of these tasks are done with a single tool. These are the sequences that work."
+      />
+
       {guides.length > 0 ? (
         <section aria-labelledby={`${page.category}-guides`} className="mt-10">
           <h2 id={`${page.category}-guides`} className="text-xl font-bold">
@@ -70,6 +78,31 @@ export function CategoryLanding({ page }: { page: CategoryPage }) {
           </ul>
         </section>
       ) : null}
+
+      <section aria-labelledby={`${page.category}-other`} className="mt-10">
+        <h2 id={`${page.category}-other`} className="text-xl font-bold">
+          Other categories
+        </h2>
+        <nav aria-label="Other tool categories" className="mt-3 flex flex-wrap gap-2">
+          {categoryPages
+            .filter((other) => other.path !== page.path)
+            .map((other) => (
+              <Link
+                key={other.path}
+                href={other.path}
+                className="glass-soft card-hover min-h-11 rounded-full px-4 py-2.5 text-sm font-medium"
+              >
+                {other.title}
+              </Link>
+            ))}
+          <Link
+            href="/tools"
+            className="glass-soft card-hover min-h-11 rounded-full px-4 py-2.5 text-sm font-medium"
+          >
+            All 29 tools
+          </Link>
+        </nav>
+      </section>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
