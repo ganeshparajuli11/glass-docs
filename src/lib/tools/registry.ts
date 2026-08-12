@@ -702,6 +702,12 @@ export function getTool(slug: string): ToolDefinition | undefined {
   return tools.find((t) => t.slug === slug);
 }
 
+export function toolsInCategory(
+  category: ToolDefinition["category"],
+): ToolDefinition[] {
+  return tools.filter((t) => t.category === category);
+}
+
 export function searchTools(query: string): ToolDefinition[] {
   const q = query.trim().toLowerCase();
   if (q.length === 0) return tools;

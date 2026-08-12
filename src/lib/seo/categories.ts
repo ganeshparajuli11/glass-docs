@@ -17,12 +17,19 @@ export const categoryPages: CategoryPage[] = [
     title: "PDF tools",
     metaTitle: "Free PDF tools — merge, split, rotate, watermark",
     description:
-      "13 free PDF tools that run in your browser: merge, split, remove pages, rotate, watermark, add page numbers, convert to images, extract text and more.",
+      "12 free PDF tools that run in your browser: merge, split, remove pages, rotate, watermark, add page numbers, convert to images, extract text and more.",
     intro: [
       "Everything here works on your device: the PDF is read into your browser's memory, changed there, and handed back to you as a download. No account, no upload, no watermark added by us.",
       "Start with the task you need — combining files, pulling out pages, fixing rotation, or stamping a draft mark — and the tool page explains its limits honestly before you begin.",
     ],
-    guideSlugs: ["merge-pdfs-without-uploading", "split-pdf-page-ranges", "remove-pages-from-pdf"],
+    guideSlugs: [
+      "merge-pdfs-without-uploading",
+      "split-pdf-page-ranges",
+      "remove-pages-from-pdf",
+      "rotate-one-page-in-a-pdf",
+      "pdf-too-large-to-email",
+      "cannot-copy-text-from-pdf",
+    ],
   },
   {
     path: "/image-tools",
@@ -35,7 +42,11 @@ export const categoryPages: CategoryPage[] = [
       "These tools use your browser's own image engine, so photos never leave your device. Compression shows you the before-and-after size so you can pick the right quality.",
       "They pair naturally with the PDF tools: shrink or crop images first, then turn them into a single PDF with Images to PDF.",
     ],
-    guideSlugs: ["images-to-pdf-quality", "shrink-images-for-email"],
+    guideSlugs: [
+      "images-to-pdf-quality",
+      "shrink-images-for-email",
+      "passport-photo-sizes-explained",
+    ],
   },
   {
     path: "/text-tools",
@@ -48,7 +59,7 @@ export const categoryPages: CategoryPage[] = [
       "Paste text, get an answer — nothing you type is sent anywhere. The word counter includes reading time and page estimates, which makes it handy for assignment limits.",
       "The compare tool shows added and removed lines between two drafts, useful for checking what changed before you submit.",
     ],
-    guideSlugs: [],
+    guideSlugs: ["cannot-copy-text-from-pdf"],
   },
   {
     path: "/calculators",
@@ -61,7 +72,7 @@ export const categoryPages: CategoryPage[] = [
       "Quick answers to the questions students actually ask: what's my GPA, what do I need on the final, and how many classes can I still miss. Each result explains its formula.",
       "The EMI calculator is general information, not financial advice — it shows the standard reducing-balance formula so you can sanity-check a lender's quote.",
     ],
-    guideSlugs: [],
+    guideSlugs: ["gpa-scales-explained"],
   },
   {
     path: "/student-tools",
@@ -74,6 +85,10 @@ export const categoryPages: CategoryPage[] = [
       "Made for submission day: generate a tidy cover page with your name, module, and word count, merge it in front of your assignment, add page numbers, and export.",
       "More student helpers — page estimators, citation templates, and checklists — are planned; only working tools are listed here.",
     ],
-    guideSlugs: ["remove-pages-from-pdf"],
+    guideSlugs: [
+      "prepare-assignment-pdf-for-submission",
+      "gpa-scales-explained",
+      "remove-pages-from-pdf",
+    ],
   },
 ];

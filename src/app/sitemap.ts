@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...articles.map((a) => ({
       url: absoluteUrl(`/learn/${a.slug}`),
+      lastModified: new Date(a.publishedAt),
       changeFrequency: "yearly" as const,
       priority: 0.5,
     })),

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTool, tools } from "@/lib/tools/registry";
 import { articles, toolGuides } from "@/content/articles";
+import { getToolContent } from "@/content/tools";
 import { ToolHost } from "@/components/tool/ToolHost";
 import { ToolShell, LocalBadge } from "@/components/tool/ToolShell";
 import { ToolCard } from "@/components/tool/ToolCard";
@@ -41,6 +42,8 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
   const { slug } = await params;
   const tool = getTool(slug);
   if (!tool) notFound();
+
+  const content = getToolContent(tool.slug);
 
   const guides = (toolGuides[tool.slug] ?? [])
     .map((slug) => articles.find((a) => a.slug === slug))
@@ -91,7 +94,9 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
           / <span aria-current="page">{tool.name}</span>
         </nav>
         <h1 className="mt-3 text-3xl font-bold">{tool.name}</h1>
-        <p className="mt-2 max-w-2xl text-fg-muted">{tool.shortDescription}</p>
+        <p className="mt-2 max-w-2xl text-fg-muted">
+          {content ? content.lede : tool.shortDescription}
+        </p>
         <div className="mt-3">
           <LocalBadge fileless={tool.acceptedMimeTypes.length === 0} />
         </div>
@@ -103,6 +108,35 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
 
       {/* Informational sections — clearly separated from the workspace */}
       <div className="mx-auto mt-10 max-w-[1100px] space-y-6">
+        {content ? (
+          <>
+            <section
+              aria-labelledby="how-to-heading"
+              className="solid-reading article-body reading-col p-6 text-fg-muted"
+            >
+              <h2 id="how-to-heading" className="text-xl font-bold text-fg">
+                How to use {tool.name}
+              </h2>
+              <ol className="mt-3 space-y-2">
+                {content.steps.map((step, i) => (
+                  <li key={i}>{step}</li>
+                ))}
+              </ol>
+            </section>
+
+            {content.sections.map((section) => (
+              <section
+                key={section.heading}
+                aria-label={section.heading}
+                className="solid-reading article-body reading-col space-y-4 p-6 text-fg-muted"
+              >
+                <h2 className="text-xl font-bold text-fg">{section.heading}</h2>
+                {section.body}
+              </section>
+            ))}
+          </>
+        ) : null}
+
         <section aria-labelledby="limits-heading" className="solid-reading p-6">
           <h2 id="limits-heading" className="text-xl font-bold">
             Good to know

@@ -1,5 +1,34 @@
 # SEO Implementation Log
 
+## 2026-08-12 — AdSense "Low value content" remediation
+
+Google rejected the site for low value content. Diagnosis: 29 tool pages each
+carried ~80 words of unique text (one-line description, a limits list, one or
+two FAQ entries) around a client-rendered workspace, against 7 guides. The tool
+UI is JavaScript, so a crawler saw a near-empty templated page 29 times.
+
+Code changes:
+- `src/content/tools/{types,pdf,image,text,study}.tsx` — long-form content for
+  all 29 tools: lede, how-to steps written against the tool's real controls, and
+  3–4 sections on choosing settings, pitfalls, and when another tool is better.
+  Rendered below the workspace in `app/tools/[slug]/page.tsx`.
+- 5 new guides (12 total): rotate-one-page-in-a-pdf, passport-photo-sizes-
+  explained, gpa-scales-explained, pdf-too-large-to-email,
+  cannot-copy-text-from-pdf.
+- `Article.publishedAt` added; Article JSON-LD and the sitemap now use it
+  instead of a hard-coded 2026-07-18 (closes SCHEMA-001).
+- Category hubs link the new guides; `/text-tools` and `/calculators` are no
+  longer guide-less. `/pdf-tools` claimed 13 PDF tools; there are 12.
+- `tests/seo/tool-content.test.ts` — content floor per tool, no reused section
+  headings, no absolute security claims, cross-links resolve, quoted counts true.
+
+Measured: /tools/merge-pdf went from ~320 to ~860 words of rendered text.
+
+Deliberately NOT done:
+- No FAQ padding on tool pages — the long-form sections answer more, in prose.
+- No pages for tools that do not exist; the oversized-PDF guide says plainly
+  that there is no PDF compressor yet rather than implying one.
+
 ## 2026-07-18 — Foundation pass (this session)
 
 Code changes:

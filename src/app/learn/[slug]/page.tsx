@@ -56,9 +56,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
             "@type": "Article",
             headline: article.title,
             description: article.description,
-            // TODO (SCHEMA-001): move to per-article publishedAt/updatedAt.
-            // Correct today only because every guide was written on this date.
-            datePublished: "2026-07-18",
+            datePublished: article.publishedAt,
             author: { "@type": "Person", name: site.operator.name },
             publisher: {
               "@type": "Organization",

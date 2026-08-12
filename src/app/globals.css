@@ -163,6 +163,37 @@ body {
   box-shadow: var(--shadow-card);
 }
 
+/*
+  Navigation surfaces. The same markup is a drop-down panel on desktop and an
+  inline accordion on mobile, so the surface has to move between the two
+  elements at the breakpoint rather than sit on one of them.
+*/
+.nav-shell {
+  background: var(--solid-reading-bg);
+  border: 1px solid var(--glass-soft-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-raised);
+  padding: 0.5rem;
+}
+.nav-panel {
+  padding: 0;
+}
+@media (min-width: 1280px) {
+  .nav-shell {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+  .nav-panel {
+    background: var(--solid-reading-bg);
+    border: 1px solid var(--glass-soft-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-raised);
+    padding: 0.5rem;
+  }
+}
+
 @supports not (backdrop-filter: blur(1px)) {
   .glass-soft, .glass-strong { background: var(--bg-raised); }
   .header-glass { background: var(--bg-raised); }
@@ -237,6 +268,10 @@ body {
 .reading-col { max-width: 46rem; }
 
 /* Article typography */
+/* A card that opens with its own heading must not inherit the running-text gap. */
+.article-body > h2:first-child {
+  margin-top: 0;
+}
 .article-body h2 {
   margin-top: 1.5rem;
   font-size: 1.25rem;

@@ -114,9 +114,15 @@ describe("client filtering matches server search semantics", () => {
 });
 
 describe("category hubs are reachable site-wide", () => {
-  it("the header links every category hub", () => {
+  it("the header builds its menus from the registry, not a hand-written list", () => {
     expect(header).toContain("categoryPages");
-    expect(header).toContain("Tool categories");
+    expect(header).toContain("toolsInCategory");
+  });
+
+  it("the header keeps the hubs reachable without JavaScript", () => {
+    // The menus need scripting to open, so the plain fallback row is the only
+    // thing standing between a no-JS visitor and a dead header.
+    expect(header).toContain("<noscript>");
   });
 
   it("the footer links every category hub", () => {

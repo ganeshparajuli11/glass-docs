@@ -5,8 +5,15 @@ export interface Article {
   slug: string;
   title: string;
   description: string;
+  /** ISO date the guide was published. Feeds Article structured data. */
+  publishedAt: string;
   body: ReactNode;
 }
+
+/** Date the first seven guides were written. */
+const WAVE_1 = "2026-07-18";
+/** Second content wave. */
+const WAVE_2 = "2026-08-12";
 
 /* Genuinely useful guides — no thin template content. */
 export const articles: Article[] = [
@@ -15,6 +22,7 @@ export const articles: Article[] = [
     title: "How to merge PDFs without uploading them anywhere",
     description:
       "A step-by-step guide to combining PDF files privately in your browser, plus what to check before and after merging.",
+    publishedAt: WAVE_1,
     body: (
       <>
         <p>
@@ -56,6 +64,7 @@ export const articles: Article[] = [
     title: "Splitting a PDF: page ranges explained",
     description:
       "How to write page ranges like 1-3, 5, 8-10, and how to choose between the three split modes.",
+    publishedAt: WAVE_1,
     body: (
       <>
         <p>
@@ -102,6 +111,7 @@ export const articles: Article[] = [
     title: "Turning photos into a PDF without ruining quality",
     description:
       "Page sizes, fit modes, and orientation — how to get a clean PDF from JPG, PNG, or WebP images.",
+    publishedAt: WAVE_1,
     body: (
       <>
         <p>
@@ -149,6 +159,7 @@ export const articles: Article[] = [
     title: "Are online PDF tools safe? How to check before you upload",
     description:
       "Most online PDF tools upload your file to a server. Here is how to tell what a tool really does with your document, and when that matters.",
+    publishedAt: WAVE_1,
     body: (
       <>
         <p>
@@ -203,6 +214,7 @@ export const articles: Article[] = [
     title: "How to remove pages from a PDF (without re-scanning anything)",
     description:
       "Delete unwanted, blank, or duplicated pages from a PDF in your browser: select thumbnails, remove, and download the cleaned file.",
+    publishedAt: WAVE_1,
     body: (
       <>
         <p>
@@ -242,6 +254,7 @@ export const articles: Article[] = [
     title: "Shrinking images for email and upload portals",
     description:
       "Attachment too large? How to compress photos below common email and portal limits without wrecking the quality.",
+    publishedAt: WAVE_1,
     body: (
       <>
         <p>
@@ -281,6 +294,7 @@ export const articles: Article[] = [
     title: "Preparing an assignment PDF for submission",
     description:
       "A pre-submission pipeline for students: cover page, merged files, page numbers, and a final check — all in the browser.",
+    publishedAt: WAVE_1,
     body: (
       <>
         <p>
@@ -327,6 +341,368 @@ export const articles: Article[] = [
       </>
     ),
   },
+  {
+    slug: "rotate-one-page-in-a-pdf",
+    title: "How to rotate one page in a PDF without turning the rest",
+    description:
+      "Why a scan comes out sideways, how to rotate only the pages that are wrong, and what to do when a document prints the wrong way round.",
+    publishedAt: WAVE_2,
+    body: (
+      <>
+        <p>
+          A document feeder takes one sheet in landscape, or you photograph a
+          wide table with the phone turned sideways, and now a single page in an
+          otherwise perfect PDF is lying on its side. Rotating the whole file
+          fixes that page and breaks every other one. The fix is to rotate a
+          selection.
+        </p>
+        <h2>Rotate only the pages that are wrong</h2>
+        <ol>
+          <li>
+            Open the <Link href="/tools/rotate-pdf">Rotate pages tool</Link> and
+            load the PDF.
+          </li>
+          <li>
+            Note the page numbers that need turning — positions in the file,
+            counting from 1, not any number printed on the page.
+          </li>
+          <li>
+            Turn off <strong>Rotate all pages</strong> and list those page
+            numbers.
+          </li>
+          <li>
+            Choose the rotation. 90° clockwise fixes a page whose top edge is on
+            the left; 270° fixes one whose top edge is on the right; 180° fixes
+            upside down.
+          </li>
+          <li>Apply, download, and check the pages you did not touch.</li>
+        </ol>
+        <h2>Which direction do I need?</h2>
+        <p>
+          Getting this wrong once is normal — 90° and 270° are easy to confuse
+          when you are looking at a thumbnail. The reliable way to decide is to
+          find the top of the text and ask where it currently points. Text
+          reading bottom-to-top means the top edge is on the left, and the page
+          needs 90° clockwise. Text reading top-to-bottom means the opposite.
+          If a first attempt goes the wrong way, apply 180° to the result rather
+          than starting over.
+        </p>
+        <h2>Nothing is re-compressed</h2>
+        <p>
+          Rotation changes a value stored on the page rather than redrawing it,
+          so there is no quality loss at all, however many times you do it. That
+          is worth knowing because it means experimenting costs nothing — and
+          because it explains the case below.
+        </p>
+        <h2>When the page turns but the content does not</h2>
+        <p>
+          Occasionally a scan looks sideways because the image sitting inside an
+          upright page is sideways. Rotating the page then turns the whole
+          sheet, margins included, and you end up with a landscape page
+          containing upright content. If that is unacceptable, rotate the image
+          itself and rebuild the page with{" "}
+          <Link href="/tools/images-to-pdf">Images to PDF</Link>.
+        </p>
+        <h2>Right on screen, wrong on paper</h2>
+        <p>
+          Some printers and older PDF processors ignore page rotation entirely.
+          When a document displays correctly but prints sideways, that is what
+          has happened, and no amount of re-rotating fixes it. The workaround is
+          to render the pages as pictures with{" "}
+          <Link href="/tools/pdf-to-images">PDF to images</Link>, which fixes
+          the current appearance in place, then rebuild the PDF from those
+          images. You lose selectable text, so keep it as a last resort.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "passport-photo-sizes-explained",
+    title: "Passport photo sizes explained: 35×45 mm, 2×2 in, and printing them correctly",
+    description:
+      "What the standard passport photo sizes are, which countries use which, and the printing mistake that gets photographs rejected.",
+    publishedAt: WAVE_2,
+    body: (
+      <>
+        <p>
+          Passport and visa photographs are rejected for two kinds of reason:
+          the picture itself breaks a rule, or the print is the wrong physical
+          size. The second is entirely avoidable and, in practice, the more
+          common of the two.
+        </p>
+        <h2>The standard sizes</h2>
+        <p>
+          <strong>35×45&nbsp;mm</strong> is the most widely used specification —
+          Nepal, India, the United Kingdom, the European Union, Australia and
+          many others. <strong>2×2 inches</strong> (about 51×51&nbsp;mm) is the
+          United States format, and it is square rather than rectangular, so it
+          is not interchangeable with 35×45.{" "}
+          <strong>40×60&nbsp;mm</strong> appears in some national identity card
+          and licence applications.
+        </p>
+        <p>
+          Always take the size from the instructions for the exact document you
+          are applying for, not from what a previous application wanted. Sizes
+          differ between a country&apos;s passport, its visa, and its identity
+          card.
+        </p>
+        <h2>Size is not the only measurement</h2>
+        <p>
+          Most specifications also state a head height: the distance from chin
+          to the top of the head, either in millimetres or as a proportion of
+          the photograph. A correctly sized print with a head that is too small
+          or too large is still rejected. Crop deliberately with the{" "}
+          <Link href="/tools/crop-image">crop tool</Link> before making a sheet,
+          rather than accepting whatever a centre crop produces.
+        </p>
+        <h2>Printing: the mistake that costs you the trip</h2>
+        <p>
+          The <Link href="/tools/passport-photo">passport photo sheet tool</Link>{" "}
+          lays out multiple copies at 300&nbsp;DPI onto a 4×6&nbsp;inch or A4
+          sheet with cutting guides. That only produces true-size photographs if
+          the printer prints it at 100%.
+        </p>
+        <ol>
+          <li>
+            In the print dialog, set scaling to <strong>100%</strong> or{" "}
+            <strong>Actual size</strong>.
+          </li>
+          <li>
+            Turn off &ldquo;Fit to page&rdquo;, &ldquo;Shrink oversized
+            pages&rdquo;, and any automatic scaling.
+          </li>
+          <li>Print one sheet and measure a photo with a ruler before cutting.</li>
+        </ol>
+        <p>
+          A photo that measures 34&nbsp;mm instead of 35 will be turned away at
+          the counter, and the cause is almost always a print dialog quietly
+          scaling the sheet to the printable area. If a photo shop prints the
+          file for you, tell them not to crop or resize it.
+        </p>
+        <h2>What no tool can check</h2>
+        <p>
+          Background colour, even lighting, a neutral expression, no shadows,
+          glasses and head coverings, and image sharpness are all judged by
+          whoever receives the photograph. Read the official guidance for your
+          document before printing a sheet of something that will be rejected.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "gpa-scales-explained",
+    title: "GPA scales explained: 4.0, percentages, and why conversions disagree",
+    description:
+      "How a credit-weighted GPA is calculated, why the same transcript converts to different numbers, and what to send when an application asks for a GPA.",
+    publishedAt: WAVE_2,
+    body: (
+      <>
+        <p>
+          A grade point average is a simple calculation wrapped in an
+          institution-specific scale, which is why two people with identical
+          transcripts can honestly report different GPAs. Understanding which
+          part is arithmetic and which part is local convention saves a lot of
+          confusion on application forms.
+        </p>
+        <h2>The arithmetic, which is the same everywhere</h2>
+        <p>
+          Each grade is worth a number of grade points. Each course contributes
+          its grade points multiplied by its credits. Add those up, divide by
+          the total credits, and you have the average. The{" "}
+          <Link href="/tools/gpa-calculator">GPA calculator</Link> does exactly
+          this.
+        </p>
+        <p>
+          The weighting is the part people underestimate. A B in a five-credit
+          module moves the average far more than an A in a one-credit seminar,
+          which is worth knowing when you are deciding where the revision time
+          goes.
+        </p>
+        <h2>The scale, which is not</h2>
+        <p>
+          The 4.0 scale is a family of scales rather than one standard. Some
+          institutions award 4.0 for an A and treat A+ the same; others go to
+          4.3. Some use plus and minus grades at quarter-point intervals, others
+          use whole letters only. Several countries use a 5.0 or 10.0 scale
+          entirely, and many universities award percentages and publish their
+          own bands for converting them.
+        </p>
+        <p>
+          Those bands genuinely differ. A 75% is a first-class result in some
+          systems and a middling one in others, so a percentage-to-GPA
+          conversion is only meaningful alongside the institution it came from.
+        </p>
+        <h2>Semester GPA, cumulative GPA, and why they differ</h2>
+        <p>
+          A cumulative GPA is not the average of your semester GPAs unless every
+          semester carried the same credits. Calculate it by entering every
+          course from every semester in one list. Doing so also shows how slowly
+          a cumulative average moves once several semesters are behind you — one
+          strong term lifts it much less than students expect, which is an
+          argument for consistency rather than a heroic final year.
+        </p>
+        <h2>What to put on an application</h2>
+        <p>
+          Report the GPA exactly as your transcript states it, with the scale it
+          is on — &ldquo;3.4 / 4.0&rdquo; rather than &ldquo;3.4&rdquo;. If a
+          form asks for a scale your institution does not use, use the
+          institution&apos;s own published conversion, or your country&apos;s
+          recognised credential evaluator, rather than a general-purpose
+          converter. A calculator is the right tool for planning and for
+          checking your own arithmetic; it is not a substitute for the official
+          record.
+        </p>
+        <p>
+          If your question is really about a single module rather than an
+          overall average, the{" "}
+          <Link href="/tools/grade-calculator">assignment grade calculator</Link>{" "}
+          works out what you need on the assessments you have left.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "pdf-too-large-to-email",
+    title: "Your PDF is too large to email: what actually reduces the size",
+    description:
+      "Why a PDF is big in the first place, which fixes make a real difference, and an honest note about what this site cannot do yet.",
+    publishedAt: WAVE_2,
+    body: (
+      <>
+        <p>
+          Mail systems typically refuse attachments over 20–25&nbsp;MB, and
+          upload forms are often far stricter. Before reaching for a compressor,
+          it is worth knowing what is taking up the space, because the answer
+          determines which fix works and which achieves nothing.
+        </p>
+        <h2>Find out what is making it big</h2>
+        <p>
+          Text is tiny. A hundred pages of ordinary prose is a couple of
+          megabytes at most. If your PDF is large, it almost certainly contains
+          images: scanned pages, photographs, or screenshots. A single page
+          scanned at high resolution can be larger than a whole text document.
+        </p>
+        <p>
+          The quick test: divide the file size by the page count. More than
+          about half a megabyte per page means images are the cause.
+        </p>
+        <h2>What genuinely reduces the size</h2>
+        <ol>
+          <li>
+            <strong>Send less of it.</strong> If the recipient needs three pages,
+            send three pages.{" "}
+            <Link href="/tools/extract-pages">Extract pages</Link> or{" "}
+            <Link href="/tools/split-pdf">Split PDF</Link> will produce a fraction
+            of the original, instantly and without any loss of quality.
+          </li>
+          <li>
+            <strong>Shrink the images before building the PDF.</strong> If you
+            are assembling photographs with{" "}
+            <Link href="/tools/images-to-pdf">Images to PDF</Link>, resize and
+            compress them first with the{" "}
+            <Link href="/tools/image-resizer">resizer</Link> and{" "}
+            <Link href="/tools/image-compressor">compressor</Link>. Reducing a
+            12-megapixel photo to about 1600 pixels wide removes most of the
+            bulk and looks identical on screen.
+          </li>
+          <li>
+            <strong>Rescan at a sensible resolution.</strong> Scanners often
+            default to 600&nbsp;DPI in colour. For a text document,
+            200–300&nbsp;DPI in greyscale is legible, archival, and a small
+            fraction of the size.
+          </li>
+          <li>
+            <strong>Share a link instead.</strong> For genuinely large documents
+            this is what the rest of the world does, and it avoids the problem
+            rather than degrading the file.
+          </li>
+        </ol>
+        <h2>What does not help</h2>
+        <p>
+          Zipping a PDF saves very little, because its images are already
+          compressed. Removing metadata saves kilobytes. Printing to PDF from a
+          viewer sometimes helps and sometimes doubles the size, depending on
+          the driver — check before trusting it.
+        </p>
+        <h2>An honest limitation</h2>
+        <p>
+          There is no PDF compressor on this site yet. Doing it properly means
+          re-encoding every embedded image inside the document, and shipping a
+          version that quietly wrecks scans would be worse than not shipping
+          one. Until it exists, the steps above are the ones that work — and for
+          most oversized PDFs, sending fewer pages solves the problem in ten
+          seconds.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "cannot-copy-text-from-pdf",
+    title: "You cannot copy text from a PDF: here is why, and what to do",
+    description:
+      "Scanned PDFs contain pictures of text, not text. How to tell which kind you have, how to extract what is there, and what OCR would add.",
+    publishedAt: WAVE_2,
+    body: (
+      <>
+        <p>
+          You open a PDF, drag across a paragraph, and the selection highlights a
+          blue rectangle instead of words. Nothing is broken — the document
+          simply does not contain any text.
+        </p>
+        <h2>Two kinds of PDF that look identical</h2>
+        <p>
+          A PDF exported from a word processor stores real characters with fonts
+          and positions. A PDF produced by a scanner or a phone camera stores a
+          photograph of a page and nothing else. Both display the same way and
+          only one can be copied from.
+        </p>
+        <p>
+          The test takes two seconds: try to select a single word. If the
+          selection follows the word, the text is there. If it draws a box over
+          the whole page, you have a scan.
+        </p>
+        <h2>If the text is there</h2>
+        <p>
+          Use{" "}
+          <Link href="/tools/extract-text">Extract text</Link> to pull the whole
+          document out as plain text, or copy from the{" "}
+          <Link href="/tools/pdf-viewer">viewer</Link>. Expect the formatting to
+          be gone — plain text has no headings, tables, or images — and expect
+          multi-column layouts to interleave, because a PDF records where text
+          sits on the page rather than the order a human reads it in. Splitting
+          the job page by page usually gives a cleaner result than one pass over
+          a hundred pages, and{" "}
+          <Link href="/tools/remove-spaces">Remove extra spaces</Link> tidies the
+          ragged whitespace that extraction leaves behind.
+        </p>
+        <p>
+          Two other quirks worth a search-and-replace: hyphens inserted at line
+          breaks stay in the extracted text and split words in half, and
+          ligatures such as &ldquo;fi&rdquo; occasionally arrive as unexpected
+          characters.
+        </p>
+        <h2>If it is a scan</h2>
+        <p>
+          Converting a picture of text into text requires optical character
+          recognition, and there is no OCR on this site yet — doing it well
+          inside a browser, in every language people would need, is not something
+          to promise before it works. Your realistic options today are to
+          retype short passages, to use a desktop application or an office suite
+          with OCR built in, or to ask whoever sent the document for the original
+          file. That last one is worth trying first: the source document usually
+          still exists, and it is better than any conversion.
+        </p>
+        <h2>A note on protected documents</h2>
+        <p>
+          Some PDFs contain real text but set a permission flag that asks
+          viewers to disallow copying. That is a request honoured by software
+          rather than encryption, and it usually accompanies a document whose
+          author had a reason for it. Tools on this site do not open
+          password-protected PDFs or work around document restrictions.
+        </p>
+      </>
+    ),
+  },
 ];
 
 export function getArticle(slug: string): Article | undefined {
@@ -340,19 +716,23 @@ export const toolGuides: Record<string, string[]> = {
   "split-pdf": ["split-pdf-page-ranges", "remove-pages-from-pdf"],
   "extract-pages": ["split-pdf-page-ranges", "remove-pages-from-pdf"],
   "delete-pages": ["remove-pages-from-pdf"],
-  "rotate-pdf": ["remove-pages-from-pdf"],
-  "reorder-pages": ["prepare-assignment-pdf-for-submission"],
+  "rotate-pdf": ["rotate-one-page-in-a-pdf", "remove-pages-from-pdf"],
+  "reorder-pages": ["rotate-one-page-in-a-pdf", "prepare-assignment-pdf-for-submission"],
   "watermark-pdf": ["are-online-pdf-tools-safe"],
   "page-numbers": ["prepare-assignment-pdf-for-submission"],
-  "images-to-pdf": ["images-to-pdf-quality", "shrink-images-for-email"],
-  "pdf-to-images": ["images-to-pdf-quality"],
-  "pdf-viewer": ["are-online-pdf-tools-safe"],
+  "images-to-pdf": ["images-to-pdf-quality", "shrink-images-for-email", "pdf-too-large-to-email"],
+  "pdf-to-images": ["images-to-pdf-quality", "rotate-one-page-in-a-pdf"],
+  "pdf-viewer": ["cannot-copy-text-from-pdf", "are-online-pdf-tools-safe"],
   "pdf-metadata": ["are-online-pdf-tools-safe"],
-  "extract-text": ["are-online-pdf-tools-safe"],
-  "image-compressor": ["shrink-images-for-email"],
-  "image-resizer": ["shrink-images-for-email"],
+  "extract-text": ["cannot-copy-text-from-pdf", "are-online-pdf-tools-safe"],
+  "image-compressor": ["shrink-images-for-email", "pdf-too-large-to-email"],
+  "image-resizer": ["shrink-images-for-email", "passport-photo-sizes-explained"],
   "image-converter": ["shrink-images-for-email"],
-  "passport-photo": ["shrink-images-for-email"],
+  "crop-image": ["passport-photo-sizes-explained"],
+  "passport-photo": ["passport-photo-sizes-explained", "shrink-images-for-email"],
   "word-counter": ["prepare-assignment-pdf-for-submission"],
   "cover-page": ["prepare-assignment-pdf-for-submission"],
+  "gpa-calculator": ["gpa-scales-explained"],
+  "grade-calculator": ["gpa-scales-explained"],
+  "attendance-calculator": ["gpa-scales-explained"],
 };
