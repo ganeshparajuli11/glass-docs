@@ -26,6 +26,7 @@ const components: Record<string, ComponentType<object>> = {
   "watermark-pdf": lazy(() => import("@/features/watermark-pdf/WatermarkTool")),
   "page-numbers": lazy(() => import("@/features/page-numbers/PageNumbersTool")),
   "images-to-pdf": lazy(() => import("@/features/images-to-pdf/ImagesToPdfTool")),
+  "compress-pdf": lazy(() => import("@/features/compress-pdf/CompressPdfTool")),
   "pdf-to-images": lazy(() => import("@/features/pdf-to-images/PdfToImagesTool")),
   "extract-text": lazy(() => import("@/features/extract-text/ExtractTextTool")),
   "pdf-metadata": lazy(() => import("@/features/metadata/MetadataTool")),

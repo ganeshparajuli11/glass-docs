@@ -16,7 +16,7 @@ Trend-direction column; then re-rank.
 
 No page exists for a tool that does not work (site rule + Google helpful-content
 principle). Word→PDF, PDF→Word, Compress PDF, Protect/Unlock PDF are the four
-highest-demand seeds we deliberately DO NOT target yet — they are build items,
+highest-demand seeds we deliberately did not target until built (Compress PDF went LIVE 2026-10-23; the other three remain build items) — they are build items,
 not content items. Building thin "coming soon" pages for them would hurt trust
 and indexing quality.
 
@@ -47,7 +47,7 @@ and indexing quality.
 | assignment cover page | Student | 2 | TODO | /tools/cover-page (+ guide) | Tool | LIVE (differentiator) |
 | word to pdf converter | Direct tool | BLOCKED | TODO | (future /tools/word-to-pdf) | Tool | NOT BUILT — needs conversion engine research |
 | pdf to word converter | Direct tool | BLOCKED | TODO | (future) | Tool | NOT BUILT — layout reconstruction ± OCR |
-| compress pdf / pdf compressor | Direct tool | BLOCKED-NEXT | TODO | (future /tools/compress-pdf) | Tool | HIGHEST-VALUE BUILD ITEM — honest image-downsampling approach feasible client-side (Phase 1.5 spike) |
+| compress pdf / pdf compressor / reduce pdf size | Direct tool | 1 | TODO | /tools/compress-pdf (+ /learn/pdf-too-large-to-email) | Tool | LIVE (2026-10-23) — client-side image downsampling + JPEG re-encode; honest before/after sizes |
 | password protect / unlock pdf | Direct tool | BLOCKED | TODO | (future) | Tool | Needs vetted browser crypto implementation |
 
 ## Cannibalisation guards

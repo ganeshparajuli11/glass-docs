@@ -14,7 +14,7 @@ import { toolHaystack } from "@/lib/tools/haystack";
 export const metadata: Metadata = pageMeta({
   title: "All Tools — PDF, Image, Text and Calculators",
   description:
-    "Browse 29 free tools: merge, split, rotate and watermark PDFs, compress and convert images, count words, calculate GPA and more — all processed in your browser.",
+    `Browse ${tools.length} free tools: merge, split, compress and watermark PDFs, shrink and convert images, count words, calculate GPA and more — all processed in your browser.`,
   path: "/tools",
 });
 

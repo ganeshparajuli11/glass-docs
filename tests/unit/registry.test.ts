@@ -7,8 +7,9 @@ describe("tool registry", () => {
     expect(validateRegistry()).toEqual([]);
   });
 
-  it("contains all 29 launch tools", () => {
-    expect(tools.length).toBe(29);
+  it("contains all 30 tools (29 launch tools + compress-pdf)", () => {
+    expect(tools.length).toBe(30);
+    expect(getTool("compress-pdf")?.category).toBe("pdf");
   });
 
   it("every tool is local processing for MVP", () => {
@@ -20,6 +21,7 @@ describe("tool registry", () => {
     expect(searchTools("jpg to pdf").map((t) => t.slug)).toContain("images-to-pdf");
     expect(searchTools("gpa").map((t) => t.slug)).toContain("gpa-calculator");
     expect(searchTools("passport").map((t) => t.slug)).toContain("passport-photo");
+    expect(searchTools("reduce pdf size").map((t) => t.slug)).toContain("compress-pdf");
   });
 
   it("returns undefined for unknown slug", () => {

@@ -336,7 +336,11 @@ export const articles: Article[] = [
           Portals with size caps usually choke on scanned appendices. Shrink
           the images before they go into the PDF (see{" "}
           <Link href="/learn/shrink-images-for-email">the image-shrinking guide</Link>)
-          rather than trying to fix the finished file.
+          when you can — that gives the best quality for the size. If the
+          finished PDF is still over the cap, run it through{" "}
+          <Link href="/tools/compress-pdf">Compress PDF</Link> as the last
+          step, after page numbers, and check that the smallest text in your
+          scanned appendices is still readable.
         </p>
       </>
     ),
@@ -565,7 +569,7 @@ export const articles: Article[] = [
     slug: "pdf-too-large-to-email",
     title: "Your PDF is too large to email: what actually reduces the size",
     description:
-      "Why a PDF is big in the first place, which fixes make a real difference, and an honest note about what this site cannot do yet.",
+      "Why a PDF is big in the first place, which fixes make a real difference, how to compress it in your browser, and what compression cannot do.",
     publishedAt: WAVE_2,
     body: (
       <>
@@ -596,6 +600,15 @@ export const articles: Article[] = [
             of the original, instantly and without any loss of quality.
           </li>
           <li>
+            <strong>Compress the images already inside it.</strong> If the PDF
+            exists and you cannot rebuild it, run it through{" "}
+            <Link href="/tools/compress-pdf">Compress PDF</Link>. It downscales
+            and re-encodes the scans and photos inside the file and leaves the
+            text alone. Start with the Balanced level; it shows the exact before
+            and after size, so you know immediately whether you are under the
+            limit.
+          </li>
+          <li>
             <strong>Shrink the images before building the PDF.</strong> If you
             are assembling photographs with{" "}
             <Link href="/tools/images-to-pdf">Images to PDF</Link>, resize and
@@ -624,14 +637,27 @@ export const articles: Article[] = [
           viewer sometimes helps and sometimes doubles the size, depending on
           the driver — check before trusting it.
         </p>
-        <h2>An honest limitation</h2>
+        <h2>What compression can and cannot do</h2>
         <p>
-          There is no PDF compressor on this site yet. Doing it properly means
-          re-encoding every embedded image inside the document, and shipping a
-          version that quietly wrecks scans would be worse than not shipping
-          one. Until it exists, the steps above are the ones that work — and for
-          most oversized PDFs, sending fewer pages solves the problem in ten
-          seconds.
+          A compressor can only shrink what is compressible. On a scanned
+          contract or a photo-heavy report, re-encoding the images commonly
+          removes half to nine-tenths of the size. On a PDF exported from a
+          word processor, which is mostly text and fonts, there is almost
+          nothing to take out — no honest tool will turn a 6&nbsp;MB text PDF
+          into a 600&nbsp;KB one, and the ones that claim to are usually
+          rasterising your text into blurry images.
+        </p>
+        <p>
+          Compression is also lossy. Every level reduces image detail a little,
+          and the Strong level visibly softens fine print in scans. Zoom into
+          the smallest text in the result before sending it, and keep the
+          original: compressing a copy that was already compressed adds new
+          damage on top of the old.
+        </p>
+        <p>
+          If compression alone does not get you under the limit, combine it
+          with the first fix on this list: extract the pages that matter, then
+          compress that smaller file.
         </p>
       </>
     ),
@@ -720,6 +746,7 @@ export const toolGuides: Record<string, string[]> = {
   "reorder-pages": ["rotate-one-page-in-a-pdf", "prepare-assignment-pdf-for-submission"],
   "watermark-pdf": ["are-online-pdf-tools-safe"],
   "page-numbers": ["prepare-assignment-pdf-for-submission"],
+  "compress-pdf": ["pdf-too-large-to-email", "prepare-assignment-pdf-for-submission", "are-online-pdf-tools-safe"],
   "images-to-pdf": ["images-to-pdf-quality", "shrink-images-for-email", "pdf-too-large-to-email"],
   "pdf-to-images": ["images-to-pdf-quality", "rotate-one-page-in-a-pdf"],
   "pdf-viewer": ["cannot-copy-text-from-pdf", "are-online-pdf-tools-safe"],

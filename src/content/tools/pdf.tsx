@@ -1065,4 +1065,165 @@ export const pdfToolContent: ToolContentMap = {
       },
     ],
   },
+  "compress-pdf": {
+    lede: (
+      <>
+        Most oversized PDFs are big because of the pictures inside them:
+        scanned pages, phone photos, screenshots. This tool finds those images,
+        scales them down to a sensible resolution and re-encodes them, while the
+        text, fonts and drawings in the document are copied across untouched.
+        You see the exact size before and after, and the work happens on your
+        own device.
+      </>
+    ),
+    steps: [
+      <>
+        Drop the PDF onto the file area. The page count and current size appear
+        so you can check you picked the right file.
+      </>,
+      <>
+        Choose a compression level. <strong>Balanced</strong> is the right
+        starting point for most documents; <strong>Light</strong> keeps more
+        detail for printing, and <strong>Strong</strong> squeezes hardest for
+        email and upload limits.
+      </>,
+      <>
+        Select <strong>Compress PDF</strong>. A progress bar counts through the
+        images it finds. Large scans take a few seconds each on a phone.
+      </>,
+      <>
+        Compare the original and compressed sizes, then download the result. If
+        the file could not be made smaller, the tool says so instead of giving
+        you a copy that is the same size or bigger.
+      </>,
+      <>
+        Open the download and zoom into the smallest text on a scanned page.
+        If it is still easy to read, you are done; if not, go back and use a
+        lighter level.
+      </>,
+    ],
+    sections: [
+      {
+        heading: "Why some PDFs shrink a lot and others barely move",
+        body: (
+          <>
+            <p>
+              The saving depends entirely on what the PDF is made of. A
+              ten-page scan straight from a phone or office scanner is
+              essentially ten large photographs, and downscaling those to a
+              screen-and-print friendly size typically removes well over half
+              the file. A report exported from Word or Google Docs is mostly
+              text and fonts, which are already compact; the tool leaves them
+              alone, so there is very little to save.
+            </p>
+            <p>
+              A quick way to predict the result: divide the file size by the
+              number of pages. Anything above roughly 300&nbsp;KB per page is
+              almost always images, and compression will help. A text document
+              at 50&nbsp;KB per page will hardly change — for that kind of file,
+              sending fewer pages with{" "}
+              <Link href="/tools/extract-pages">Extract pages</Link> is the
+              fix that works.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Choosing between Light, Balanced and Strong",
+        body: (
+          <>
+            <p>
+              Each level sets two things: the largest size an image may have
+              (its longest edge in pixels) and the JPEG quality it is saved at.
+              Light keeps images up to 2400 pixels at high quality, which is
+              about 200&nbsp;DPI on an A4 page and safe for printing. Balanced
+              allows 1600 pixels, roughly 140&nbsp;DPI on A4 — sharp on any
+              screen and fine for printed text of normal size. Strong drops to
+              1100 pixels at a lower quality, which suits email attachments and
+              strict portal limits but makes small print in scans look soft.
+            </p>
+            <p>
+              Images that are already smaller than the chosen limit are not
+              enlarged; they are only re-encoded, and only kept if that actually
+              saves space. If an image comes out bigger than it went in, the
+              original stays in the file.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "What this compressor deliberately leaves alone",
+        body: (
+          <>
+            <p>
+              Real text stays real text. Some online compressors turn every page
+              into a single flat image, which produces impressive numbers but
+              destroys text selection, search and accessibility, and blurs the
+              writing. This tool never does that; fonts, vector drawings, links
+              and page structure pass through unchanged.
+            </p>
+            <p>
+              Some images are skipped on purpose because re-encoding them would
+              risk changing how the page looks: images in CMYK or with a limited
+              colour palette, transparency masks, images with special decoding
+              rules, and very small images such as logos where the saving would
+              be negligible. The result screen tells you how many images were
+              re-encoded out of how many were found, so a small saving is never
+              a mystery.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Compressing without uploading the document",
+        body: (
+          <>
+            <p>
+              The PDFs people most want to shrink — signed contracts, payslips,
+              scanned IDs, medical letters — are exactly the ones that should not
+              be sent to an unknown server. Here the file is read into your
+              browser&apos;s memory, its images are decoded and re-encoded by the
+              browser&apos;s own image engine, and the new PDF is assembled on
+              your device. Nothing is uploaded, and once the page has loaded it
+              keeps working with the network switched off. Our guide to{" "}
+              <Link href="/learn/are-online-pdf-tools-safe">whether online PDF
+              tools are safe</Link> explains how to check this kind of claim for
+              yourself.
+            </p>
+            <p>
+              The trade-off is that your device does the work. Very large PDFs
+              (hundreds of megabytes, or hundreds of high-resolution scans) can
+              exhaust the memory of a phone. Splitting the file with{" "}
+              <Link href="/tools/split-pdf">Split PDF</Link>, compressing the
+              parts and merging them back with{" "}
+              <Link href="/tools/merge-pdf">Merge PDF</Link> gets around it.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Better results by fixing the source",
+        body: (
+          <>
+            <p>
+              Compression after the fact is always a compromise, because it
+              re-encodes images that were already compressed once. If you are
+              building the PDF yourself, you get a smaller and cleaner file by
+              starting right: scan text documents at 200–300&nbsp;DPI in
+              greyscale rather than 600&nbsp;DPI colour, and shrink photos with
+              the <Link href="/tools/image-compressor">image compressor</Link>{" "}
+              before combining them with{" "}
+              <Link href="/tools/images-to-pdf">Images to PDF</Link>.
+            </p>
+            <p>
+              And keep your original. Running a compressed file through again,
+              or through a different compressor, stacks new artefacts on top of
+              old ones. If you need it smaller still, go back to the original and
+              use a stronger level once.
+            </p>
+          </>
+        ),
+      },
+    ],
+  },
 };

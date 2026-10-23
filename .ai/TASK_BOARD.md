@@ -56,5 +56,8 @@ T-200/T-202 locally, or T-100/T-210 with user credentials.
 | T-315 | Remaining student kit (checklist, page estimator, citation templates, deadline countdown) | Backlog | |
 | T-316 | Guides for the 16 new tools | Backlog | needed before AdSense application |
 | T-317 | Drag-handle crop UI upgrade | Backlog | sliders are the accessible v1 |
+| T-320 | Compress PDF (client-side image downsampling/re-encode) | Done | 2026-10-23 · /tools/compress-pdf · 30 tools live |
+| T-321 | OCR: image to text (self-hosted tesseract.js) | Backlog | next TOOL day per docs/GROWTH-LOG.md queue |
+| T-322 | Compress PDF v2: CMYK/indexed images, per-page DPI from content streams | Backlog | v1 skips these safely |
 
 Explicitly out of scope until backend exists: PDF↔Word, OCR, repair, advanced compression, e-signatures, AI features, cloud storage (do not list as working).

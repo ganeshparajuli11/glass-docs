@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = pageMeta({
   title: `Free Private PDF & Image Tools in Your Browser — ${site.name}`,
   description:
-    "29 free tools that run on your device: merge and split PDFs, compress images, count words, calculate GPA and more. No signup, no upload by default.",
+    `${tools.length} free tools that run on your device: merge, split and compress PDFs, shrink images, count words, calculate GPA and more. No signup, no upload by default.`,
   path: "/",
 });
 

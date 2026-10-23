@@ -1,5 +1,14 @@
 # Current Handoff
 
+## Session update (2026-10-23, daily contributor — TOOL day: Compress PDF)
+
+- Shipped /tools/compress-pdf (30 tools live). Logic: src/lib/pdf/operations/compress.ts (pure, injected recoder) + src/lib/pdf/image-data.ts (JPEG header/EXIF strip, PNG/TIFF un-predict, fitWithin); browser recoder src/lib/image/pdf-recoder.ts (canvas JPEG); UI src/features/compress-pdf/CompressPdfTool.tsx.
+- Safety rules: skips CMYK/indexed/Lab/Separation, ImageMask, SMask targets, colour-key masks, Decode arrays, non-8-bit, filter chains, streams <8 KiB; replacement kept only if ≤90% of original; output never larger than input (UI says so and offers Extract pages).
+- Content: long-form tool content + 4 FAQs; pdf-too-large-to-email guide updated (old "no compressor" section replaced); assignment guide + workflow link the tool; toolGuides mapping added. Page counts now derived from tools.length.
+- Tests: +25 (tests/unit/image-data.test.ts, tests/integration/compress.test.ts, fixtures in tests/fixtures/). registry count test updated 29→30.
+- Verified: npm run verify ✓ (259 tests) · build:static ✓ · audit 55 pages 0 problems ✓ · Playwright on out/: 1.6 MB → 424 KB (−72%), output renders identically (pdftoppm diff ≈1/255), 320px no horizontal scroll, light+dark, only console errors are the sandbox-blocked AdSense loader.
+- Next: SEO day (docs/GROWTH-LOG.md decides). Then OCR image→text (T-321).
+
 ## Session update (2026-07-18, SEO foundation + AdSense verify fix)
 
 - AdSense: all 3 Google verification methods now in the build — literal head script tag, google-adsense-account meta tag, live ads.txt (confirmed live). Verification failed earlier because the deployed build predates the literal-tag fix; passes after next push. Fallback: choose the Ads.txt method in the AdSense dialog.

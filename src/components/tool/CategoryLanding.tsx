@@ -99,7 +99,7 @@ export function CategoryLanding({ page }: { page: CategoryPage }) {
             href="/tools"
             className="glass-soft card-hover min-h-11 rounded-full px-4 py-2.5 text-sm font-medium"
           >
-            All 29 tools
+            All {tools.length} tools
           </Link>
         </nav>
       </section>

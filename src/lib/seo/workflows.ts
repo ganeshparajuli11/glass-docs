@@ -31,7 +31,7 @@ export const workflows: Workflow[] = [
       { slug: "cover-page", label: "Make a cover page" },
       { slug: "merge-pdf", label: "Merge the sections" },
       { slug: "page-numbers", label: "Add page numbers" },
-      { slug: "image-compressor", label: "Shrink oversized images" },
+      { slug: "compress-pdf", label: "Compress it under the limit" },
     ],
   },
   {

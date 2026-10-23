@@ -9,7 +9,7 @@ import { toolsInCategory } from "@/lib/tools/registry";
  * The navigation is category-led: a visitor arrives wanting to do something to
  * a PDF or an image, not wanting to browse "Tools". Each category opens onto
  * every tool it contains, which is also the site's main internal-linking
- * surface — 29 tool links in the HTML of every page.
+ * surface — every tool link in the HTML of every page.
  *
  * Built here in the server component so the tool registry stays out of the
  * client bundle; MainNav only receives labels and hrefs.

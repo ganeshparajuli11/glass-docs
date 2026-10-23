@@ -281,6 +281,46 @@ export const tools: ToolDefinition[] = [
     lastVerifiedAt: VERIFIED,
   },
   {
+    slug: "compress-pdf",
+    name: "Compress PDF",
+    shortDescription: "Make a PDF smaller by downscaling and re-encoding the images inside it.",
+    category: "pdf",
+    processingMode: "local",
+    status: "stable",
+    engine: "combined",
+    acceptedMimeTypes: [PDF],
+    outputMimeTypes: [PDF],
+    maxRecommendedSizeMb: 100,
+    supportsMultipleFiles: false,
+    keywords: ["compress pdf", "reduce pdf size", "shrink", "smaller", "optimize", "mb", "kb", "email"],
+    relatedTools: ["extract-pages", "image-compressor", "images-to-pdf"],
+    knownLimitations: [
+      "Only images are compressed; a PDF that is mostly text or vector drawings will barely shrink.",
+      "Images are re-encoded as JPEG, so sharp-edged graphics and screenshots can look slightly softer.",
+      "CMYK, indexed-colour and masked images are left untouched.",
+      "Password-protected PDFs are not supported.",
+    ],
+    faq: [
+      {
+        q: "Is my PDF uploaded to compress it?",
+        a: "No. The PDF is read, its images are re-encoded and the new file is built entirely in your browser. You can disconnect from the internet after the page loads and it still works.",
+      },
+      {
+        q: "How much smaller will my PDF get?",
+        a: "It depends on what is inside. Scanned documents and photo-heavy PDFs often shrink by 50–90%. Text-only PDFs have no images to compress and may not shrink at all — the tool tells you the exact before and after sizes, and never hands you a larger file.",
+      },
+      {
+        q: "Will the text stay sharp?",
+        a: "Yes, if it is real text. Text, fonts and vector graphics are copied unchanged; only raster images are resized. In a scanned PDF the text is part of an image, so choose Light or Balanced if it needs to stay crisp.",
+      },
+      {
+        q: "Which compression level should I pick?",
+        a: "Balanced suits most documents. Use Light for anything that will be printed, and Strong when you need to get under an email or upload limit and slightly softer images are acceptable.",
+      },
+    ],
+    lastVerifiedAt: "2026-10-23",
+  },
+  {
     slug: "pdf-viewer",
     name: "PDF viewer",
     shortDescription: "Read a PDF privately with zoom and page navigation.",

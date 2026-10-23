@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   FileText,
+  FileDown,
   Minimize2,
   Scaling,
   Crop,
@@ -42,6 +43,7 @@ const icons: Record<string, typeof FileText> = {
   "watermark-pdf": Stamp,
   "page-numbers": Hash,
   "images-to-pdf": Images,
+  "compress-pdf": FileDown,
   "pdf-to-images": FileImage,
   "pdf-viewer": Eye,
   "pdf-metadata": Info,

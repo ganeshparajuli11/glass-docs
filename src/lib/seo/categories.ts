@@ -15,9 +15,9 @@ export const categoryPages: CategoryPage[] = [
     path: "/pdf-tools",
     category: "pdf",
     title: "PDF tools",
-    metaTitle: "Free PDF tools — merge, split, rotate, watermark",
+    metaTitle: "Free PDF tools — merge, split, compress, rotate",
     description:
-      "12 free PDF tools that run in your browser: merge, split, remove pages, rotate, watermark, add page numbers, convert to images, extract text and more.",
+      "13 free PDF tools that run in your browser: merge, split, compress, remove pages, rotate, watermark, add page numbers, convert to images, extract text and more.",
     intro: [
       "Everything here works on your device: the PDF is read into your browser's memory, changed there, and handed back to you as a download. No account, no upload, no watermark added by us.",
       "Start with the task you need — combining files, pulling out pages, fixing rotation, or stamping a draft mark — and the tool page explains its limits honestly before you begin.",
