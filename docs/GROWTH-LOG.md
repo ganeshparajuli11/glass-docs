@@ -32,6 +32,25 @@ SEO audit flags.
 
 ## Log
 
+### 2026-10-24 — SEO — Text clean-up guide + guide-page linking
+
+- New guide: **How to clean up pasted text** — an order of operations
+  (source → whitespace → case → duplicates → compare → count) with specific
+  advice for PDF text (rejoining hard line breaks with find-and-replace,
+  hyphen and ligature leftovers), spreadsheet columns and rows (tabs, when not
+  to clean whitespace), and merged email lists (case sensitivity, first
+  occurrence wins, blank lines, text-order sorting). States what no tool fixes.
+- Four text tools that had no guide (case converter, remove extra spaces,
+  remove duplicate lines, text compare) now link to it, plus word counter and
+  extract text; /text-tools lists it; the "cannot copy text" guide links it.
+- Every guide page now lists "Tools used in this guide" (two-way linking) and
+  emits BreadcrumbList JSON-LD.
+- Tests: +2 link-integrity tests. 56 pages audited, 0 problems.
+- URLs added: https://glasstools.net/learn/clean-up-pasted-text
+- URLs changed: all /learn/* guides, /text-tools, /tools/case-converter,
+  /tools/remove-spaces, /tools/dedupe-lines, /tools/text-compare,
+  /tools/word-counter, /tools/extract-text
+
 ### 2026-10-23 — TOOL — Compress PDF
 
 - New tool: **Compress PDF** — finds raster images inside the PDF, downscales

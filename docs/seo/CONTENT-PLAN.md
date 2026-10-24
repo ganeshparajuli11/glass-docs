@@ -30,6 +30,7 @@ headings, so the next tool cannot ship as a stub.
 | /learn/cannot-copy-text-from-pdf | PDF troubleshooting | scan vs digital PDF, OCR gap |
 | /learn/passport-photo-sizes-explained | Image | supports the passport-sheet differentiator |
 | /learn/gpa-scales-explained | Student | calculator cluster |
+| /learn/clean-up-pasted-text | Text | text-tool cluster workflow (2026-10-24) |
 
 ## Writing rules (enforced)
 
@@ -43,7 +44,8 @@ FAQ only where genuinely useful and visible.
 2. How PDF compression works (publish TOGETHER WITH the compress tool, never
    before — `/learn/pdf-too-large-to-email` currently states the gap honestly).
 3. Scanning settings that keep a document readable and small (DPI, greyscale).
-4. Text-tool cluster: cleaning data pasted out of a spreadsheet.
+4. ~~Text-tool cluster: cleaning data pasted out of a spreadsheet.~~ Done 2026-10-24.
+5. Calculator cluster: attendance (75% rules), EMI, percentage change.
 
 ## Never
 

@@ -59,7 +59,7 @@ export const categoryPages: CategoryPage[] = [
       "Paste text, get an answer — nothing you type is sent anywhere. The word counter includes reading time and page estimates, which makes it handy for assignment limits.",
       "The compare tool shows added and removed lines between two drafts, useful for checking what changed before you submit.",
     ],
-    guideSlugs: ["cannot-copy-text-from-pdf"],
+    guideSlugs: ["clean-up-pasted-text", "cannot-copy-text-from-pdf"],
   },
   {
     path: "/calculators",

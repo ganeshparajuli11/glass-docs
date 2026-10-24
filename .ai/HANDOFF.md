@@ -1,5 +1,15 @@
 # Current Handoff
 
+## Session update (2026-10-24, daily contributor — SEO day: text clean-up guide)
+
+- New guide /learn/clean-up-pasted-text (13 guides): order of operations for text pasted from PDFs, spreadsheets and merged lists; every claim checked against src/lib/text/transform.ts and diff.ts (tabs collapse, blank lines dedupe to one, title/sentence case lower-case first, sort is localeCompare text order, line-level diff).
+- Wired: toolGuides for case-converter, remove-spaces, dedupe-lines, text-compare (previously no guide) + word-counter, extract-text; /text-tools guideSlugs; cannot-copy-text-from-pdf links to it.
+- Guide pages (all 13) now show "Tools used in this guide" (reverse of toolGuides, 44px pills) and emit BreadcrumbList JSON-LD (Guides → article).
+- Tests: +2 in tests/seo/registry.test.ts (toolGuides integrity; every guide linked from >=1 tool). 261 total.
+- Verified: npm run verify ✓ · build:static ✓ · audit 56 pages 0 problems ✓ · Playwright: 320px no horizontal scroll, light+dark, both JSON-LD blocks parse, links present on /tools/dedupe-lines, /text-tools, /learn/cannot-copy-text-from-pdf.
+- Still without a dedicated guide (T-316): percentage-calculator, emi-calculator, attendance-calculator (only GPA guide), image-converter, image-resizer, crop-image.
+- Next: TOOL day — OCR image→text (T-321).
+
 ## Session update (2026-10-23, daily contributor — TOOL day: Compress PDF)
 
 - Shipped /tools/compress-pdf (30 tools live). Logic: src/lib/pdf/operations/compress.ts (pure, injected recoder) + src/lib/pdf/image-data.ts (JPEG header/EXIF strip, PNG/TIFF un-predict, fitWithin); browser recoder src/lib/image/pdf-recoder.ts (canvas JPEG); UI src/features/compress-pdf/CompressPdfTool.tsx.

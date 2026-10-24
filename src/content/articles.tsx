@@ -705,7 +705,9 @@ export const articles: Article[] = [
           Two other quirks worth a search-and-replace: hyphens inserted at line
           breaks stay in the extracted text and split words in half, and
           ligatures such as &ldquo;fi&rdquo; occasionally arrive as unexpected
-          characters.
+          characters. The guide to{" "}
+          <Link href="/learn/clean-up-pasted-text">cleaning up pasted text</Link>{" "}
+          shows how to rejoin lines that were broken at every printed line end.
         </p>
         <h2>If it is a scan</h2>
         <p>
@@ -725,6 +727,197 @@ export const articles: Article[] = [
           rather than encryption, and it usually accompanies a document whose
           author had a reason for it. Tools on this site do not open
           password-protected PDFs or work around document restrictions.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "clean-up-pasted-text",
+    title: "How to clean up pasted text: stray spaces, duplicates, capitals and line breaks",
+    description:
+      "A practical order for tidying text copied out of PDFs, spreadsheets and emails: which fix to run first, what each tool really changes, and the mess no tool fixes for you.",
+    publishedAt: "2026-10-24",
+    body: (
+      <>
+        <p>
+          Text rarely survives a copy and paste intact. A paragraph from a PDF
+          arrives broken into short lines, a column from a spreadsheet brings
+          tabs and repeated entries with it, and a heading from an old document
+          is in capitals throughout. Each problem has a quick fix, but the order
+          you apply them in matters: run them in the wrong sequence and one fix
+          quietly undoes the usefulness of the next.
+        </p>
+        <h2>The short version</h2>
+        <ol>
+          <li>Start from the cleanest source you can get.</li>
+          <li>
+            Remove stray whitespace with{" "}
+            <Link href="/tools/remove-spaces">Remove extra spaces</Link> (unless
+            the text is tab-separated columns).
+          </li>
+          <li>
+            Fix capitalisation with the{" "}
+            <Link href="/tools/case-converter">case converter</Link>, then
+            correct names and acronyms by hand.
+          </li>
+          <li>
+            Remove repeated lines with{" "}
+            <Link href="/tools/dedupe-lines">Remove duplicate lines</Link>, and
+            sort if order does not matter.
+          </li>
+          <li>
+            Check what changed with{" "}
+            <Link href="/tools/text-compare">Text compare</Link>, and count with
+            the <Link href="/tools/word-counter">word counter</Link> last.
+          </li>
+        </ol>
+        <p>
+          The rest of this guide explains why that order works, and what to do
+          with text from the three most common sources of mess.
+        </p>
+        <h2>Step zero: a better source beats a better clean-up</h2>
+        <p>
+          Every later step is easier if less damage happens on the way in. If
+          the text comes from a PDF, pull it out with{" "}
+          <Link href="/tools/extract-text">Extract text</Link> rather than
+          dragging a selection across several pages; selections across columns
+          and page breaks pick up headers, footers and page numbers in the
+          middle of sentences. If the original document is a word processor file
+          you can ask for, ask: the source has none of the problems below. And if
+          you cannot select the text at all, the PDF is a scan, which{" "}
+          <Link href="/learn/cannot-copy-text-from-pdf">
+            needs a different approach
+          </Link>
+          .
+        </p>
+        <h2>Why whitespace goes first</h2>
+        <p>
+          Invisible differences break visible operations. To a computer,{" "}
+          <code>apple</code> and <code>apple </code> with a trailing space are
+          different lines, so a deduplicator keeps both and a comparison marks
+          both as changed. Cleaning spaces first means every later step sees
+          the text the way you do.
+        </p>
+        <p>
+          Remove extra spaces collapses runs of spaces and tabs into a single
+          space, trims the start and end of each line, and reduces three or more
+          blank lines to one. It keeps single blank lines, because that is how
+          plain text separates paragraphs. It does not touch your words or
+          punctuation, and it does not join lines back together, which matters
+          for PDF text (see below).
+        </p>
+        <p>
+          The exception is tabular data. If you copied several spreadsheet
+          columns, the columns are separated by tabs, and turning those tabs
+          into spaces destroys the boundaries between cells. Skip this step for
+          that kind of text, or clean one column at a time.
+        </p>
+        <h2>Text copied from a PDF</h2>
+        <p>
+          A PDF stores each line of a page as a separate run of text, so copied
+          paragraphs arrive with a hard line break at the end of every printed
+          line. Whitespace cleaning tidies the ragged spacing but leaves those
+          breaks in place, because a tool cannot reliably tell a line that ends
+          a paragraph from one that merely reached the margin.
+        </p>
+        <p>
+          A word processor&apos;s find-and-replace can rejoin them in three
+          passes. In Microsoft Word, where <code>^p</code> means a paragraph
+          mark: replace <code>^p^p</code> with a placeholder such as{" "}
+          <code>@@@</code> to protect real paragraph breaks, replace{" "}
+          <code>^p</code> with a single space, then replace <code>@@@</code>{" "}
+          with <code>^p^p</code>. Other editors offer the same through regular
+          expressions. Run Remove extra spaces afterwards to catch the double
+          spaces the join creates.
+        </p>
+        <p>
+          Watch for two leftovers. Words hyphenated across a line break arrive
+          as <code>infor- mation</code>, which both reads badly and counts as
+          two words. And ligatures such as &ldquo;fi&rdquo; and &ldquo;fl&rdquo;
+          sometimes paste as single unusual characters that look right but
+          will not match a search for the ordinary letters.
+        </p>
+        <h2>Text copied from a spreadsheet</h2>
+        <p>
+          Copying a single column gives you one cell per line, which is exactly
+          the format the line tools expect. That makes the spreadsheet route
+          the easiest one: copy the column, paste it into Remove duplicate
+          lines, and you have a list of unique values without writing a
+          formula.
+        </p>
+        <p>
+          Copying whole rows works too, with care. Each row becomes one line
+          with tabs between the cells, and two rows count as duplicates only if
+          every cell matches. That is often what you want for spotting repeated
+          records, so deduplicate before any whitespace cleaning here. Cells
+          that contain their own line breaks are the one thing that will not
+          survive: they are split across several lines in plain text.
+        </p>
+        <h2>Lists merged from several emails or documents</h2>
+        <p>
+          Mailing lists, attendee lists and reference lists gathered from
+          several places are where duplicates pile up. For addresses and
+          usernames, leave case sensitivity off so that{" "}
+          <code>Asha@Example.com</code> and <code>asha@example.com</code> count
+          as one entry. Put your most trustworthy list first: when two lines
+          differ only in capitalisation, the first one is the version kept.
+        </p>
+        <p>
+          Blank lines are lines too, so only the first one survives
+          deduplication. That is harmless for a list but will flatten a
+          document with paragraph gaps, so deduplicate lists rather than
+          prose. Sorting is applied after duplicates are removed, sorts as
+          text rather than numbers (so <code>10</code> comes before{" "}
+          <code>9</code>), and is mainly useful for bringing near-duplicates
+          such as two spellings of one name next to each other, where you can
+          spot them by eye.
+        </p>
+        <h2>Fixing capitals without creating new mistakes</h2>
+        <p>
+          Converting to lower case or upper case is completely predictable.
+          Title case and sentence case are not, because they lower-case
+          everything before applying their rule. Acronyms become{" "}
+          <code>Pdf</code> and <code>Nasa</code>, names in sentence case lose
+          their capitals, and title case capitalises every word including
+          &ldquo;of&rdquo; and &ldquo;and&rdquo;, which most style guides keep
+          small. Sentence case also capitalises after abbreviations such as
+          &ldquo;e.g.&rdquo;, because it cannot tell them from the end of a
+          sentence.
+        </p>
+        <p>
+          Convert, then read the result once with names, acronyms and short
+          words in mind. For a heading that arrived in shouting capitals, that
+          is still far quicker than retyping it.
+        </p>
+        <h2>Check your work before you paste it anywhere</h2>
+        <p>
+          Paste the text from before a clean-up into the first box of Text
+          compare and the result into the second. After deduplication without
+          sorting, the lines marked as removed are exactly the duplicates that
+          were dropped, which is a fast way to confirm nothing you needed went
+          with them. After a whitespace clean, many lines will show as changed
+          even though only spacing moved, so use the comparison there to look
+          for anything unexpected rather than to review every line.
+        </p>
+        <p>
+          Count words last. Stray line breaks and split hyphenated words both
+          inflate a count, so a figure taken from the cleaned text is the one
+          to trust against an assignment or form limit.
+        </p>
+        <h2>What none of these tools can fix</h2>
+        <p>
+          Non-breaking spaces and zero-width characters from web pages look
+          like ordinary spaces, or like nothing, but are different characters,
+          so lines containing them may still refuse to match. Near-duplicates
+          such as &ldquo;Ram Sharma&rdquo; and &ldquo;R. Sharma&rdquo; need a
+          person to decide whether they are the same. And no clean-up restores
+          formatting: plain text has no bold, tables or headings, so anything
+          that depended on them needs rebuilding in the destination document.
+        </p>
+        <p>
+          All of the tools above run in your browser and the text you paste is
+          not sent anywhere, which matters when the list is a class register or
+          the draft is something you have not published yet.
         </p>
       </>
     ),
@@ -751,13 +944,17 @@ export const toolGuides: Record<string, string[]> = {
   "pdf-to-images": ["images-to-pdf-quality", "rotate-one-page-in-a-pdf"],
   "pdf-viewer": ["cannot-copy-text-from-pdf", "are-online-pdf-tools-safe"],
   "pdf-metadata": ["are-online-pdf-tools-safe"],
-  "extract-text": ["cannot-copy-text-from-pdf", "are-online-pdf-tools-safe"],
+  "extract-text": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],
   "image-compressor": ["shrink-images-for-email", "pdf-too-large-to-email"],
   "image-resizer": ["shrink-images-for-email", "passport-photo-sizes-explained"],
   "image-converter": ["shrink-images-for-email"],
   "crop-image": ["passport-photo-sizes-explained"],
   "passport-photo": ["passport-photo-sizes-explained", "shrink-images-for-email"],
-  "word-counter": ["prepare-assignment-pdf-for-submission"],
+  "word-counter": ["prepare-assignment-pdf-for-submission", "clean-up-pasted-text"],
+  "case-converter": ["clean-up-pasted-text"],
+  "remove-spaces": ["clean-up-pasted-text", "cannot-copy-text-from-pdf"],
+  "dedupe-lines": ["clean-up-pasted-text"],
+  "text-compare": ["clean-up-pasted-text"],
   "cover-page": ["prepare-assignment-pdf-for-submission"],
   "gpa-calculator": ["gpa-scales-explained"],
   "grade-calculator": ["gpa-scales-explained"],

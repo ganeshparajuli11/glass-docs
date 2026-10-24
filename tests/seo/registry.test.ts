@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import sitemap from "@/app/sitemap";
-import { articles } from "@/content/articles";
+import { articles, toolGuides } from "@/content/articles";
 import { site } from "@/config/site";
 import { categoryPages } from "@/lib/seo/categories";
 import { tools } from "@/lib/tools/registry";
@@ -81,6 +81,21 @@ describe("internal reference integrity", () => {
         expect(articleSlugs.has(slug), `${category.path} → ${slug}`).toBe(true);
       }
     }
+  });
+
+  it("every toolGuides entry points at a real tool and a real guide", () => {
+    for (const [toolSlug, guideSlugs] of Object.entries(toolGuides)) {
+      expect(toolSlugs.has(toolSlug), `toolGuides key ${toolSlug}`).toBe(true);
+      for (const slug of guideSlugs) {
+        expect(articleSlugs.has(slug), `${toolSlug} → ${slug}`).toBe(true);
+      }
+    }
+  });
+
+  it("every guide is linked from at least one tool page (two-way linking)", () => {
+    const linked = new Set(Object.values(toolGuides).flat());
+    const unlinked = articles.map((a) => a.slug).filter((s) => !linked.has(s));
+    expect(unlinked).toEqual([]);
   });
 
   it("every tool belongs to a category that has a landing page", () => {
