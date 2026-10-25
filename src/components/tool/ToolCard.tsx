@@ -30,6 +30,7 @@ import {
   Eye,
   Info,
   Type,
+  ScanText,
 } from "lucide-react";
 import type { ToolDefinition } from "@/lib/tools/registry";
 
@@ -52,6 +53,7 @@ const icons: Record<string, typeof FileText> = {
   "image-resizer": Scaling,
   "crop-image": Crop,
   "image-converter": Repeat,
+  "image-to-text": ScanText,
   "passport-photo": UserSquare,
   "word-counter": WholeWord,
   "case-converter": CaseSensitive,

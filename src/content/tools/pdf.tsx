@@ -1012,8 +1012,12 @@ export const pdfToolContent: ToolContentMap = {
               The quick test is to open the file in any viewer and try to select
               a word with your cursor. If the selection highlights a rectangle
               rather than the word, it is a scan. Turning that into text requires
-              optical character recognition, which is not available here yet
-              because it cannot be done well entirely inside a browser.
+              optical character recognition: convert the pages to images with{" "}
+              <Link href="/tools/pdf-to-images">PDF to images</Link>, then read
+              each one with{" "}
+              <Link href="/tools/image-to-text">Image to text (OCR)</Link>, which
+              also runs on your device. Expect to proofread the result — OCR
+              guesses at letters, whereas extraction copies them exactly.
             </p>
           </>
         ),

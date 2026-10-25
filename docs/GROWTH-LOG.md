@@ -14,7 +14,7 @@ before pushing to main.
 Tool queue, in priority order (strike through when LIVE):
 
 1. ~~Compress PDF~~ — LIVE 2026-10-23 (v2 follow-ups: CMYK/indexed images, per-page DPI — T-322)
-2. OCR: image to text (tesseract.js, fully in browser; self-host worker, core WASM and language data under public/ from npm packages, never a CDN; English first, Nepali and Hindi if size allows)
+2. ~~OCR: image to text~~ — LIVE 2026-10-25 (English, Nepali, Hindi; self-hosted tesseract.js 7)
 3. OCR for scanned PDFs (pdf.js render + the OCR engine above; link from the "cannot copy text from PDF" guide)
 4. HEIC to JPG/PNG
 5. Remove EXIF / location data from photos
@@ -31,6 +31,38 @@ metadata and JSON-LD for the newest tools and category pages; (c) anything the
 SEO audit flags.
 
 ## Log
+
+### 2026-10-25 — TOOL — Image to text (OCR)
+
+- New tool: **Image to text (OCR)** — reads printed text from a JPG, PNG or
+  WebP (drop, pick, or Ctrl/⌘+V paste a screenshot) with tesseract.js 7 in a
+  Web Worker. English, Nepali and Hindi (`4.0.0_best_int` models), up to two
+  at once. Small images are upscaled (≤2×), huge ones capped at 4000px, drawn
+  on white so transparent PNGs read. Output is editable; "keep line breaks" or
+  "join into paragraphs" (rejoins end-of-line hyphenation, keeps list items);
+  confidence score with plain advice; copy or download .txt.
+- Privacy: worker, WASM core and language data are copied from npm into
+  public/ocr at build time (scripts/copy-ocr-assets.mjs, git-ignored) and
+  served from glasstools.net — no CDN, the image never leaves the browser. CSP
+  gains only `'wasm-unsafe-eval'` (WebAssembly compile; no JS eval). /ocr/*
+  gets a 7-day cache header. New deps: tesseract.js (Apache-2.0),
+  @tesseract.js-data/eng|nep|hin (MIT packages; models Apache-2.0); loaded
+  only on the tool page via dynamic import.
+- Content: long-form tool page (4 sections) + 5 FAQs; "cannot copy text from
+  PDF" guide now gives a working on-device OCR route for scans (PDF to images →
+  Image to text) instead of "no OCR yet"; Extract text page, error message,
+  FAQ and limits point to OCR; "are online PDF tools safe" wording updated;
+  /image-tools description and intro mention OCR; toolGuides wired.
+- Tests: +20 (tests/unit/ocr.test.ts; 284 total) — language strings, paragraph joining,
+  hyphen/list handling, Devanagari, confidence grading, progress labels,
+  scaling; registry count 30→31. Browser check on out/ with the production
+  CSP applied: sample PNG recognised exactly (95% confidence) at 1280px light
+  and 320px dark, no horizontal scroll, eng+nep model load works, only
+  same-origin /ocr/* requests. Console: sandbox-blocked AdSense loader plus two
+  harmless Tesseract "Parameter not found" warnings when the Nepali model loads.
+- URLs added: https://glasstools.net/tools/image-to-text
+- URLs changed: /learn/cannot-copy-text-from-pdf, /learn/are-online-pdf-tools-safe,
+  /tools/extract-text, /tools/pdf-to-images, /image-tools, /tools, /
 
 ### 2026-10-24 — SEO — Text clean-up guide + guide-page linking
 

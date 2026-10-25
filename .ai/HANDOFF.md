@@ -1,5 +1,16 @@
 # Current Handoff
 
+## Session update (2026-10-25, daily contributor — TOOL day: Image to text OCR)
+
+- Shipped /tools/image-to-text (31 tools live). Logic: src/lib/ocr/languages.ts (eng/nep/hin, `eng+nep` builder, max 2, same-origin asset paths), src/lib/ocr/text.ts (tidy, join paragraphs w/ hyphen + list handling, confidence advice), src/lib/ocr/progress.ts (logger→ProgressState, 0.5–2× scaling), src/lib/ocr/engine.ts (dynamic import of tesseract.js, OEM LSTM_ONLY, workerBlobURL:false). UI: src/features/image-to-text/ImageToTextTool.tsx (paste support, editable result, copy/download, worker reused until languages change, terminated on unmount).
+- Assets: scripts/copy-ocr-assets.mjs runs in dev/build/build:static and copies worker + 3 LSTM cores + 3 models into public/ocr (git-ignored, ~17 MB on disk; a visitor downloads one ~4 MB core + ~1.4–2.9 MB per model once; IndexedDB caches models). Cloudflare's build runs build:static, so assets are regenerated on deploy.
+- CSP: added 'wasm-unsafe-eval' to script-src (needed for WebAssembly; no JS eval). /ocr/* cache header added. ADR-008 records the reversal of ADR-005 for OCR.
+- Content: tool content + 5 FAQs; cannot-copy-text guide now has an on-device OCR route; extract-text copy/FAQ/limits no longer say "OCR not available".
+- Gotcha: Tailwind `text-base` here sets COLOR to --color-base (page background), not font size — use text-sm/text-lg for headings.
+- Tests: +20 unit (tests/unit/ocr.test.ts), 284 total; registry 31. Verified: npm run verify ✓ · build:static ✓ · audit 57 pages 0 problems ✓ · Playwright on out/ with production CSP: exact recognition of a sample PNG, 320px dark + 1280px light, eng+nep loads.
+- Local e2e (npx playwright test) cannot run in this sandbox (repo Playwright wants chromium_headless_shell-1228, not installed); CI runs it.
+- Next: SEO day (GROWTH-LOG decides) — e.g. a guide for image-converter/resizer/crop or percentage/EMI (T-316). Following TOOL day: T-323 OCR for scanned PDFs.
+
 ## Session update (2026-10-24, daily contributor — SEO day: text clean-up guide)
 
 - New guide /learn/clean-up-pasted-text (13 guides): order of operations for text pasted from PDFs, spreadsheets and merged lists; every claim checked against src/lib/text/transform.ts and diff.ts (tabs collapse, blank lines dedupe to one, title/sentence case lower-case first, sort is localeCompare text order, line-level diff).

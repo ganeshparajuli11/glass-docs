@@ -70,3 +70,9 @@ Reason: build-time font download unavailable in sandbox; also removes a third-pa
 ## ADR-007 — No motion/react-dropzone/zustand/sonner/shadcn deps in v1
 Date: 2026-07-18 · Status: Accepted
 Reason: CSS transitions + native drop zone + component state cover MVP; fewer parser/lock risks. Add `motion` only for a specific interaction that CSS cannot do.
+
+## ADR-008 — On-device OCR with self-hosted tesseract.js (supersedes ADR-005 for image OCR)
+Date: 2026-10-25 · Status: Accepted
+Decision: Ship OCR for images using tesseract.js 7 (Apache-2.0) in a Web Worker, with worker, WASM core and `best_int` language models (eng, nep, hin) copied from npm into public/ocr at build time and served same-origin. No CDN, no server.
+Reason: Printed-text OCR of a single image is accurate and fast enough in a browser; it was the next item in the owner's growth queue, and the privacy promise holds.
+Consequences: CSP script-src gains 'wasm-unsafe-eval'. Build copies ~17 MB of assets (git-ignored). Accuracy depends on image quality; the UI shows confidence and invites proofreading. Scanned-PDF OCR (multi-page) is T-323.

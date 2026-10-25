@@ -35,6 +35,7 @@ const components: Record<string, ComponentType<object>> = {
   "image-resizer": lazy(() => import("@/features/image-resizer/ImageResizerTool")),
   "crop-image": lazy(() => import("@/features/crop-image/CropImageTool")),
   "image-converter": lazy(() => import("@/features/image-converter/ImageConverterTool")),
+  "image-to-text": lazy(() => import("@/features/image-to-text/ImageToTextTool")),
   "passport-photo": lazy(() => import("@/features/passport-photo/PassportPhotoTool")),
   "word-counter": lazy(() => import("@/features/word-counter/WordCounterTool")),
   "case-converter": lazy(() => import("@/features/case-converter/CaseConverterTool")),

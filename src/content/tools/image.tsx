@@ -545,4 +545,155 @@ export const imageToolContent: ToolContentMap = {
       },
     ],
   },
+
+  "image-to-text": {
+    lede: (
+      <>
+        Optical character recognition (OCR) turns a picture of words — a
+        photographed notice, a screenshot of a slide, a scanned page — back
+        into text you can copy, search and edit. Here it runs entirely on your
+        device, and reads printed English, Nepali and Hindi.
+      </>
+    ),
+    steps: [
+      <>
+        Add an image: drop a JPG, PNG or WebP, choose one from your files, or
+        press Ctrl+V (⌘V on a Mac) to paste a screenshot straight from your
+        clipboard.
+      </>,
+      <>
+        Tick the language that is actually in the image. Use two only when the
+        image really mixes them, such as an English heading over Nepali text.
+      </>,
+      <>
+        Choose how to handle line breaks — keep them exactly as printed, or
+        join wrapped lines into paragraphs — then select Extract text.
+      </>,
+      <>
+        Read the confidence note, correct any mistakes in the text box, then
+        copy the text or download it as a .txt file.
+      </>,
+    ],
+    sections: [
+      {
+        heading: "What makes OCR accurate (and what ruins it)",
+        body: (
+          <>
+            <p>
+              The engine is the open-source Tesseract recogniser, and like every
+              OCR system it is only as good as the picture it is given. The
+              single biggest factor is the size of the letters in pixels: text
+              where a capital letter is roughly 20 to 40 pixels tall reads well,
+              while a tiny screenshot or a whole page photographed from across
+              the room does not. Small images are enlarged automatically before
+              recognition, but enlarging cannot invent detail that was never
+              captured.
+            </p>
+            <p>
+              After size come contrast and geometry. Dark text on a plain light
+              background is ideal; text over a photograph, a coloured gradient
+              or a shadow falling across the page is hard. Shoot documents
+              straight down rather than at an angle, so lines stay level and
+              letters are not stretched, and avoid flash glare on glossy paper.
+              If only part of the image matters, cut it out first with{" "}
+              <Link href="/tools/crop-image">Crop image</Link> — logos, borders
+              and photos around the text are where most of the stray characters
+              in a result come from.
+            </p>
+            <p>
+              Choosing the right language matters more than it sounds. The
+              English model does not know Devanagari letters at all, and the
+              Nepali and Hindi models will try to read English words as
+              Devanagari. Each extra language also gives the engine more wrong
+              answers to choose between, which is why the tool limits you to two.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Line breaks, paragraphs and the confidence score",
+        body: (
+          <>
+            <p>
+              OCR reports text line by line, exactly as it was printed, so a
+              paragraph from a book comes out with a hard break at the end of
+              every printed line. <strong>Keep as in the image</strong> is the
+              right choice for receipts, addresses, lists, poems and anything
+              where the lines mean something. <strong>Join into
+              paragraphs</strong> is for prose you are going to paste into a
+              document: wrapped lines are joined with a space, words split with
+              a hyphen at a line end are rejoined, blank lines stay as paragraph
+              breaks, and lines that start like a bullet or a numbered item keep
+              their own line. You can switch between the two after reading
+              without running recognition again.
+            </p>
+            <p>
+              The confidence figure is Tesseract&apos;s own average certainty
+              across the words it found. Treat it as a guide to how much
+              proofreading to do, not as a guarantee: a high score can still
+              hide a misread digit, which is the error that matters most in a
+              phone number, an amount or a date. Always check numbers and names
+              against the image before you rely on them.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Scanned PDFs, tables and handwriting",
+        body: (
+          <>
+            <p>
+              A scanned PDF is a set of page images, so the route is two steps:
+              turn the pages into images with{" "}
+              <Link href="/tools/pdf-to-images">PDF to images</Link> at the
+              highest resolution, then read each page image here. Before you do,
+              check whether the PDF really is a scan — if you can select a word
+              in a PDF viewer, the text is already there and{" "}
+              <Link href="/tools/extract-text">Extract text</Link> will give you
+              an exact copy instantly, with no recognition errors at all. The
+              guide to{" "}
+              <Link href="/learn/cannot-copy-text-from-pdf">
+                PDFs you cannot copy text from
+              </Link>{" "}
+              explains how to tell the difference.
+            </p>
+            <p>
+              The output is plain text. Tables come out as rows of words
+              separated by spaces, multi-column layouts may be read across the
+              columns rather than down them, and bold, italics and font sizes
+              are not kept. For a two-column article, cropping each column into
+              its own image gives a much cleaner result than reading the page in
+              one go. Handwriting is outside what this engine was trained for:
+              neat capitals occasionally work, joined-up writing does not.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Where the OCR engine and your image actually go",
+        body: (
+          <>
+            <p>
+              Many free OCR websites send your image to a server for
+              processing, which is a real concern for ID cards, bank letters,
+              medical notes and exam papers. Here, recognition happens in a
+              background worker inside your browser tab using a WebAssembly
+              build of Tesseract. The engine (about 4 MB) and each language
+              model (1.4–2.9 MB) are downloaded from this site the first time you
+              use them and then kept in your browser, so later runs start
+              faster and need no download.
+            </p>
+            <p>
+              Your image is never part of that traffic: it is read from your
+              disk or clipboard into the page, recognised, and discarded when
+              you leave. If you want to confirm that for yourself, open your
+              browser&apos;s developer tools, watch the network panel and run
+              the tool — the only requests it makes are for the engine files on
+              this domain.
+            </p>
+          </>
+        ),
+      },
+    ],
+  },
 };

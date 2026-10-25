@@ -10,7 +10,7 @@ export interface ToolDefinition {
   category: "pdf" | "image" | "text" | "calculator" | "student";
   processingMode: ProcessingMode;
   status: ToolStatus;
-  engine: "pdf-lib" | "pdfjs" | "browser-canvas" | "combined";
+  engine: "pdf-lib" | "pdfjs" | "browser-canvas" | "combined" | "tesseract";
   acceptedMimeTypes: string[];
   outputMimeTypes: string[];
   maxRecommendedSizeMb: number;
@@ -267,7 +267,7 @@ export const tools: ToolDefinition[] = [
     maxRecommendedSizeMb: 40,
     supportsMultipleFiles: false,
     keywords: ["pdf to jpg", "pdf to png", "convert", "export", "image"],
-    relatedTools: ["images-to-pdf", "pdf-viewer"],
+    relatedTools: ["images-to-pdf", "image-to-text", "pdf-viewer"],
     knownLimitations: [
       "Pages are downloaded as individual image files.",
       "High resolutions on large documents use a lot of memory.",
@@ -382,15 +382,15 @@ export const tools: ToolDefinition[] = [
     maxRecommendedSizeMb: 40,
     supportsMultipleFiles: false,
     keywords: ["extract text", "copy", "txt", "content"],
-    relatedTools: ["pdf-viewer", "pdf-metadata"],
+    relatedTools: ["pdf-viewer", "image-to-text", "pdf-metadata"],
     knownLimitations: [
-      "Scanned/image-only PDFs contain no selectable text; OCR is a planned server capability.",
+      "Scanned/image-only PDFs contain no selectable text; convert the pages to images and use Image to text (OCR) instead.",
       "Reading order can differ from the visual layout in complex documents.",
     ],
     faq: [
       {
         q: "Why is my result empty?",
-        a: "The PDF is probably a scan. It has pictures of text rather than selectable text, which requires OCR (not available yet).",
+        a: "The PDF is probably a scan: it holds pictures of text rather than selectable text. Turn the pages into images with PDF to images, then read them with the Image to text (OCR) tool, which runs on your device.",
       },
     ],
     lastVerifiedAt: VERIFIED,
@@ -506,6 +506,62 @@ export const tools: ToolDefinition[] = [
       { q: "How do I print it correctly?", a: "Print the sheet at 100% scale on 4×6 photo paper or A4 — never “fit to page”." },
     ],
     lastVerifiedAt: VERIFIED,
+  },
+  {
+    slug: "image-to-text",
+    name: "Image to text (OCR)",
+    shortDescription: "Copy text out of a photo, scan or screenshot with on-device OCR.",
+    category: "image",
+    processingMode: "local",
+    status: "stable",
+    engine: "tesseract",
+    acceptedMimeTypes: ["image/jpeg", "image/png", "image/webp"],
+    outputMimeTypes: ["text/plain"],
+    maxRecommendedSizeMb: 25,
+    supportsMultipleFiles: false,
+    keywords: [
+      "ocr",
+      "image to text",
+      "picture to text",
+      "photo to text",
+      "screenshot to text",
+      "extract text from image",
+      "copy text from image",
+      "jpg to text",
+      "scan to text",
+      "nepali ocr",
+      "hindi ocr",
+    ],
+    relatedTools: ["pdf-to-images", "crop-image", "extract-text"],
+    knownLimitations: [
+      "Printed text only — handwriting is rarely recognised reliably.",
+      "Plain text output: tables, columns and formatting are not rebuilt.",
+      "English, Nepali and Hindi; two languages at a time at most.",
+      "First use downloads the OCR engine and language model (about 5–8 MB) from this site.",
+    ],
+    faq: [
+      {
+        q: "Is my image uploaded to a server?",
+        a: "No. Recognition runs in your browser using a WebAssembly build of the open-source Tesseract engine. The engine and language models are downloaded from this site, not a third party, and the image itself never leaves your device.",
+      },
+      {
+        q: "Which languages can it read?",
+        a: "English, Nepali and Hindi. Nepali and Hindi both use Devanagari script. Select the language that is actually in the image — choosing extra languages makes recognition slower and usually less accurate.",
+      },
+      {
+        q: "Can it read handwriting?",
+        a: "Not reliably. Tesseract is trained on printed text. Neat block capitals sometimes work; joined-up handwriting usually comes out as noise.",
+      },
+      {
+        q: "How do I get text out of a scanned PDF?",
+        a: "Turn the pages into images with the PDF to images tool (PNG at High or Maximum resolution), then run each page image through this tool. If you can already select words in the PDF, use Extract text instead — it copies the real text with no recognition errors.",
+      },
+      {
+        q: "Why is the result full of mistakes?",
+        a: "OCR accuracy depends mostly on the image: blur, low resolution, shadows, tilted pages and busy backgrounds all hurt. Crop to just the text, photograph straight on in good light, and pick the right language.",
+      },
+    ],
+    lastVerifiedAt: "2026-10-25",
   },
   // ---------- Text tools ----------
   {

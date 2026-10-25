@@ -58,7 +58,7 @@ export default function ExtractTextTool() {
             code: "OUTPUT_FAILED",
             message: "No selectable text was found in this PDF.",
             recovery:
-              "It is probably a scanned document. Scans need OCR, which is a planned server-side capability — not available yet.",
+              "It is probably a scanned document. Convert its pages to images with PDF to images, then read them with Image to text (OCR) — both run on your device.",
           },
         });
         return;
@@ -91,7 +91,7 @@ export default function ExtractTextTool() {
           accept="application/pdf,.pdf"
           onFiles={onFiles}
           label="Drop a PDF here"
-          hint="Extracts selectable text. Scanned documents need OCR, which is not available yet."
+          hint="Extracts selectable text. For scanned pages, use Image to text (OCR) on page images instead."
         />
       ) : null}
       {state.status === "processing" ? <ProgressPanel progress={state.progress} /> : null}

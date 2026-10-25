@@ -192,8 +192,10 @@ export const articles: Article[] = [
         </ol>
         <h2>When a server-based tool is fine</h2>
         <p>
-          Server processing is not evil — some jobs (OCR of scanned documents,
-          high-fidelity Word conversion) currently need server-grade software.
+          Server processing is not evil — some jobs (high-fidelity Word
+          conversion, OCR of long documents in dozens of languages) are easier
+          with server-grade software, even though everyday OCR of a page or a
+          screenshot now runs fine in a browser.
           The fair standard is disclosure: you should know before uploading
           that the file will leave your device, why, and for how long it is
           kept. Tools on this site that would ever need a server will say so
@@ -666,7 +668,7 @@ export const articles: Article[] = [
     slug: "cannot-copy-text-from-pdf",
     title: "You cannot copy text from a PDF: here is why, and what to do",
     description:
-      "Scanned PDFs contain pictures of text, not text. How to tell which kind you have, how to extract what is there, and what OCR would add.",
+      "Scanned PDFs contain pictures of text, not text. How to tell which kind you have, how to extract what is there, and how to OCR a scan on your own device.",
     publishedAt: WAVE_2,
     body: (
       <>
@@ -712,13 +714,29 @@ export const articles: Article[] = [
         <h2>If it is a scan</h2>
         <p>
           Converting a picture of text into text requires optical character
-          recognition, and there is no OCR on this site yet — doing it well
-          inside a browser, in every language people would need, is not something
-          to promise before it works. Your realistic options today are to
-          retype short passages, to use a desktop application or an office suite
-          with OCR built in, or to ask whoever sent the document for the original
-          file. That last one is worth trying first: the source document usually
-          still exists, and it is better than any conversion.
+          recognition (OCR). Before reaching for it, ask whoever sent the
+          document for the original file: the source usually still exists, and
+          it is better than any conversion, because OCR reads letters by
+          guessing at shapes and always makes some mistakes.
+        </p>
+        <p>
+          If the scan is all you have, you can do the recognition on your own
+          device in two steps. First turn the pages you need into images with{" "}
+          <Link href="/tools/pdf-to-images">PDF to images</Link> — choose PNG
+          and the High or Maximum resolution, because OCR accuracy depends
+          mostly on how many pixels each letter has. Then open each page image
+          in <Link href="/tools/image-to-text">Image to text</Link>, pick the
+          language of the document (English, Nepali and Hindi are available),
+          and copy or download the result. For a page with two columns, crop
+          each column into its own image first so the lines are not read
+          straight across.
+        </p>
+        <p>
+          Budget time for proofreading. Check every number, name and date
+          against the page, since a misread digit looks perfectly plausible.
+          Handwriting, faint photocopies and pages photographed at an angle
+          recognise poorly; a fresh, straight, well-lit scan helps far more
+          than running the same image twice.
         </p>
         <h2>A note on protected documents</h2>
         <p>
@@ -945,6 +963,7 @@ export const toolGuides: Record<string, string[]> = {
   "pdf-viewer": ["cannot-copy-text-from-pdf", "are-online-pdf-tools-safe"],
   "pdf-metadata": ["are-online-pdf-tools-safe"],
   "extract-text": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],
+  "image-to-text": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],
   "image-compressor": ["shrink-images-for-email", "pdf-too-large-to-email"],
   "image-resizer": ["shrink-images-for-email", "passport-photo-sizes-explained"],
   "image-converter": ["shrink-images-for-email"],

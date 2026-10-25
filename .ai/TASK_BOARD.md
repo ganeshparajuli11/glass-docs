@@ -57,7 +57,8 @@ T-200/T-202 locally, or T-100/T-210 with user credentials.
 | T-316 | Guides for the 16 new tools | In progress | 2026-10-24: text cluster done (/learn/clean-up-pasted-text covers case, spaces, dedupe, compare). Left: attendance, EMI, percentage, image converter/resizer/crop |
 | T-317 | Drag-handle crop UI upgrade | Backlog | sliders are the accessible v1 |
 | T-320 | Compress PDF (client-side image downsampling/re-encode) | Done | 2026-10-23 · /tools/compress-pdf · 30 tools live |
-| T-321 | OCR: image to text (self-hosted tesseract.js) | Backlog | next TOOL day per docs/GROWTH-LOG.md queue |
+| T-321 | OCR: image to text (self-hosted tesseract.js) | Done | 2026-10-25 · /tools/image-to-text · eng/nep/hin · 31 tools live |
+| T-323 | OCR for scanned PDFs (pdf.js render + OCR engine, multi-page) | Backlog | next TOOL day; reuse src/lib/ocr/*; link from cannot-copy-text guide |
 | T-322 | Compress PDF v2: CMYK/indexed images, per-page DPI from content streams | Backlog | v1 skips these safely |
 
-Explicitly out of scope until backend exists: PDF↔Word, OCR, repair, advanced compression, e-signatures, AI features, cloud storage (do not list as working).
+Explicitly out of scope until backend exists: PDF↔Word, repair, advanced compression, e-signatures, AI features, cloud storage (do not list as working).

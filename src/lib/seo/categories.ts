@@ -35,11 +35,11 @@ export const categoryPages: CategoryPage[] = [
     path: "/image-tools",
     category: "image",
     title: "Image tools",
-    metaTitle: "Free image tools — compress, resize, crop, convert",
+    metaTitle: "Free image tools — compress, resize, crop, convert, OCR",
     description:
-      "Compress, resize, crop and convert JPG, PNG and WebP images in your browser, or build a printable passport-photo sheet — free and without uploading.",
+      "Compress, resize, crop and convert JPG, PNG and WebP images, copy text out of photos with OCR, or build a passport-photo sheet — free, in your browser, without uploading.",
     intro: [
-      "These tools use your browser's own image engine, so photos never leave your device. Compression shows you the before-and-after size so you can pick the right quality.",
+      "These tools use your browser's own image engine, so photos never leave your device. Compression shows you the before-and-after size so you can pick the right quality, and Image to text reads printed English, Nepali or Hindi out of a photo or screenshot on your device.",
       "They pair naturally with the PDF tools: shrink or crop images first, then turn them into a single PDF with Images to PDF.",
     ],
     guideSlugs: [
