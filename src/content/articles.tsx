@@ -288,6 +288,12 @@ export const articles: Article[] = [
           <li>WebP is smaller than JPEG, but older portals may reject it — JPEG is the safe choice.</li>
           <li>For multi-page requirements, convert the finished images with <Link href="/tools/images-to-pdf">Images to PDF</Link>.</li>
         </ul>
+        <p>
+          If the portal also demands exact pixel dimensions, such as a 200 × 230
+          photo or a signature strip, follow the step-by-step order in{" "}
+          <Link href="/learn/resize-photo-for-online-form">making a photo fit an
+          online form</Link>.
+        </p>
       </>
     ),
   },
@@ -940,6 +946,212 @@ export const articles: Article[] = [
       </>
     ),
   },
+  {
+    slug: "resize-photo-for-online-form",
+    title: "How to make a photo fit an online form: exact pixels, KB limits and the right format",
+    description:
+      "A step-by-step order for photos and signatures that an application portal keeps rejecting: crop to the shape, resize to the exact pixels, pick JPG or PNG, then get under the file-size limit.",
+    publishedAt: "2026-10-26",
+    body: (
+      <>
+        <p>
+          Exam registrations, job applications, visa portals and university
+          admissions often want a photo or signature that is &ldquo;200 × 230
+          pixels, JPG only, between 20 and 50 KB&rdquo;. A phone photo is
+          nothing like that: around 3000 × 4000 pixels, several megabytes, and
+          sometimes in a format the portal has never heard of. Each rule is
+          easy to meet on its own. The trick is meeting them in the right
+          order, because a later step can quietly undo an earlier one.
+        </p>
+        <h2>The short version</h2>
+        <ol>
+          <li>
+            <strong>Shape:</strong> crop to the portal&apos;s proportions with{" "}
+            <Link href="/tools/crop-image">Crop image</Link>.
+          </li>
+          <li>
+            <strong>Pixels:</strong> set the exact width and height with the{" "}
+            <Link href="/tools/image-resizer">Image resizer</Link>.
+          </li>
+          <li>
+            <strong>Format:</strong> save as JPG unless the portal says
+            otherwise, using the{" "}
+            <Link href="/tools/image-converter">Image converter</Link> if the
+            file is in the wrong one.
+          </li>
+          <li>
+            <strong>File size:</strong> bring it under the KB limit with the{" "}
+            <Link href="/tools/image-compressor">Image compressor</Link>,
+            which shows the new size before you download.
+          </li>
+        </ol>
+        <p>
+          Before you start, read the portal&apos;s instructions once more and
+          write down four things: width and height in pixels, the allowed
+          formats, the maximum (and sometimes minimum) file size, and anything
+          about the picture itself, such as background colour or how much of
+          the frame the face should fill.
+        </p>
+        <h2>Step 1: crop to the right shape first</h2>
+        <p>
+          Width divided by height is the shape of the picture. A phone photo is
+          usually 3:4 in portrait; a portal asking for 200 × 230 wants a shape
+          of about 0.87, slightly wider than 3:4; a signature box of 140 × 60
+          wants a long, thin strip. If you skip this step and force a 3:4
+          photo straight into 200 × 230, the resizer has to stretch it, and
+          faces come out visibly wider.
+        </p>
+        <p>
+          In <Link href="/tools/crop-image">Crop image</Link>, choose a preset
+          if one matches (Square 1:1, Portrait 3:4, 4:3, 16:9). For anything
+          else, choose Free and move the width and height sliders while
+          watching the &ldquo;Output&rdquo; line under the preview, which shows
+          the crop in pixels. You are aiming for the same ratio as the target,
+          not the same numbers: for 200 × 230, an output of 2000 × 2300 or
+          1740 × 2000 is ideal, and anything within a few per cent is fine
+          because the next step absorbs the small difference without a visible
+          stretch. Then use the offset sliders to place the face or signature
+          where the portal wants it.
+        </p>
+        <p>
+          Crop away everything that is not the subject. For signatures, that
+          means a tight box around the ink with a small margin, not the whole
+          sheet of paper. For photos, follow the portal&apos;s guidance on
+          head size; for printed passport photos, the{" "}
+          <Link href="/learn/passport-photo-sizes-explained">passport photo
+          size guide</Link> covers the common specifications.
+        </p>
+        <h2>Step 2: resize to the exact pixels</h2>
+        <p>
+          Open the cropped file in the{" "}
+          <Link href="/tools/image-resizer">Image resizer</Link>. With
+          &ldquo;Lock aspect ratio&rdquo; ticked, typing a width fills in the
+          matching height. If that height is one or two pixels away from the
+          portal&apos;s number, untick the box and type both numbers exactly:
+          because you already cropped to the right shape, the adjustment is too
+          small to see. The downloaded file is named with its new size, such as{" "}
+          <code>photo-200x230.jpg</code>, so you can tell it apart from the
+          original.
+        </p>
+        <p>
+          <strong>If the form gives centimetres and DPI instead of
+          pixels,</strong> convert it: pixels = centimetres ÷ 2.54 × DPI. A
+          3.5 × 4.5&nbsp;cm photo at 300&nbsp;DPI is 3.5 ÷ 2.54 × 300 ≈ 413
+          pixels wide and 4.5 ÷ 2.54 × 300 ≈ 531 pixels tall. On a screen and
+          in an upload checker it is the pixel size that counts. Browsers
+          typically do not write a print resolution into the files they save,
+          so if a portal checks a DPI value stored in the file itself, that one
+          rule needs a desktop photo editor.
+        </p>
+        <p>
+          Going smaller is always safe. Going larger is not useful: resizing a
+          150-pixel signature to 600 pixels gives a bigger, blurrier version of
+          the same 150 pixels. If a portal wants more pixels than you have,
+          take a new photo or scan at a higher resolution.
+        </p>
+        <h2>Step 3: choose the format the portal accepts</h2>
+        <p>
+          Most portals ask for <strong>JPG</strong> (also written JPEG; the two
+          are the same thing). JPG is small and suits photos. <strong>PNG</strong>{" "}
+          keeps every pixel exactly and supports transparent backgrounds, which
+          makes it better for logos and crisp signatures, but it is usually
+          several times larger. <strong>WebP</strong> is smaller still, but
+          older portals often reject it.
+        </p>
+        <p>
+          The crop tool and the resizer both let you choose the output format,
+          so you can usually pick JPG there and skip a separate conversion. If
+          you start with a WebP screenshot, or a PNG the portal will not take,
+          the <Link href="/tools/image-converter">Image converter</Link>{" "}
+          switches between JPG, PNG and WebP. JPG cannot store transparency, so
+          transparent areas become white, which is normally what a form wants
+          for a signature or logo. Renaming <code>photo.png</code> to{" "}
+          <code>photo.jpg</code> does not convert anything; many portals check
+          the real contents and reject a renamed file.
+        </p>
+        <p>
+          iPhone photos saved as HEIC need converting to JPG first. The
+          simplest route today is the phone itself: on an iPhone, Settings →
+          Camera → Formats → Most Compatible saves new photos as JPG, and
+          sharing or emailing a photo often converts it on the way.
+        </p>
+        <h2>Step 4: get under the KB limit</h2>
+        <p>
+          After resizing, a 200 × 230 photo is usually already far below a
+          50&nbsp;KB limit, because pixel count drives file size more than
+          anything else. If it is still too big, open it in the{" "}
+          <Link href="/tools/image-compressor">Image compressor</Link>. Move the
+          quality slider down and watch the compressed size update next to the
+          original; stop at the highest quality that fits. For photos, 70–80%
+          is rarely distinguishable from the original at normal size. The
+          compressor keeps the pixel dimensions exactly as they are, so it will
+          not undo step 2.
+        </p>
+        <p>
+          Two details catch people out. First, a kilobyte can mean 1,000 or
+          1,024 bytes, and portals do not always say which. GlassTools shows
+          sizes in units of 1,024 bytes, so aim a few KB under the limit rather
+          than exactly at it. Second, some portals also set a{" "}
+          <em>minimum</em>, such as &ldquo;at least 10 KB&rdquo;. If your file
+          is too small, raise the quality, or save as PNG, rather than making
+          the picture larger than the stated pixel size.
+        </p>
+        <p>
+          If a signature still will not shrink, the cause is usually a grey,
+          textured paper background. Rescan on plain white paper in good light,
+          or crop tighter; flat white compresses to almost nothing.
+        </p>
+        <h2>When the portal still says no</h2>
+        <ul>
+          <li>
+            <strong>&ldquo;Invalid dimensions&rdquo;:</strong> open the final
+            file in the resizer, which shows its current width and height, and
+            compare them with the requirement number by number. Instructions
+            sometimes list the height first, so check which number is the
+            width.
+          </li>
+          <li>
+            <strong>&ldquo;Invalid file type&rdquo;:</strong> the file is
+            probably PNG or WebP with a .jpg name, or HEIC. Convert it properly
+            with the <Link href="/tools/image-converter">Image converter</Link>.
+          </li>
+          <li>
+            <strong>&ldquo;File too large&rdquo; just under the limit:</strong>{" "}
+            the portal is counting in 1,000-byte kilobytes. Compress a little
+            further.
+          </li>
+          <li>
+            <strong>The photo looks squashed:</strong> you resized with the
+            aspect lock off without cropping first. Start again from the
+            original and crop to the shape before resizing.
+          </li>
+          <li>
+            <strong>The portal wants a PDF:</strong> turn the finished image
+            into one with <Link href="/tools/images-to-pdf">Images to PDF</Link>.
+          </li>
+        </ul>
+        <h2>What no tool can fix</h2>
+        <p>
+          Every step above changes the file, not the photograph. A blurred
+          picture, a shadow across the face, a coloured background where the
+          rules ask for white, or a signature on lined paper will be rejected
+          however perfectly it is sized, so retaking the photo is often faster
+          than trying to rescue it. Make every edit from the original, too:
+          compressing an already compressed JPG again and again adds blocky
+          artefacts each time.
+        </p>
+        <p>
+          All four tools run in your browser. Your photo, ID or signature is
+          processed on your own device and is never uploaded, which is worth
+          knowing when the file is something you would not want stored on a
+          stranger&apos;s server. For general size advice when emailing photos,
+          see{" "}
+          <Link href="/learn/shrink-images-for-email">shrinking images for
+          email and upload portals</Link>.
+        </p>
+      </>
+    ),
+  },
 ];
 
 export function getArticle(slug: string): Article | undefined {
@@ -964,10 +1176,10 @@ export const toolGuides: Record<string, string[]> = {
   "pdf-metadata": ["are-online-pdf-tools-safe"],
   "extract-text": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],
   "image-to-text": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],
-  "image-compressor": ["shrink-images-for-email", "pdf-too-large-to-email"],
-  "image-resizer": ["shrink-images-for-email", "passport-photo-sizes-explained"],
-  "image-converter": ["shrink-images-for-email"],
-  "crop-image": ["passport-photo-sizes-explained"],
+  "image-compressor": ["shrink-images-for-email", "resize-photo-for-online-form", "pdf-too-large-to-email"],
+  "image-resizer": ["resize-photo-for-online-form", "shrink-images-for-email", "passport-photo-sizes-explained"],
+  "image-converter": ["resize-photo-for-online-form", "shrink-images-for-email"],
+  "crop-image": ["resize-photo-for-online-form", "passport-photo-sizes-explained"],
   "passport-photo": ["passport-photo-sizes-explained", "shrink-images-for-email"],
   "word-counter": ["prepare-assignment-pdf-for-submission", "clean-up-pasted-text"],
   "case-converter": ["clean-up-pasted-text"],

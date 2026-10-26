@@ -1,5 +1,15 @@
 # Current Handoff
 
+## Session update (2026-10-26, daily contributor — SEO day: photo-for-online-form guide + JPEG transparency fix)
+
+- New guide /learn/resize-photo-for-online-form (14 guides): crop to shape → resize to exact px → format → KB limit, for exam/job/visa portal photos and signatures. Claims checked against the code: crop presets (Free/1:1/4:3/16:9/3:4) + live "Output: W × H px" line; resizer lock/unlock, 1–10000 px, JPEG q=0.92, filename `-WxH`; compressor keeps dimensions, slider 30–95%, shows size; formatBytes uses 1024; cm→px at DPI maths; Chromium-saved JPEGs carry JFIF density units 0 (no DPI) — verified.
+- Wired: toolGuides for image-resizer, crop-image, image-converter, image-compressor; /image-tools guideSlugs (first); shrink-images-for-email links to it.
+- BUG FIX (found while fact-checking): canvas JPEG export turned transparent pixels BLACK in Chromium, although the converter UI and content promised white. src/lib/image/process.ts encodeCanvas now flattens onto #ffffff for JPEG (new formatSupportsAlpha + OPAQUE_BACKGROUND). Affects converter, resizer, crop, compressor. Verified in browser: transparent PNG → JPG corners (255,255,255).
+- Tests: +3 (tests/unit/image-process.test.ts), 287 total. Verified: npm run verify ✓ · build:static ✓ · audit 58 pages 0 problems ✓ · Playwright on out/: 320px dark + 1280px light no h-scroll, Article + BreadcrumbList JSON-LD, links present on /tools/image-resizer, /image-tools, /learn/shrink-images-for-email. Only console errors: sandbox-blocked AdSense loader.
+- Gotcha: `pkill -f "http.server 8080"` inside a compound Bash command kills that same shell (its command line matches) — kill the server in a separate call.
+- T-316 left: attendance, EMI, percentage calculators.
+- Next: TOOL day — T-323 OCR for scanned PDFs.
+
 ## Session update (2026-10-25, daily contributor — TOOL day: Image to text OCR)
 
 - Shipped /tools/image-to-text (31 tools live). Logic: src/lib/ocr/languages.ts (eng/nep/hin, `eng+nep` builder, max 2, same-origin asset paths), src/lib/ocr/text.ts (tidy, join paragraphs w/ hyphen + list handling, confidence advice), src/lib/ocr/progress.ts (logger→ProgressState, 0.5–2× scaling), src/lib/ocr/engine.ts (dynamic import of tesseract.js, OEM LSTM_ONLY, workerBlobURL:false). UI: src/features/image-to-text/ImageToTextTool.tsx (paste support, editable result, copy/download, worker reused until languages change, terminated on unmount).

@@ -32,6 +32,24 @@ SEO audit flags.
 
 ## Log
 
+### 2026-10-26 — SEO — Photo-for-online-form guide + JPEG transparency fix
+
+- New guide: **How to make a photo fit an online form** — the order that
+  works for portal photos and signatures (crop to the shape → resize to exact
+  pixels → JPG/PNG/WebP → under the KB limit), cm/DPI → pixels maths,
+  1,000 vs 1,024-byte kilobytes, minimum-size limits, HEIC, renamed-file
+  rejections, and a "portal still says no" checklist. Every tool behaviour
+  described was checked against the code.
+- Linked both ways: resizer, crop, converter and compressor pages list it;
+  /image-tools lists it first; the email-shrinking guide points to it.
+- Fix: JPEG output from the converter, resizer, crop and compressor turned
+  transparent areas black (browser canvas default) even though the tools say
+  white. Now flattened onto white; verified in Chromium.
+- Tests: +3 (287 total). 58 pages audited, 0 problems.
+- URLs added: https://glasstools.net/learn/resize-photo-for-online-form
+- URLs changed: /tools/image-resizer, /tools/crop-image, /tools/image-converter,
+  /tools/image-compressor, /image-tools, /learn/shrink-images-for-email, /learn
+
 ### 2026-10-25 — TOOL — Image to text (OCR)
 
 - New tool: **Image to text (OCR)** — reads printed text from a JPG, PNG or

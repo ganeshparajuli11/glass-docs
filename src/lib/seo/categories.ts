@@ -43,6 +43,7 @@ export const categoryPages: CategoryPage[] = [
       "They pair naturally with the PDF tools: shrink or crop images first, then turn them into a single PDF with Images to PDF.",
     ],
     guideSlugs: [
+      "resize-photo-for-online-form",
       "images-to-pdf-quality",
       "shrink-images-for-email",
       "passport-photo-sizes-explained",

@@ -35,13 +35,34 @@ export function drawToCanvas(
 
 export type OutputFormat = "image/jpeg" | "image/png" | "image/webp";
 
+/** Whether the format can store transparent pixels. JPEG cannot. */
+export function formatSupportsAlpha(format: OutputFormat): boolean {
+  return format !== "image/jpeg";
+}
+
+/** Background used where a format without alpha meets transparent pixels. */
+export const OPAQUE_BACKGROUND = "#ffffff";
+
 export async function encodeCanvas(
   canvas: HTMLCanvasElement,
   format: OutputFormat,
   quality?: number,
 ): Promise<Blob> {
+  // Browsers encode transparent pixels as black in JPEG, which turns a logo's
+  // transparent background black. Flatten onto white first, as the tools say.
+  let source = canvas;
+  if (!formatSupportsAlpha(format)) {
+    source = document.createElement("canvas");
+    source.width = canvas.width;
+    source.height = canvas.height;
+    const ctx = source.getContext("2d");
+    if (!ctx) throw new Error("canvas unavailable");
+    ctx.fillStyle = OPAQUE_BACKGROUND;
+    ctx.fillRect(0, 0, source.width, source.height);
+    ctx.drawImage(canvas, 0, 0);
+  }
   const blob = await new Promise<Blob | null>((resolve) =>
-    canvas.toBlob(resolve, format, format === "image/png" ? undefined : quality),
+    source.toBlob(resolve, format, format === "image/png" ? undefined : quality),
   );
   if (!blob) throw new Error("encode failed");
   return blob;
