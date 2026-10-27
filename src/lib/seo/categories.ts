@@ -1,5 +1,9 @@
 /** Category landing pages — real CollectionPages with unique content. */
 
+import { toolsInCategory } from "@/lib/tools/registry";
+
+const pdfToolCount = toolsInCategory("pdf").length;
+
 export interface CategoryPage {
   path: string;
   category: "pdf" | "image" | "text" | "calculator" | "student";
@@ -17,10 +21,11 @@ export const categoryPages: CategoryPage[] = [
     title: "PDF tools",
     metaTitle: "Free PDF tools — merge, split, compress, rotate",
     description:
-      "13 free PDF tools that run in your browser: merge, split, compress, remove pages, rotate, watermark, add page numbers, convert to images, extract text and more.",
+      `${pdfToolCount} free PDF tools that run in your browser: merge, split, compress, remove pages, rotate, watermark, add page numbers, convert to images, extract text, OCR scanned PDFs and more.`,
     intro: [
       "Everything here works on your device: the PDF is read into your browser's memory, changed there, and handed back to you as a download. No account, no upload, no watermark added by us.",
       "Start with the task you need — combining files, pulling out pages, fixing rotation, or stamping a draft mark — and the tool page explains its limits honestly before you begin.",
+      "Scanned documents get their own route: Scanned PDF to text reads each page with on-device OCR in English, Nepali or Hindi, and uses the PDF's real text instead wherever a page already has it.",
     ],
     guideSlugs: [
       "merge-pdfs-without-uploading",

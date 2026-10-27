@@ -76,3 +76,9 @@ Date: 2026-10-25 · Status: Accepted
 Decision: Ship OCR for images using tesseract.js 7 (Apache-2.0) in a Web Worker, with worker, WASM core and `best_int` language models (eng, nep, hin) copied from npm into public/ocr at build time and served same-origin. No CDN, no server.
 Reason: Printed-text OCR of a single image is accurate and fast enough in a browser; it was the next item in the owner's growth queue, and the privacy promise holds.
 Consequences: CSP script-src gains 'wasm-unsafe-eval'. Build copies ~17 MB of assets (git-ignored). Accuracy depends on image quality; the UI shows confidence and invites proofreading. Scanned-PDF OCR (multi-page) is T-323.
+
+## ADR-009 — Self-host pdf.js image decoders (wasmUrl)
+Date: 2026-10-27 · Status: Accepted
+Decision: Copy pdfjs-dist/wasm (jbig2, openjpeg, qcms + their no-wasm JS fallbacks and licences; Apache-2.0/BSD/MIT) into public/pdfjs/wasm at build time (scripts/copy-pdf-worker.mjs, git-ignored) and pass `wasmUrl: "/pdfjs/wasm/"` to every getDocument call.
+Reason: Since pdf.js 5, CCITT fax, JBIG2 and JPEG 2000 images are decoded by WebAssembly modules fetched from `wasmUrl`. Without it, black-and-white office-scanner pages rendered blank in the viewer, PDF to images and the new scanned-PDF OCR tool (reproduced: blocking /pdfjs/wasm turns a CCITT page into "no text found").
+Consequences: ~1 MB of same-origin decoder files, fetched only when a PDF needs them. No CSP change ('wasm-unsafe-eval' already present from ADR-008).

@@ -15,7 +15,7 @@ Tool queue, in priority order (strike through when LIVE):
 
 1. ~~Compress PDF~~ — LIVE 2026-10-23 (v2 follow-ups: CMYK/indexed images, per-page DPI — T-322)
 2. ~~OCR: image to text~~ — LIVE 2026-10-25 (English, Nepali, Hindi; self-hosted tesseract.js 7)
-3. OCR for scanned PDFs (pdf.js render + the OCR engine above; link from the "cannot copy text from PDF" guide)
+3. ~~OCR for scanned PDFs~~ — LIVE 2026-10-27 (/tools/ocr-pdf; v2: searchable-PDF output, >50 pages — T-324)
 4. HEIC to JPG/PNG
 5. Remove EXIF / location data from photos
 6. Protect PDF with a password / unlock a PDF with a known password (vetted library only)
@@ -31,6 +31,29 @@ metadata and JSON-LD for the newest tools and category pages; (c) anything the
 SEO audit flags.
 
 ## Log
+
+### 2026-10-27 — TOOL — Scanned PDF to text (OCR)
+
+- New tool: **Scanned PDF to text (OCR)** — renders each page with pdf.js at
+  ~300 DPI (capped at 4000 px) and reads it with the self-hosted tesseract.js
+  engine (English, Nepali, Hindi). Pages that already hold real text are
+  copied exactly instead of OCR'd (toggle to force OCR). Page ranges, up to 50
+  pages per run, Cancel keeps finished pages, "--- Page N ---" markers, keep
+  lines or join paragraphs, char-weighted confidence, empty pages listed,
+  editable result, copy or .txt download. No new dependencies, no CSP change.
+- Fix: pdf.js image decoders (CCITT fax, JBIG2, JPEG 2000) were never served,
+  so black-and-white office-scanner PDFs rendered blank in the viewer and PDF
+  to images. Now self-hosted under /pdfjs/wasm and wired via `wasmUrl`.
+- Content: 5-section tool page + 5 FAQs; Extract text, Image to text and the
+  "cannot copy text from PDF" guide now send scans to the new tool; /pdf-tools
+  intro and count updated; toolGuides wired.
+- Tests: +17 unit (307 total). 59 pages audited, 0 problems. Browser check on
+  out/ with production CSP: JPEG scan, CCITT scan, mixed typed+scanned PDF and
+  cancel all correct, 320px dark + 1280px light.
+- URLs added: https://glasstools.net/tools/ocr-pdf
+- URLs changed: /learn/cannot-copy-text-from-pdf, /tools/extract-text,
+  /tools/image-to-text, /pdf-tools, /tools, /
+
 
 ### 2026-10-26 — SEO — Photo-for-online-form guide + JPEG transparency fix
 

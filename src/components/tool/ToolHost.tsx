@@ -29,6 +29,7 @@ const components: Record<string, ComponentType<object>> = {
   "compress-pdf": lazy(() => import("@/features/compress-pdf/CompressPdfTool")),
   "pdf-to-images": lazy(() => import("@/features/pdf-to-images/PdfToImagesTool")),
   "extract-text": lazy(() => import("@/features/extract-text/ExtractTextTool")),
+  "ocr-pdf": lazy(() => import("@/features/ocr-pdf/OcrPdfTool")),
   "pdf-metadata": lazy(() => import("@/features/metadata/MetadataTool")),
   "pdf-viewer": lazy(() => import("@/features/pdf-viewer/PdfViewerTool")),
   "image-compressor": lazy(() => import("@/features/image-compressor/ImageCompressorTool")),

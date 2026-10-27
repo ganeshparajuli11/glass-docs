@@ -31,6 +31,7 @@ import {
   Info,
   Type,
   ScanText,
+  FileScan,
 } from "lucide-react";
 import type { ToolDefinition } from "@/lib/tools/registry";
 
@@ -49,6 +50,7 @@ const icons: Record<string, typeof FileText> = {
   "pdf-viewer": Eye,
   "pdf-metadata": Info,
   "extract-text": Type,
+  "ocr-pdf": FileScan,
   "image-compressor": Minimize2,
   "image-resizer": Scaling,
   "crop-image": Crop,

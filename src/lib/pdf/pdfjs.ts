@@ -20,6 +20,13 @@ export async function loadPdfJs() {
   return pdfjsPromise;
 }
 
+/**
+ * Same-origin folder holding pdf.js's image decoders (JBIG2/CCITT fax,
+ * JPEG 2000, ICC colour), copied from pdfjs-dist by scripts/copy-pdf-worker.mjs.
+ * Without it, black-and-white scanner output renders as blank pages.
+ */
+export const PDFJS_WASM_URL = "/pdfjs/wasm/";
+
 export class PdfOpenError extends Error {
   toolError: ToolError;
   constructor(toolErr: ToolError) {
@@ -33,7 +40,7 @@ export async function openDocument(bytes: Uint8Array): Promise<PDFDocumentProxy>
   const pdfjs = await loadPdfJs();
   try {
     // pdf.js transfers the buffer to its worker; pass a copy.
-    return await pdfjs.getDocument({ data: bytes.slice() }).promise;
+    return await pdfjs.getDocument({ data: bytes.slice(), wasmUrl: PDFJS_WASM_URL }).promise;
   } catch (err) {
     if (err && typeof err === "object" && err.constructor?.name === "PasswordException") {
       throw new PdfOpenError(toolError("PDF_ENCRYPTED_UNSUPPORTED"));

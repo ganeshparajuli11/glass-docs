@@ -382,18 +382,74 @@ export const tools: ToolDefinition[] = [
     maxRecommendedSizeMb: 40,
     supportsMultipleFiles: false,
     keywords: ["extract text", "copy", "txt", "content"],
-    relatedTools: ["pdf-viewer", "image-to-text", "pdf-metadata"],
+    relatedTools: ["ocr-pdf", "pdf-viewer", "image-to-text"],
     knownLimitations: [
-      "Scanned/image-only PDFs contain no selectable text; convert the pages to images and use Image to text (OCR) instead.",
+      "Scanned/image-only PDFs contain no selectable text; use Scanned PDF to text (OCR) for those.",
       "Reading order can differ from the visual layout in complex documents.",
     ],
     faq: [
       {
         q: "Why is my result empty?",
-        a: "The PDF is probably a scan: it holds pictures of text rather than selectable text. Turn the pages into images with PDF to images, then read them with the Image to text (OCR) tool, which runs on your device.",
+        a: "The PDF is probably a scan: it holds pictures of text rather than selectable text. Open it in the Scanned PDF to text (OCR) tool, which renders each page and recognises the words on your device.",
       },
     ],
     lastVerifiedAt: VERIFIED,
+  },
+  {
+    slug: "ocr-pdf",
+    name: "Scanned PDF to text (OCR)",
+    shortDescription: "Turn a scanned PDF into copyable text with on-device OCR, page by page.",
+    category: "pdf",
+    processingMode: "local",
+    status: "stable",
+    engine: "combined",
+    acceptedMimeTypes: [PDF],
+    outputMimeTypes: ["text/plain"],
+    maxRecommendedSizeMb: 60,
+    supportsMultipleFiles: false,
+    keywords: [
+      "ocr pdf",
+      "pdf ocr",
+      "scanned pdf to text",
+      "ocr scanned pdf",
+      "scan to text",
+      "image pdf to text",
+      "copy text from scanned pdf",
+      "pdf to text",
+      "nepali pdf ocr",
+      "hindi pdf ocr",
+    ],
+    relatedTools: ["extract-text", "image-to-text", "pdf-to-images"],
+    knownLimitations: [
+      "Printed text only — handwriting is rarely recognised reliably.",
+      "Plain text output: the PDF itself is not changed and no searchable PDF is produced.",
+      "Up to 50 pages per run; each page takes a few seconds (longer on phones).",
+      "English, Nepali and Hindi; two languages at a time at most.",
+      "Password-protected PDFs are not supported.",
+    ],
+    faq: [
+      {
+        q: "Is my PDF uploaded for OCR?",
+        a: "No. Each page is rendered to an image inside your browser and read by a WebAssembly build of the open-source Tesseract engine running in a background worker. The engine and language models are downloaded from this site; the PDF itself never leaves your device.",
+      },
+      {
+        q: "How do I know whether my PDF needs OCR?",
+        a: "Open it and try to select a single word. If the selection follows the word, the text is already there and Extract text copies it exactly. If it draws a box over the whole page, it is a scan and needs OCR. This tool checks every page for you and only runs OCR where the PDF has no usable text of its own.",
+      },
+      {
+        q: "How long does it take?",
+        a: "Usually a few seconds per page on a laptop and longer on a phone; the first run also downloads the engine and language model once. You can stop at any point and keep the pages already read. For long documents, read 20–50 pages at a time with the page range box.",
+      },
+      {
+        q: "Does it make my PDF searchable?",
+        a: "No. You get the recognised text to copy, edit or download as a .txt file; the original PDF is not modified. That keeps the output honest — you can see and correct every word before you use it.",
+      },
+      {
+        q: "Which languages can it read?",
+        a: "English, Nepali and Hindi (Nepali and Hindi use Devanagari script). Select only the languages that are actually in the document; extra languages make recognition slower and usually less accurate.",
+      },
+    ],
+    lastVerifiedAt: "2026-10-27",
   },
   // ---------- Image tools ----------
   {
@@ -532,7 +588,7 @@ export const tools: ToolDefinition[] = [
       "nepali ocr",
       "hindi ocr",
     ],
-    relatedTools: ["pdf-to-images", "crop-image", "extract-text"],
+    relatedTools: ["ocr-pdf", "crop-image", "pdf-to-images"],
     knownLimitations: [
       "Printed text only — handwriting is rarely recognised reliably.",
       "Plain text output: tables, columns and formatting are not rebuilt.",
@@ -554,7 +610,7 @@ export const tools: ToolDefinition[] = [
       },
       {
         q: "How do I get text out of a scanned PDF?",
-        a: "Turn the pages into images with the PDF to images tool (PNG at High or Maximum resolution), then run each page image through this tool. If you can already select words in the PDF, use Extract text instead — it copies the real text with no recognition errors.",
+        a: "Use Scanned PDF to text (OCR): it renders each page of the PDF and reads it with the same on-device engine, so you do not have to convert pages to images first. If you can already select words in the PDF, use Extract text instead — it copies the real text with no recognition errors.",
       },
       {
         q: "Why is the result full of mistakes?",

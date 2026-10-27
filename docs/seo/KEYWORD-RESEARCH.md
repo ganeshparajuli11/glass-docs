@@ -51,7 +51,7 @@ and indexing quality.
 | pdf to word converter | Direct tool | BLOCKED | TODO | (future) | Tool | NOT BUILT — layout reconstruction ± OCR |
 | compress pdf / pdf compressor / reduce pdf size | Direct tool | 1 | TODO | /tools/compress-pdf (+ /learn/pdf-too-large-to-email) | Tool | LIVE (2026-10-23) — client-side image downsampling + JPEG re-encode; honest before/after sizes |
 | image to text / ocr / photo to text / screenshot to text / nepali ocr / hindi ocr | Direct tool | 1 | TODO | /tools/image-to-text (+ /learn/cannot-copy-text-from-pdf) | Tool | LIVE (2026-10-25) — self-hosted tesseract.js, English/Nepali/Hindi, nothing uploaded |
-| ocr scanned pdf / scanned pdf to text | Direct tool | 1 | TODO | today: /learn/cannot-copy-text-from-pdf workflow (PDF to images → Image to text) | Tool | NOT BUILT as one tool — next TOOL day (T-323) |
+| ocr pdf / ocr scanned pdf / scanned pdf to text / pdf ocr | Direct tool | 1 | TODO | /tools/ocr-pdf (+ /learn/cannot-copy-text-from-pdf) | Tool | LIVE (2026-10-27) — pdf.js render at ~300 DPI + self-hosted tesseract.js, uses real text layer where present, ≤50 pages/run, nothing uploaded |
 | password protect / unlock pdf | Direct tool | BLOCKED | TODO | (future) | Tool | Needs vetted browser crypto implementation |
 
 ## Cannibalisation guards

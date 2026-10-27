@@ -727,15 +727,22 @@ export const articles: Article[] = [
         </p>
         <p>
           If the scan is all you have, you can do the recognition on your own
-          device in two steps. First turn the pages you need into images with{" "}
-          <Link href="/tools/pdf-to-images">PDF to images</Link> — choose PNG
-          and the High or Maximum resolution, because OCR accuracy depends
-          mostly on how many pixels each letter has. Then open each page image
-          in <Link href="/tools/image-to-text">Image to text</Link>, pick the
+          device. Open the PDF in{" "}
+          <Link href="/tools/ocr-pdf">Scanned PDF to text</Link>, pick the
           language of the document (English, Nepali and Hindi are available),
-          and copy or download the result. For a page with two columns, crop
-          each column into its own image first so the lines are not read
-          straight across.
+          and leave the page box empty to read everything or type a range for
+          a long file. Each page is rendered at about 300 DPI — OCR accuracy
+          depends mostly on how many pixels each letter has — and read in your
+          browser; pages that already contain real text are copied exactly
+          instead of being guessed at. Copy the result or download it as a
+          text file.
+        </p>
+        <p>
+          A page with two columns is the one case worth doing by hand: export
+          it with <Link href="/tools/pdf-to-images">PDF to images</Link>, crop
+          each column into its own image, and read the pieces with{" "}
+          <Link href="/tools/image-to-text">Image to text</Link>, so the lines
+          are not read straight across both columns.
         </p>
         <p>
           Budget time for proofreading. Check every number, name and date
@@ -1175,6 +1182,7 @@ export const toolGuides: Record<string, string[]> = {
   "pdf-viewer": ["cannot-copy-text-from-pdf", "are-online-pdf-tools-safe"],
   "pdf-metadata": ["are-online-pdf-tools-safe"],
   "extract-text": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],
+  "ocr-pdf": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],
   "image-to-text": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],
   "image-compressor": ["shrink-images-for-email", "resize-photo-for-online-form", "pdf-too-large-to-email"],
   "image-resizer": ["resize-photo-for-online-form", "shrink-images-for-email", "passport-photo-sizes-explained"],

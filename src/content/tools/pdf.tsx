@@ -1012,12 +1012,12 @@ export const pdfToolContent: ToolContentMap = {
               The quick test is to open the file in any viewer and try to select
               a word with your cursor. If the selection highlights a rectangle
               rather than the word, it is a scan. Turning that into text requires
-              optical character recognition: convert the pages to images with{" "}
-              <Link href="/tools/pdf-to-images">PDF to images</Link>, then read
-              each one with{" "}
-              <Link href="/tools/image-to-text">Image to text (OCR)</Link>, which
-              also runs on your device. Expect to proofread the result — OCR
-              guesses at letters, whereas extraction copies them exactly.
+              optical character recognition: open the file in{" "}
+              <Link href="/tools/ocr-pdf">Scanned PDF to text (OCR)</Link>, which
+              renders each page and reads it on your device, and still copies
+              the real text from any page that has it. Expect to proofread the
+              OCR pages — recognition guesses at letters, whereas extraction
+              copies them exactly.
             </p>
           </>
         ),
@@ -1063,6 +1063,167 @@ export const pdfToolContent: ToolContentMap = {
               <Link href="/tools/pdf-to-images">PDF to images</Link> preserves
               appearance instead — the opposite trade, and the right one for
               quoting a page as it looked.
+            </p>
+          </>
+        ),
+      },
+    ],
+  },
+  "ocr-pdf": {
+    lede: (
+      <>
+        A scanned PDF is a stack of page photographs: it looks like a document
+        but holds no text you can select. This tool renders each page and runs
+        optical character recognition (OCR) on it in your browser, so you get
+        the words back as plain text — in English, Nepali or Hindi — without
+        sending the file anywhere.
+      </>
+    ),
+    steps: [
+      <>
+        Drop the PDF onto the page or pick it from your files. The tool shows
+        how many pages it has.
+      </>,
+      <>
+        Leave the page box empty to read everything, or type a range such as{" "}
+        <code>1-3, 7</code>. Up to 50 pages are read per run.
+      </>,
+      <>
+        Tick the language that is printed in the document, choose whether to
+        keep line breaks as printed or join them into paragraphs, then select
+        Extract text. You can stop at any time and keep the pages already read.
+      </>,
+      <>
+        Read the summary, correct mistakes in the text box, then copy the text
+        or download it as a <code>.txt</code> file.
+      </>,
+    ],
+    sections: [
+      {
+        heading: "Scan or real text? The tool checks every page",
+        body: (
+          <>
+            <p>
+              Many PDFs are a mixture: a typed cover letter followed by scanned
+              certificates, or a report with a few photographed appendix pages.
+              Before reading a page, the tool looks at the text the PDF already
+              stores for it. If a page carries a real paragraph of text, that
+              text is copied exactly — no recognition, no guessing, no waiting —
+              and the summary tells you how many pages were handled that way.
+              Only pages with no usable text of their own are rendered and
+              read with OCR.
+            </p>
+            <p>
+              A few characters are not enough to count. Phone scanning apps
+              often stamp a line such as &ldquo;Scanned with…&rdquo; or a page
+              number onto an otherwise pictorial page, and that must not stop
+              the page being read. If a PDF&apos;s own text is garbled — which
+              happens with some older exports and with a poor OCR layer added by
+              a scanner — untick{" "}
+              <strong>Use the PDF&apos;s own text</strong> to force OCR on every
+              page. If the whole document already has selectable text,{" "}
+              <Link href="/tools/extract-text">Extract text</Link> is the faster
+              tool.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "How pages are prepared for recognition",
+        body: (
+          <>
+            <p>
+              OCR accuracy depends mostly on how many pixels each letter gets.
+              Every page is rendered at about 300 DPI — the resolution document
+              scanners and OCR engines are tuned for — so an A4 page becomes an
+              image roughly 2,480 × 3,510 pixels. Very large pages, such as
+              posters and drawings, are capped at 4,000 pixels on the long edge
+              so a phone does not run out of memory. Black-and-white pages from
+              office scanners and fax-style compression are decoded as well as
+              colour and greyscale scans.
+            </p>
+            <p>
+              Rendering cannot add detail the scanner never captured. A page
+              scanned at a low resolution, photographed at an angle or copied
+              several times will still read worse than a clean 300 DPI scan. If
+              you control the scanning, choose 300 DPI, black-and-white or
+              greyscale for text documents, and keep the page straight on the
+              glass.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Reading the result and the confidence score",
+        body: (
+          <>
+            <p>
+              With <strong>Mark where each page starts</strong> ticked, every
+              page begins with a line such as <code>--- Page 3 ---</code>, which
+              makes it easy to check a passage against the original. Untick it
+              for one continuous text. <strong>Keep as printed</strong> keeps
+              every line break, which suits forms, tables and addresses;{" "}
+              <strong>Join into paragraphs</strong> rejoins wrapped lines and
+              words split with a hyphen at the end of a line, for prose you
+              will paste into a document. Both can be switched after reading
+              without running OCR again.
+            </p>
+            <p>
+              The confidence figure is the engine&apos;s own average certainty
+              across the OCR pages, weighted by how much text each page had.
+              Use it to decide how carefully to proofread, not as a promise: a
+              confident result can still contain a misread digit, and digits in
+              amounts, dates, phone and roll numbers are the errors that
+              matter. Pages where nothing was found are listed by number —
+              usually blank backs of sheets, photographs, or handwriting, which
+              this engine does not read reliably.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Long documents, columns and what is not produced",
+        body: (
+          <>
+            <p>
+              Each OCR page takes a few seconds on a laptop and noticeably
+              longer on a phone, so the tool reads at most 50 pages per run. For
+              a longer document, read it in parts with the page box — 1-50,
+              then 51-100 — and paste the parts together. Stopping a run keeps
+              everything read so far.
+            </p>
+            <p>
+              The output is plain text. Tables come out as rows of words, bold
+              and headings are not marked, and a two-column page may be read
+              straight across both columns. For a page where layout matters,
+              export it with{" "}
+              <Link href="/tools/pdf-to-images">PDF to images</Link>, crop each
+              column with <Link href="/tools/crop-image">Crop image</Link> and
+              read the pieces in{" "}
+              <Link href="/tools/image-to-text">Image to text</Link>. The tool
+              does not create a searchable PDF or change your file in any way.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Where your PDF goes",
+        body: (
+          <>
+            <p>
+              Scanned PDFs are often the most private documents people own:
+              ID cards, certificates, bank statements, medical letters. Here the
+              PDF is opened in your browser, each page is drawn onto an
+              off-screen canvas, and the open-source Tesseract engine reads it
+              in a background worker. The engine (about 4 MB) and the language
+              models (1.4–2.9 MB each) come from this site the first time and
+              are then kept by your browser; the PDF itself is never part of
+              any request. The guide{" "}
+              <Link href="/learn/are-online-pdf-tools-safe">
+                are online PDF tools safe?
+              </Link>{" "}
+              explains how to check this kind of claim with your browser&apos;s
+              network panel.
             </p>
           </>
         ),

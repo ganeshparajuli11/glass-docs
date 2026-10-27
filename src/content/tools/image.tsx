@@ -643,11 +643,12 @@ export const imageToolContent: ToolContentMap = {
         body: (
           <>
             <p>
-              A scanned PDF is a set of page images, so the route is two steps:
-              turn the pages into images with{" "}
-              <Link href="/tools/pdf-to-images">PDF to images</Link> at the
-              highest resolution, then read each page image here. Before you do,
-              check whether the PDF really is a scan — if you can select a word
+              A scanned PDF is a set of page images. Rather than exporting them
+              one by one, open the file in{" "}
+              <Link href="/tools/ocr-pdf">Scanned PDF to text</Link>, which
+              renders each page at about 300 DPI and reads it with this same
+              engine. Before you do, check whether the PDF really is a scan — if
+              you can select a word
               in a PDF viewer, the text is already there and{" "}
               <Link href="/tools/extract-text">Extract text</Link> will give you
               an exact copy instantly, with no recognition errors at all. The

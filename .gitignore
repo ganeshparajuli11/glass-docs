@@ -70,3 +70,6 @@ next-env.d.ts
 
 # OCR engine + language models, copied from node_modules at build time
 /public/ocr/
+
+# pdf.js image decoders (JBIG2/CCITT, JPEG 2000, ICC), copied at build time
+/public/pdfjs/
