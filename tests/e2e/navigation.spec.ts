@@ -65,7 +65,9 @@ test.describe("header menus on a wide screen", () => {
     ).toBeVisible();
 
     await header.getByRole("link", { name: "Split PDF" }).click();
-    await expect(page).toHaveURL(/\/tools\/split-pdf$/);
+    // `npm run dev` compiles a route on first visit; on a cold cache with two
+    // workers that alone can exceed the default 5 s, so allow for it here.
+    await expect(page).toHaveURL(/\/tools\/split-pdf$/, { timeout: 30_000 });
     // The menu must not still be hanging open over the new page.
     await expect(
       header.getByRole("button", { name: "PDF tools" }),
