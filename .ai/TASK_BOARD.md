@@ -54,7 +54,7 @@ T-200/T-202 locally, or T-100/T-210 with user credentials.
 | T-313 | Local tool history (no documents stored) | Backlog | localStorage, lightweight metadata only |
 | T-314 | Presets (email attachment, university submission, WhatsApp…) | Backlog | thin layer over existing options |
 | T-315 | Remaining student kit (checklist, page estimator, citation templates, deadline countdown) | Backlog | |
-| T-316 | Guides for the 16 new tools | In progress | 2026-10-24: text cluster done (/learn/clean-up-pasted-text). 2026-10-26: image cluster done (/learn/resize-photo-for-online-form covers resizer, crop, converter, compressor). Left: attendance, EMI, percentage |
+| T-316 | Guides for the 16 new tools | In progress | 2026-10-24: text cluster done (/learn/clean-up-pasted-text). 2026-10-26: image cluster done (/learn/resize-photo-for-online-form covers resizer, crop, converter, compressor). 2026-10-28: attendance + percentage done (/learn/attendance-percentage-classes-you-can-miss). Left: EMI |
 | T-317 | Drag-handle crop UI upgrade | Backlog | sliders are the accessible v1 |
 | T-320 | Compress PDF (client-side image downsampling/re-encode) | Done | 2026-10-23 · /tools/compress-pdf · 30 tools live |
 | T-321 | OCR: image to text (self-hosted tesseract.js) | Done | 2026-10-25 · /tools/image-to-text · eng/nep/hin · 31 tools live |

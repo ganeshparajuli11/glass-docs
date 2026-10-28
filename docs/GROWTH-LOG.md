@@ -32,6 +32,28 @@ SEO audit flags.
 
 ## Log
 
+### 2026-10-28 — SEO — Attendance guide ("how many classes can I miss")
+
+- New guide: **How many classes can I miss? Attendance percentage, worked
+  out** — current %, classes needed `(r × held − attended) ÷ (1 − r)`,
+  classes you can miss `attended ÷ r − held`, a table of what one absence
+  costs at 60–90% and the term allowance in 60 classes, the end-of-term
+  "can it still be saved" check, rounding (74.5%), and the regulation points
+  no calculator knows. Every worked example is pinned to the calculator code
+  by a new unit test.
+- Fix: the attendance tool page said the miss-buffer "shrinks with every class
+  held whether you attend or not" — false (attending grows it by (1 − r)/r).
+  Corrected.
+- Linked both ways: attendance + percentage calculators list the guide
+  (percentage calculator had no guide); attendance tool content links to it;
+  /calculators and /student-tools list it. +3 attendance FAQs and +1
+  percentage FAQ (FAQPage JSON-LD). Article tables now styled (scroll inside
+  their own focusable region at 320px).
+- Tests: +7 (314 total). 60 pages audited, 0 problems.
+- URLs added: https://glasstools.net/learn/attendance-percentage-classes-you-can-miss
+- URLs changed: /tools/attendance-calculator, /tools/percentage-calculator,
+  /calculators, /student-tools, /learn
+
 ### 2026-10-27 — TOOL — Scanned PDF to text (OCR)
 
 - New tool: **Scanned PDF to text (OCR)** — renders each page with pdf.js at

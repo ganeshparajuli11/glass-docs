@@ -778,6 +778,9 @@ export const tools: ToolDefinition[] = [
     knownLimitations: ["A simple projection — institution rules (medical leave etc.) differ."],
     faq: [
       { q: "How is “classes needed” computed?", a: "The smallest number of consecutive attended classes that lifts your ratio to the target percentage." },
+      { q: "How many classes can I miss and stay at 75%?", a: "Divide the classes you have attended by 0.75 and subtract the classes held so far, then round down. With 45 attended out of 52 held, that is 60 − 52 = 8 more classes. The calculator works this out for any required percentage." },
+      { q: "Why does one absence take several classes to make up?", a: "A missed class adds to the classes held but not to the classes attended. At a 75% requirement it takes three attended classes in a row to undo one absence; at 80% it takes four, and at 90% it takes nine." },
+      { q: "Does it round 74.5% up to 75%?", a: "No. It treats the required percentage as a hard line, which is the safe reading because institutions differ on rounding. Check your own regulations before relying on a rounded figure." },
     ],
     lastVerifiedAt: VERIFIED,
   },
@@ -798,6 +801,7 @@ export const tools: ToolDefinition[] = [
     knownLimitations: ["Results are rounded to two decimal places."],
     faq: [
       { q: "Which mode do I need for a discount?", a: "Use “X% of a value” — a 15% discount on 200 is 30 off." },
+      { q: "How do I turn marks or attendance into a percentage?", a: "Use the “Part as % of Whole” row: enter what you scored or attended as the part and the maximum or classes held as the whole. 36 out of 40 is 90%." },
     ],
     lastVerifiedAt: VERIFIED,
   },

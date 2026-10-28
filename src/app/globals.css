@@ -293,6 +293,30 @@ body {
   font-size: 0.85em;
 }
 .article-body strong { color: var(--fg); }
+/* Tables scroll inside their own box so a 320px screen never scrolls sideways. */
+.article-body .table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.article-body caption {
+  caption-side: top;
+  text-align: left;
+  padding-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+.article-body th,
+.article-body td {
+  padding: 0.5rem 0.4rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--glass-strong-border);
+}
+.article-body th { color: var(--fg); font-weight: 600; }
 
 
 /* Mobile robustness */

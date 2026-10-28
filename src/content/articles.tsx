@@ -1159,6 +1159,241 @@ export const articles: Article[] = [
       </>
     ),
   },
+  {
+    slug: "attendance-percentage-classes-you-can-miss",
+    title: "How many classes can I miss? Attendance percentage, worked out",
+    description:
+      "The formulas behind a 75% attendance rule: your current percentage, the classes you need to recover, how many you can safely miss, and when a term can no longer be saved.",
+    publishedAt: "2026-10-28",
+    body: (
+      <>
+        <p>
+          Most colleges and universities that track attendance set a minimum —
+          75% is the most common, with 65%, 80% and 85% close behind — and
+          missing it can mean a warning, a fine, or being barred from the final
+          exam. The rule is simple to state, but the arithmetic around it
+          catches people out, mostly because every class held changes the
+          number whether you were there or not. This guide shows the
+          calculations, so you can check where you stand and plan the rest of
+          the term rather than finding out from a notice board.
+        </p>
+
+        <h2>Your current percentage</h2>
+        <p>
+          Attendance percentage is classes attended divided by classes held,
+          times 100. If 40 classes have been held and you attended 26, you are
+          on 26 ÷ 40 × 100 = 65%. Two details matter more than the division:
+        </p>
+        <ul>
+          <li>
+            <strong>Use the count your institution uses.</strong> Your own diary
+            may say 28, but if the register says 26, the register decides. Many
+            portals let you see the official numbers; check them early in the
+            term, when a recording mistake is still easy to correct.
+          </li>
+          <li>
+            <strong>Know what the count covers.</strong> Some institutions
+            calculate per subject, others across all subjects together, and
+            labs, practicals and tutorials are often tracked separately from
+            lectures. A healthy overall percentage can hide one subject that is
+            below the line.
+          </li>
+        </ul>
+        <p>
+          The{" "}
+          <Link href="/tools/attendance-calculator">attendance calculator</Link>{" "}
+          shows this figure as soon as you type the two numbers, along with the
+          two answers below.
+        </p>
+
+        <h2>How many classes you need to get back above the line</h2>
+        <p>
+          If you are below the requirement, the useful question is how many
+          classes in a row you must attend to cross it. Write the requirement as
+          a decimal, <em>r</em> (75% is 0.75). Then:
+        </p>
+        <p>
+          <code>classes needed = (r × held − attended) ÷ (1 − r)</code>, rounded
+          up to a whole class.
+        </p>
+        <p>
+          For 26 out of 40 at 75%: (0.75 × 40 − 26) ÷ 0.25 = 4 ÷ 0.25 = 16. After
+          16 more classes, all attended, you have 42 out of 56, which is exactly
+          75%. Each class you attend adds one to both numbers, which is why it
+          takes far more than four classes to make up a gap of four.
+        </p>
+        <p>
+          The requirement itself changes the answer sharply. Someone on 18 out
+          of 25 (72%) needs 3 classes to reach 75%, 10 to reach 80%, and 22 to
+          reach 85%. If your course has a higher threshold for one subject, run
+          that subject separately.
+        </p>
+
+        <h2>The real cost of one absence</h2>
+        <p>
+          Missing a class adds one to the classes held and nothing to the
+          classes attended. Undoing that takes <em>r ÷ (1 − r)</em> consecutive
+          attended classes — three at 75%. The higher the requirement, the more
+          expensive each absence becomes:
+        </p>
+        <div className="table-wrap" role="region" aria-label="Cost of an absence by attendance requirement" tabIndex={0}>
+          <table>
+            <caption>
+              Classes you must attend to make up for one absence, and the most
+              absences a 60-class term allows
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Required</th>
+                <th scope="col">Classes to recover one absence</th>
+                <th scope="col">Absences allowed in 60</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>60%</td><td>1.5</td><td>24</td></tr>
+              <tr><td>65%</td><td>≈ 1.9</td><td>21</td></tr>
+              <tr><td>70%</td><td>≈ 2.3</td><td>18</td></tr>
+              <tr><td>75%</td><td>3</td><td>15</td></tr>
+              <tr><td>80%</td><td>4</td><td>12</td></tr>
+              <tr><td>85%</td><td>≈ 5.7</td><td>9</td></tr>
+              <tr><td>90%</td><td>9</td><td>6</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          The recovery figures assume you were sitting exactly on the line
+          before the absence; you cannot attend part of a class, so in practice
+          you round up. The last column is the whole term&apos;s allowance:
+          multiply the total classes in the term by (1 − <em>r</em>) and round
+          down. At 75% of 60 classes, that is 15 absences for the entire term —
+          illness included.
+        </p>
+
+        <h2>How many classes you can miss</h2>
+        <p>
+          If you are above the requirement, the reverse question is how many of
+          the next classes you could miss and still stay at or above it:
+        </p>
+        <p>
+          <code>classes you can miss = attended ÷ r − held</code>, rounded down.
+        </p>
+        <p>
+          For 45 out of 52 (86.5%) at 75%: 45 ÷ 0.75 − 52 = 60 − 52 = 8. Miss
+          the next eight and you are on 45 out of 60, exactly 75%; miss a ninth
+          and you are below. That buffer is not fixed. Each class you attend
+          adds (1 − <em>r</em>) ÷ <em>r</em> to it — a third of a class at
+          75% — so attending the next four lifts it from 8 to 9. Each class you
+          miss uses up a whole one.
+        </p>
+        <p>
+          Treat the buffer as cover for illness, travel and emergencies you have
+          not had yet, rather than a number of free days. Students who spend it
+          in the first half of the term are the ones who have nothing left when
+          they actually fall ill in the second.
+        </p>
+
+        <h2>Check whether the term can still be saved</h2>
+        <p>
+          The classes-needed figure is only useful if there are that many
+          classes left. Find out how many classes the term will have in total —
+          the timetable usually tells you — and work out the best percentage you
+          could finish with by attending every remaining one:
+        </p>
+        <p>
+          <code>best possible = (attended + classes remaining) ÷ total classes in the term × 100</code>
+        </p>
+        <p>
+          Back to 26 out of 40. If the term has 60 classes, 20 remain, and
+          attending all of them gives 46 out of 60, or 76.7% — recoverable, but
+          only with no further absences. If the term has 50 classes, 10 remain,
+          and the best possible finish is 36 out of 50, or 72%. No amount of
+          attendance now reaches 75%, and the useful step is a conversation with
+          your department, not more arithmetic. The{" "}
+          <Link href="/tools/percentage-calculator">percentage calculator</Link>{" "}
+          does this sum in its &ldquo;Part as % of Whole&rdquo; row: enter the
+          best-case attended count as the part and the term&apos;s total
+          classes as the whole.
+        </p>
+
+        <h2>Rounding: is 74.5% enough?</h2>
+        <p>
+          Sometimes, but do not plan on it. Some institutions round to the
+          nearest whole number, some cut off the decimals, and some require the
+          exact figure to be at or above the line. On 149 out of 200 you are on
+          74.5%: rounded, that might pass; truncated or exact, it does not. Four
+          more attended classes take you to 153 out of 204, exactly 75%, which
+          passes under every method. The attendance calculator never rounds you
+          up — it treats the requirement as a hard line — so its answers are the
+          safe ones.
+        </p>
+
+        <h2>Rules no calculator knows</h2>
+        <p>
+          The formulas are the same everywhere; the regulations are not. Before
+          relying on any figure, read your handbook or academic regulations for
+          these points:
+        </p>
+        <ul>
+          <li>
+            Whether medical, sports or compassionate leave is removed from the
+            count, and what proof is needed and by when. Keep certificates and
+            letters, and submit them promptly rather than at the end of term.
+          </li>
+          <li>
+            Whether there is a lower threshold below which a shortfall can be
+            excused (often called condonation) and what that involves.
+          </li>
+          <li>
+            Whether being late counts as absent, and whether a double period
+            counts as one class or two.
+          </li>
+          <li>
+            Whether the count starts from the first day of term or from your
+            registration date, if you joined late.
+          </li>
+          <li>
+            Whether warnings and exam eligibility use different thresholds.
+          </li>
+        </ul>
+        <p>
+          If you are behind for a reason your institution would accept, raise it
+          as soon as you know rather than after the cut-off. Departments can
+          usually do far more for a student who comes to them in week six than
+          for one who appears after the eligibility list is published.
+        </p>
+
+        <h2>A five-minute routine for the rest of the term</h2>
+        <ol>
+          <li>
+            Note the official attended and held counts for each subject that has
+            its own requirement.
+          </li>
+          <li>
+            Put each pair into the{" "}
+            <Link href="/tools/attendance-calculator">attendance calculator</Link>{" "}
+            with your institution&apos;s required percentage.
+          </li>
+          <li>
+            For any subject below the line, compare the classes needed with the
+            classes left in the term.
+          </li>
+          <li>
+            For any subject above it, write down the buffer and keep it for
+            illness.
+          </li>
+          <li>Repeat every couple of weeks; the numbers change with every class held.</li>
+        </ol>
+        <p>
+          The calculator runs entirely in your browser and nothing you type is
+          sent or saved. If marks are the bigger worry than attendance, the{" "}
+          <Link href="/tools/grade-calculator">assignment grade calculator</Link>{" "}
+          works out what you need on the assessments you have left, and{" "}
+          <Link href="/learn/gpa-scales-explained">GPA scales explained</Link>{" "}
+          covers how those marks turn into an overall average.
+        </p>
+      </>
+    ),
+  },
 ];
 
 export function getArticle(slug: string): Article | undefined {
@@ -1197,5 +1432,6 @@ export const toolGuides: Record<string, string[]> = {
   "cover-page": ["prepare-assignment-pdf-for-submission"],
   "gpa-calculator": ["gpa-scales-explained"],
   "grade-calculator": ["gpa-scales-explained"],
-  "attendance-calculator": ["gpa-scales-explained"],
+  "attendance-calculator": ["attendance-percentage-classes-you-can-miss", "gpa-scales-explained"],
+  "percentage-calculator": ["attendance-percentage-classes-you-can-miss"],
 };

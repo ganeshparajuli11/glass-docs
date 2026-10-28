@@ -236,8 +236,9 @@ export const studyToolContent: ToolContentMap = {
             <p>
               If you are above it, it reports how many further classes you could
               miss before dropping below. Treat that as a buffer for illness and
-              emergencies rather than a budget to spend, because the number
-              shrinks with every class held whether you attend or not.
+              emergencies rather than a budget to spend: every class you miss
+              uses up a whole one, while every class you attend adds back only
+              a fraction — a third of a class at a 75% requirement.
             </p>
           </>
         ),
@@ -259,6 +260,15 @@ export const studyToolContent: ToolContentMap = {
               check the actual regulation — and talk to your department early if
               you are behind for a reason they would accept. That conversation
               works far better before the threshold is missed than after.
+            </p>
+            <p>
+              For the formulas behind each figure, a table of what one absence
+              costs at different requirements, and how to tell whether a term
+              can still be recovered, read{" "}
+              <Link href="/learn/attendance-percentage-classes-you-can-miss">
+                how many classes you can miss
+              </Link>
+              .
             </p>
           </>
         ),

@@ -1,5 +1,15 @@
 # Current Handoff
 
+## Session update (2026-10-28, daily contributor — SEO day: attendance guide)
+
+- New guide /learn/attendance-percentage-classes-you-can-miss (15 guides): current %, classes needed, classes you can miss, per-absence cost table (60–90%) + 60-class term allowance, end-of-term ceiling check (uses percentage calculator's "Part as % of Whole" row), rounding (74.5%), regulation checklist, 5-step routine. tests/unit/attendance-guide.test.ts pins every number in the guide to src/lib/calc/attendance.ts + percentage.ts.
+- Fix: attendance tool content claimed the "can miss" buffer shrinks with every class held whether you attend or not — false; attending adds (1 − r)/r. Corrected in src/content/tools/study.tsx, which now links to the guide.
+- Wired: toolGuides attendance-calculator (guide first) + percentage-calculator (first guide); categories /calculators + /student-tools guideSlugs. Registry FAQs: +3 attendance, +1 percentage.
+- CSS: `.article-body` table styles + `.table-wrap` (overflow-x auto; give it role="region" aria-label tabIndex={0} so the scroll box is keyboard-reachable). Verified 320px: table fits (246/246), no page h-scroll.
+- Verified: npm run verify ✓ (314 tests) · build:static ✓ · audit 60 pages 0 problems ✓ · Playwright on out/: 320 dark + 1280 light, Article + BreadcrumbList JSON-LD, tool pills, links present on both calculators, /calculators, /student-tools, /learn, sitemap. Only console error = sandbox-blocked AdSense loader.
+- T-316 left: EMI calculator (only tool without any guide).
+- Next: TOOL day — HEIC to JPG/PNG (queue item 4). Following SEO day: EMI guide (T-316 last item).
+
 ## Session update (2026-10-27, daily contributor — TOOL day: Scanned PDF to text OCR)
 
 - Shipped /tools/ocr-pdf "Scanned PDF to text (OCR)" (32 tools live, PDF hub 14). Logic: src/lib/ocr/pdf.ts (pure: pdfOcrScale ~300 DPI capped at 4000 px, selectOcrPages empty=all / ≤50 pages per run with an explicit message, textFromItems rebuilds lines from pdf.js hasEOL, hasUsableTextLayer ≥40 letters/marks/digits so "Scanned with…" footers don't count, combinePageTexts with "--- Page N ---" markers, summarisePdfOcr char-weighted confidence). UI: src/features/ocr-pdf/OcrPdfTool.tsx — page range, "use the PDF's own text" toggle (default on; mixed PDFs copy real text exactly), languages, line-break mode, page markers, Cancel keeps pages already read, editable result, copy/.txt. Reuses src/lib/ocr/engine.ts (tesseract.js worker kept until languages change).

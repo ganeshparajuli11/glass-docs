@@ -47,6 +47,7 @@ and indexing quality.
 | assignment cover page | Student | 2 | TODO | /tools/cover-page (+ guide) | Tool | LIVE (differentiator) |
 | clean up pasted text / remove duplicate lines / remove extra spaces | How-to | 3 | TODO | /learn/clean-up-pasted-text (+ 4 text tools) | Guide | LIVE (2026-10-24) |
 | resize photo for online form / photo 200x230 / signature size kb / reduce photo size to 50kb | How-to | 2 | TODO | /learn/resize-photo-for-online-form (+ resizer, crop, converter, compressor) | Guide | LIVE (2026-10-26) |
+| how many classes can i miss / 75% attendance / attendance percentage formula / classes needed for 75 | How-to | 2 | TODO | /learn/attendance-percentage-classes-you-can-miss (+ attendance, percentage calculators) | Guide | LIVE (2026-10-28) |
 | word to pdf converter | Direct tool | BLOCKED | TODO | (future /tools/word-to-pdf) | Tool | NOT BUILT — needs conversion engine research |
 | pdf to word converter | Direct tool | BLOCKED | TODO | (future) | Tool | NOT BUILT — layout reconstruction ± OCR |
 | compress pdf / pdf compressor / reduce pdf size | Direct tool | 1 | TODO | /tools/compress-pdf (+ /learn/pdf-too-large-to-email) | Tool | LIVE (2026-10-23) — client-side image downsampling + JPEG re-encode; honest before/after sizes |

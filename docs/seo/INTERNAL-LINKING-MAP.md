@@ -26,5 +26,5 @@ only where the destination genuinely helps the current task.
 
 ## Full tool→guide map
 
-See `toolGuides` in src/content/articles.tsx (19 tools mapped to 7 guides —
+See `toolGuides` in src/content/articles.tsx (31 of 32 tools mapped to 15 guides as of 2026-10-28 — only emi-calculator has none yet;
 single source of truth; update there, not here).
