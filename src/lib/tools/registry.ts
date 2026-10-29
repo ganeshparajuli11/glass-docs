@@ -10,7 +10,7 @@ export interface ToolDefinition {
   category: "pdf" | "image" | "text" | "calculator" | "student";
   processingMode: ProcessingMode;
   status: ToolStatus;
-  engine: "pdf-lib" | "pdfjs" | "browser-canvas" | "combined" | "tesseract";
+  engine: "pdf-lib" | "pdfjs" | "browser-canvas" | "combined" | "tesseract" | "byte-level";
   acceptedMimeTypes: string[];
   outputMimeTypes: string[];
   maxRecommendedSizeMb: number;
@@ -618,6 +618,60 @@ export const tools: ToolDefinition[] = [
       },
     ],
     lastVerifiedAt: "2026-10-25",
+  },
+  {
+    slug: "remove-exif",
+    name: "Remove EXIF & location data",
+    shortDescription: "Strip GPS location, camera details and other hidden metadata from photos, without re-compressing them.",
+    category: "image",
+    processingMode: "local",
+    status: "stable",
+    engine: "byte-level",
+    acceptedMimeTypes: ["image/jpeg", "image/png", "image/webp"],
+    outputMimeTypes: ["image/jpeg", "image/png", "image/webp"],
+    maxRecommendedSizeMb: 50,
+    supportsMultipleFiles: true,
+    keywords: [
+      "remove exif",
+      "exif remover",
+      "remove metadata from photo",
+      "remove location from photo",
+      "remove gps from photo",
+      "strip metadata",
+      "photo privacy",
+      "exif viewer",
+      "delete photo metadata",
+      "image metadata",
+    ],
+    relatedTools: ["image-compressor", "image-converter", "pdf-metadata"],
+    knownLimitations: [
+      "JPEG, PNG and WebP only — HEIC/HEIF photos must be saved as JPEG first.",
+      "Removes metadata stored in the file; it cannot remove anything visible in the picture itself (faces, street signs, screens).",
+      "Motion-photo video and extra images appended after a JPEG are removed with the rest.",
+    ],
+    faq: [
+      {
+        q: "Is my photo uploaded?",
+        a: "No. The file is read into your browser's memory and the metadata blocks are cut out there. Nothing is sent to a server, and you can check that in your browser's network panel.",
+      },
+      {
+        q: "Does removing EXIF reduce image quality?",
+        a: "No. The tool does not decode or re-compress the image. It copies the compressed picture data byte for byte and leaves out only the metadata blocks, so the cleaned photo is pixel-for-pixel identical and only slightly smaller.",
+      },
+      {
+        q: "Why is my photo sideways after other tools remove metadata?",
+        a: "Phones often save photos sideways and add an orientation tag telling viewers to rotate them. Stripping every tag throws that instruction away. This tool keeps only the orientation flag by default, so the photo stays upright and carries no other metadata. Untick the option if you want it gone too.",
+      },
+      {
+        q: "Do WhatsApp, Instagram or Facebook remove location data?",
+        a: "Most big social apps strip EXIF from photos they publish, but they may still read it when you upload, and sending a photo as a document or file (for example in WhatsApp, email, Telegram or cloud links) usually keeps every tag. Cleaning the photo yourself first means there is nothing to leak either way.",
+      },
+      {
+        q: "Can I clean HEIC photos from an iPhone?",
+        a: "Not yet. Save or share the photo as JPEG first (on iPhone: Settings → Camera → Formats → Most Compatible, or choose a JPEG option when sharing), then clean the JPEG here.",
+      },
+    ],
+    lastVerifiedAt: "2026-10-29",
   },
   // ---------- Text tools ----------
   {

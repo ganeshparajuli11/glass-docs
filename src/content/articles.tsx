@@ -207,6 +207,13 @@ export const articles: Article[] = [
           <li>Sensitive document + unclear privacy label = find another tool.</li>
           <li>Local processing keeps you safe even on public Wi-Fi, because nothing is transmitted.</li>
           <li>Whatever tool you use, keep your original file until you have verified the result.</li>
+          <li>
+            Photos carry their own hidden data — often the GPS spot where they
+            were taken. Before sending an original photo file to anyone, check
+            and strip it with{" "}
+            <Link href="/tools/remove-exif">Remove EXIF &amp; location data</Link>,
+            which also runs on your device.
+          </li>
         </ul>
       </>
     ),
@@ -1424,6 +1431,7 @@ export const toolGuides: Record<string, string[]> = {
   "image-converter": ["resize-photo-for-online-form", "shrink-images-for-email"],
   "crop-image": ["resize-photo-for-online-form", "passport-photo-sizes-explained"],
   "passport-photo": ["passport-photo-sizes-explained", "shrink-images-for-email"],
+  "remove-exif": ["are-online-pdf-tools-safe", "shrink-images-for-email"],
   "word-counter": ["prepare-assignment-pdf-for-submission", "clean-up-pasted-text"],
   "case-converter": ["clean-up-pasted-text"],
   "remove-spaces": ["clean-up-pasted-text", "cannot-copy-text-from-pdf"],

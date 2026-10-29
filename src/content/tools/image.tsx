@@ -546,6 +546,170 @@ export const imageToolContent: ToolContentMap = {
     ],
   },
 
+  "remove-exif": {
+    lede: (
+      <>
+        Every photo a phone takes carries a hidden record: where it was taken,
+        to within a few metres, the exact time, the phone model and sometimes a
+        serial number. This tool shows you what is inside each photo and saves
+        a clean copy without it — on your device, with the picture itself left
+        exactly as it was.
+      </>
+    ),
+    steps: [
+      <>
+        Leave <strong>Keep the rotation flag</strong> ticked unless you have a
+        reason not to; it stops phone photos turning sideways after cleaning.
+      </>,
+      <>
+        Drop up to 20 JPG, PNG or WebP photos onto the page, or choose them
+        from your files. Each one is read straight away.
+      </>,
+      <>
+        Check the <strong>Found and removed</strong> list under each photo.
+        Location, date taken, owner and serial number are flagged as private.
+      </>,
+      <>
+        Download the cleaned copies one at a time, or all at once, and share
+        those instead of the originals.
+      </>,
+    ],
+    sections: [
+      {
+        heading: "What a photo quietly says about you",
+        body: (
+          <>
+            <p>
+              Cameras and phones write EXIF data into every picture. Most of it
+              is harmless technical detail — exposure time, focal length, flash
+              — but a few fields are personal. With location access switched on
+              for the camera, which is the default on many phones, the GPS
+              latitude and longitude of the spot where you stood are saved in
+              the file, often with the altitude. A photo of a sofa you are
+              selling, taken in your living room, can therefore hand a stranger
+              your home address. The date and time pin down your routine, and
+              some cameras also record the owner&apos;s name and the body
+              serial number, which links every photo back to one device.
+            </p>
+            <p>
+              Editing apps add their own layers: XMP blocks with editing
+              history, IPTC captions and keywords, comments, and in PNG files
+              text fields such as Author or Software. Many JPEGs also hold a
+              small embedded thumbnail, and that preview is not always updated
+              when you crop — an old version of the picture can survive inside
+              the file. Phones that take motion photos append a short video
+              after the image data. This tool lists each of these it finds, so
+              it doubles as a quick EXIF viewer even if you decide to keep the
+              original.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Why the cleaned photo looks exactly the same",
+        body: (
+          <>
+            <p>
+              Most &ldquo;remove metadata&rdquo; tricks work by opening the
+              picture and saving it again. That does drop the metadata, but it
+              also re-compresses the image, so every save costs a little
+              quality — the same thing the{" "}
+              <Link href="/tools/image-compressor">Image compressor</Link> and{" "}
+              <Link href="/tools/image-converter">Image converter</Link> do on
+              purpose. This tool never decodes the image. It walks through the
+              file&apos;s structure — JPEG segments, PNG chunks or WebP chunks —
+              and copies the blocks that describe the picture byte for byte,
+              leaving out only the metadata. The compressed pixel data in the
+              cleaned file is identical to the original, which is why it comes
+              out a few kilobytes smaller rather than noticeably smaller.
+            </p>
+            <p>
+              A few non-personal blocks are kept on purpose because removing
+              them would change how the picture looks: the colour profile (so
+              colours do not shift), the Adobe colour-transform marker some
+              JPEGs need to decode correctly, PNG transparency and gamma
+              information, and the PNG print-resolution (DPI) setting. If a
+              photo has nothing to remove, the tool says so instead of handing
+              you an identical copy.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "The rotation flag, and why stripped photos turn sideways",
+        body: (
+          <>
+            <p>
+              A phone sensor does not rotate when you turn the phone. Instead,
+              many phones save the image in the sensor&apos;s fixed direction and
+              add an Orientation tag that tells viewers to turn it 90° or 180°
+              when they display it. Strip every EXIF tag and that instruction
+              disappears with the GPS, so a portrait photo suddenly shows up
+              lying on its side. With <strong>Keep the rotation flag</strong>{" "}
+              ticked, the tool writes back a tiny metadata block holding that
+              one number and nothing else — no time, no camera, no location.
+              Untick it only if you need a file with no metadata at all and you
+              know the photo is already stored the right way up; the preview
+              next to each photo shows how it will display.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "When you actually need to clean a photo",
+        body: (
+          <>
+            <p>
+              Big social networks such as Facebook, Instagram and X generally
+              strip EXIF from the copies they show publicly, and WhatsApp
+              usually does when you send a picture as a normal photo. The
+              originals still travel intact in plenty of everyday situations:
+              sending a photo as a document or file in a messaging app,
+              attaching it to an email, sharing a cloud-storage link, posting
+              on smaller forums, classified-ads sites and blogs that keep the
+              uploaded file, or submitting photos to an online form. Those are
+              the moments to share a cleaned copy.
+            </p>
+            <p>
+              You can also stop the location being recorded in the first
+              place. On an iPhone, Settings → Privacy &amp; Security → Location
+              Services → Camera controls it, and the share sheet&apos;s
+              Options button lets you leave location out of a single share. On
+              Android the switch is usually in the camera app&apos;s own
+              settings, named something like &ldquo;Location tags&rdquo; or
+              &ldquo;Save location&rdquo;, depending on the maker.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "What metadata removal cannot hide",
+        body: (
+          <>
+            <p>
+              Cleaning removes data stored in the file, not what the photo
+              shows. A street sign, a house number, a reflection in a window, a
+              school uniform or a screen in the background can give away just
+              as much — crop those out first with{" "}
+              <Link href="/tools/crop-image">Crop image</Link>. File names leak
+              too: phones often name pictures after the moment they were taken
+              (IMG_20261029_140322.jpg), and the cleaned copy keeps your file
+              name with &ldquo;-clean&rdquo; added, so rename it if the date
+              matters.
+            </p>
+            <p>
+              HEIC and HEIF photos from iPhones are not supported yet; save or
+              share them as JPEG first. For PDFs, the author, title and
+              software fields live in the document properties instead — the{" "}
+              <Link href="/tools/pdf-metadata">PDF metadata editor</Link> shows
+              and edits those. As with every tool here, the photos are read in
+              your browser and never uploaded.
+            </p>
+          </>
+        ),
+      },
+    ],
+  },
   "image-to-text": {
     lede: (
       <>

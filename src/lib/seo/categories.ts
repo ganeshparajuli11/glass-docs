@@ -42,9 +42,10 @@ export const categoryPages: CategoryPage[] = [
     title: "Image tools",
     metaTitle: "Free image tools — compress, resize, crop, convert, OCR",
     description:
-      "Compress, resize, crop and convert JPG, PNG and WebP images, copy text out of photos with OCR, or build a passport-photo sheet — free, in your browser, without uploading.",
+      "Compress, resize, crop and convert JPG, PNG and WebP images, remove EXIF and GPS location data, copy text out of photos with OCR, or build a passport-photo sheet — free, in your browser, without uploading.",
     intro: [
       "These tools use your browser's own image engine, so photos never leave your device. Compression shows you the before-and-after size so you can pick the right quality, and Image to text reads printed English, Nepali or Hindi out of a photo or screenshot on your device.",
+      "Before you share an original photo file, Remove EXIF & location data shows what the photo is carrying — GPS position, time taken, phone model, serial number — and saves a copy without it, leaving the picture itself untouched.",
       "They pair naturally with the PDF tools: shrink or crop images first, then turn them into a single PDF with Images to PDF.",
     ],
     guideSlugs: [

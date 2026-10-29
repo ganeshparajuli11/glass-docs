@@ -53,6 +53,8 @@ and indexing quality.
 | compress pdf / pdf compressor / reduce pdf size | Direct tool | 1 | TODO | /tools/compress-pdf (+ /learn/pdf-too-large-to-email) | Tool | LIVE (2026-10-23) — client-side image downsampling + JPEG re-encode; honest before/after sizes |
 | image to text / ocr / photo to text / screenshot to text / nepali ocr / hindi ocr | Direct tool | 1 | TODO | /tools/image-to-text (+ /learn/cannot-copy-text-from-pdf) | Tool | LIVE (2026-10-25) — self-hosted tesseract.js, English/Nepali/Hindi, nothing uploaded |
 | ocr pdf / ocr scanned pdf / scanned pdf to text / pdf ocr | Direct tool | 1 | TODO | /tools/ocr-pdf (+ /learn/cannot-copy-text-from-pdf) | Tool | LIVE (2026-10-27) — pdf.js render at ~300 DPI + self-hosted tesseract.js, uses real text layer where present, ≤50 pages/run, nothing uploaded |
+| remove exif / remove location from photo / remove gps from photo / strip photo metadata / exif viewer | Direct tool | 2 | TODO | /tools/remove-exif | Tool | LIVE (2026-10-29) — lossless byte-level JPEG/PNG/WebP cleaner, keeps rotation flag, shows what was found, nothing uploaded |
+| heic to jpg / heic converter | Direct tool | BLOCKED | TODO | (future) | Tool | NOT BUILT — browser HEVC decoders are LGPL-3.0; owner decision |
 | password protect / unlock pdf | Direct tool | BLOCKED | TODO | (future) | Tool | Needs vetted browser crypto implementation |
 
 ## Cannibalisation guards

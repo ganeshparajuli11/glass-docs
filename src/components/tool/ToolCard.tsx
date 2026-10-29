@@ -32,6 +32,7 @@ import {
   Type,
   ScanText,
   FileScan,
+  MapPinOff,
 } from "lucide-react";
 import type { ToolDefinition } from "@/lib/tools/registry";
 
@@ -56,6 +57,7 @@ const icons: Record<string, typeof FileText> = {
   "crop-image": Crop,
   "image-converter": Repeat,
   "image-to-text": ScanText,
+  "remove-exif": MapPinOff,
   "passport-photo": UserSquare,
   "word-counter": WholeWord,
   "case-converter": CaseSensitive,

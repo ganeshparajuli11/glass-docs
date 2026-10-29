@@ -16,8 +16,8 @@ Tool queue, in priority order (strike through when LIVE):
 1. ~~Compress PDF~~ — LIVE 2026-10-23 (v2 follow-ups: CMYK/indexed images, per-page DPI — T-322)
 2. ~~OCR: image to text~~ — LIVE 2026-10-25 (English, Nepali, Hindi; self-hosted tesseract.js 7)
 3. ~~OCR for scanned PDFs~~ — LIVE 2026-10-27 (/tools/ocr-pdf; v2: searchable-PDF output, >50 pages — T-324)
-4. HEIC to JPG/PNG
-5. Remove EXIF / location data from photos
+4. HEIC to JPG/PNG — BLOCKED 2026-10-29: every browser HEVC/HEIF decoder is LGPL-3.0 (libde265/libheif); needs the owner to accept an LGPL WASM module on its own page, or drop it (T-326)
+5. ~~Remove EXIF / location data from photos~~ — LIVE 2026-10-29 (/tools/remove-exif; v2: HEIC — T-327)
 6. Protect PDF with a password / unlock a PDF with a known password (vetted library only)
 7. Sign PDF (draw/type/upload signature, place on page)
 8. PDF to Word, text-based (.docx keeping paragraphs and headings; complex layouts not preserved)
@@ -31,6 +31,28 @@ metadata and JSON-LD for the newest tools and category pages; (c) anything the
 SEO audit flags.
 
 ## Log
+
+### 2026-10-29 — TOOL — Remove EXIF & location data
+
+- New tool: **Remove EXIF & location data** — shows what each photo carries
+  (GPS position with altitude, date taken, phone/camera, serial number, owner,
+  software, thumbnail, XMP, IPTC, comments, PNG text fields, data appended
+  after the image) and saves a clean copy. Lossless: JPEG segments, PNG chunks
+  and WebP chunks are copied byte for byte, so the picture is identical; colour
+  profile and decoding markers are kept. "Keep the rotation flag" (default on)
+  writes back only the orientation tag so phone photos stay upright. Up to 20
+  photos per batch, Download all, "already clean" state, HEIC detected with
+  advice. No new dependencies, no CSP change.
+- Queue item 4 (HEIC to JPG/PNG) skipped: all browser HEIC decoders are
+  LGPL-3.0, outside the MIT/Apache/BSD dependency rule. Needs owner decision.
+- Content: 5-section tool page + 5 FAQs; /image-tools description and intro;
+  "are online PDF tools safe" guide links the tool; toolGuides wired.
+- Tests: +20 unit (337 total). 61 pages audited, 0 problems. Browser check on
+  out/ with production CSP: JPEG/progressive JPEG/PNG/WebP cleaned with
+  correct findings, downloads verified with Pillow (pixels identical, EXIF
+  orientation-only or empty), 320px dark + 1280px light.
+- URLs added: https://glasstools.net/tools/remove-exif
+- URLs changed: /image-tools, /learn/are-online-pdf-tools-safe, /tools, /
 
 ### 2026-10-28 — SEO — Attendance guide ("how many classes can I miss")
 

@@ -60,6 +60,9 @@ T-200/T-202 locally, or T-100/T-210 with user credentials.
 | T-321 | OCR: image to text (self-hosted tesseract.js) | Done | 2026-10-25 · /tools/image-to-text · eng/nep/hin · 31 tools live |
 | T-323 | OCR for scanned PDFs (pdf.js render + OCR engine, multi-page) | Done | 2026-10-27 · /tools/ocr-pdf · 32 tools live · also fixed pdf.js wasmUrl (CCITT/JBIG2/JPX pages rendered blank sitewide) |
 | T-324 | OCR PDF v2: searchable-PDF output (invisible text layer), batch >50 pages in chunks | Backlog | v1 is honest .txt output only |
+| T-325 | Remove EXIF & location data (lossless JPEG/PNG/WebP metadata stripper) | Done | 2026-10-29 · /tools/remove-exif · 33 tools live · no deps |
+| T-326 | HEIC to JPG/PNG | Blocked | All browser HEVC/HEIF decoders are LGPL-3.0 (libde265/libheif); needs owner OK for an LGPL WASM module or drop |
+| T-327 | Remove EXIF v2: HEIC metadata, PDF-embedded images | Backlog | v1 JPEG/PNG/WebP only |
 | T-322 | Compress PDF v2: CMYK/indexed images, per-page DPI from content streams | Backlog | v1 skips these safely |
 
 Explicitly out of scope until backend exists: PDF↔Word, repair, advanced compression, e-signatures, AI features, cloud storage (do not list as working).

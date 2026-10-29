@@ -7,8 +7,9 @@ describe("tool registry", () => {
     expect(validateRegistry()).toEqual([]);
   });
 
-  it("contains all 32 tools (29 launch tools + compress-pdf + image-to-text + ocr-pdf)", () => {
-    expect(tools.length).toBe(32);
+  it("contains all 33 tools (29 launch tools + compress-pdf + image-to-text + ocr-pdf + remove-exif)", () => {
+    expect(tools.length).toBe(33);
+    expect(getTool("remove-exif")?.category).toBe("image");
     expect(getTool("ocr-pdf")?.category).toBe("pdf");
     expect(getTool("compress-pdf")?.category).toBe("pdf");
     expect(getTool("image-to-text")?.category).toBe("image");
@@ -28,6 +29,9 @@ describe("tool registry", () => {
     expect(searchTools("screenshot to text").map((t) => t.slug)).toContain("image-to-text");
     expect(searchTools("scanned pdf to text").map((t) => t.slug)).toContain("ocr-pdf");
     expect(searchTools("ocr pdf").map((t) => t.slug)).toContain("ocr-pdf");
+    expect(searchTools("remove exif").map((t) => t.slug)).toContain("remove-exif");
+    expect(searchTools("remove location from photo").map((t) => t.slug)).toContain("remove-exif");
+    expect(searchTools("gps").map((t) => t.slug)).toContain("remove-exif");
   });
 
   it("returns undefined for unknown slug", () => {
