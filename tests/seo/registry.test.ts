@@ -98,6 +98,13 @@ describe("internal reference integrity", () => {
     expect(unlinked).toEqual([]);
   });
 
+  it("every tool links to at least one guide", () => {
+    const missing = tools
+      .map((t) => t.slug)
+      .filter((slug) => !(toolGuides[slug]?.length > 0));
+    expect(missing).toEqual([]);
+  });
+
   it("every tool belongs to a category that has a landing page", () => {
     const covered = new Set(categoryPages.map((c) => c.category));
     for (const tool of tools) {

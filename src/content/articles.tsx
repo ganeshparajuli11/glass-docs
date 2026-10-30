@@ -1401,6 +1401,282 @@ export const articles: Article[] = [
       </>
     ),
   },
+  {
+    slug: "loan-emi-calculation-compare-loans",
+    title: "How loan EMI is calculated — and how to compare two loan offers",
+    description:
+      "The reducing-balance EMI formula with worked examples: where each payment goes, how term and rate change the total cost, flat versus reducing rates, and what prepaying does.",
+    publishedAt: "2026-10-30",
+    body: (
+      <>
+        <p>
+          An EMI (equated monthly instalment) is the fixed amount you pay every
+          month until a loan is repaid. Lenders quote it prominently because it
+          is the number that has to fit your budget, but on its own it says
+          very little about how expensive a loan is. Two offers with similar
+          monthly payments can differ in total cost by more than a third of the
+          amount you borrowed. This guide works through the arithmetic with real numbers,
+          so you can check a quote, compare offers fairly, and see what a
+          longer term or an early repayment actually does. It is general
+          information, not financial advice.
+        </p>
+
+        <h2>The formula, with one worked example</h2>
+        <p>
+          Almost every personal, car, education and home loan uses the
+          reducing-balance formula:
+        </p>
+        <p>
+          <code>EMI = P × r × (1 + r)ⁿ ÷ ((1 + r)ⁿ − 1)</code>
+        </p>
+        <p>
+          <em>P</em> is the amount borrowed, <em>r</em> is the <em>monthly</em>{" "}
+          rate (the annual rate ÷ 12 ÷ 100) and <em>n</em> is the number of
+          monthly payments. Borrow 500,000 at 11% a year for 5 years and{" "}
+          <em>r</em> = 0.11 ÷ 12 ≈ 0.009167, <em>n</em> = 60, and the EMI comes
+          to <strong>10,871.21</strong>. Sixty of those add up to 652,272.69, so
+          the loan costs 152,272.69 in interest. The{" "}
+          <Link href="/tools/emi-calculator">loan EMI calculator</Link> shows
+          all three figures as you type; the currency does not matter, because
+          the formula only works with the numbers.
+        </p>
+        <p>
+          The most common mistake when doing this by hand is using the annual
+          rate as <em>r</em>. Using 0.11 instead of 0.009167 gives an EMI of
+          more than 55,000 — obviously wrong here, but less obvious on a small
+          loan.
+        </p>
+
+        <h2>Where each payment goes</h2>
+        <p>
+          &ldquo;Reducing balance&rdquo; means interest is charged each month
+          only on what you still owe. The EMI stays the same, but its split
+          changes every month:
+        </p>
+        <ul>
+          <li>
+            <strong>Interest</strong> for the month is the balance × <em>r</em>.
+            In month one of the example, 500,000 × 0.11 ÷ 12 = 4,583.33.
+          </li>
+          <li>
+            <strong>Principal repaid</strong> is whatever is left of the EMI:
+            10,871.21 − 4,583.33 = 6,287.88, so you owe 493,712.12 after the
+            first payment. Next month&apos;s interest is a little smaller, so a
+            little more of the same EMI goes to the principal.
+          </li>
+        </ul>
+        <p>
+          On a short loan that shift barely matters. On a long one it dominates
+          the early years. Take a home loan of 3,000,000 at 9% for 20 years: the
+          EMI is 26,991.78, and in month one 22,500 of it is interest and only
+          4,491.78 repays the loan. Over the first year you pay about 267,720 in
+          interest and reduce the balance by about 56,181. The principal part
+          of the payment does not overtake the interest part until payment 149,
+          more than 12 years in, and at the halfway point (10 years, 120
+          payments) you still owe about 2,130,777, or 71% of what you borrowed.
+          Over the full term the interest comes to 3,478,026.88, more than the
+          loan itself.
+        </p>
+        <p>
+          This is why your lender&apos;s statement of the outstanding balance
+          often looks discouraging in the first few years, and why early
+          repayments (below) are most effective early in the loan.
+        </p>
+
+        <h2>Term: a lower EMI usually means a dearer loan</h2>
+        <p>
+          Stretching the term lowers the monthly payment, but you borrow the
+          money for longer, so the total interest rises — and much faster than
+          the EMI falls. Same 500,000 at 11%:
+        </p>
+        <div className="table-wrap" role="region" aria-label="EMI and total interest by loan term, 500,000 at 11%" tabIndex={0}>
+          <table>
+            <caption>500,000 borrowed at 11% a year (rounded)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Term</th>
+                <th scope="col">EMI</th>
+                <th scope="col">Total interest</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>3 years</td><td>16,369</td><td>89,297</td></tr>
+              <tr><td>5 years</td><td>10,871</td><td>152,273</td></tr>
+              <tr><td>7 years</td><td>8,561</td><td>219,142</td></tr>
+              <tr><td>10 years</td><td>6,888</td><td>326,500</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Going from 5 to 10 years cuts the EMI by about 37% and more than
+          doubles the interest. On a home loan the effect at the long end is
+          stark: 3,000,000 at 9% costs about 2,477,040 in interest over 15 years
+          (EMI 30,428), 3,478,027 over 20 years (26,992), 4,552,767 over 25
+          years (25,176) and 5,689,924 over 30 years (24,139). The last five
+          years save you 1,037 a month and cost over 1.1 million.
+        </p>
+        <p>
+          A longer term can still be the right choice — a payment you can
+          reliably make is worth more than a cheaper loan you default on — but
+          choose it knowingly, and check whether the lender lets you prepay
+          without a charge, which gives you a way to shorten it later.
+        </p>
+
+        <h2>Rate: what one percentage point is worth</h2>
+        <p>
+          Small differences in the quoted rate add up. On 500,000 over 5 years:
+          at 10% the EMI is 10,624 and the interest 137,411; at 11%, 10,871 and
+          152,273; at 12%, 11,122 and 167,333. Each point is roughly 250 a month
+          and 15,000 over the loan here — and the longer the term, the bigger
+          that gap becomes. When a lender offers a slightly lower rate with a
+          higher fee, put both offers through the calculator and add the fee to
+          the total; that comparison is the one that counts.
+        </p>
+
+        <h2>Flat rates: the same number, a much higher cost</h2>
+        <p>
+          Some lenders, particularly for car loans, consumer goods and some
+          informal or microfinance credit, quote a <em>flat</em> rate. A flat
+          rate charges interest on the original amount for the whole term, even
+          though you are repaying it every month:
+        </p>
+        <p>
+          <code>flat interest = P × annual rate × years</code>
+        </p>
+        <p>
+          At 11% flat, 500,000 over 5 years carries 500,000 × 0.11 × 5 = 275,000
+          of interest, and the EMI is (500,000 + 275,000) ÷ 60 = 12,916.67. On a
+          reducing balance at 11% the interest was 152,272.69. The flat quote
+          costs about 123,000 more for the same headline number.
+        </p>
+        <p>
+          You can find the reducing-balance rate hidden inside any quote with
+          the calculator: enter the loan amount and term, then adjust the rate
+          until the monthly payment matches the EMI you were offered. For this
+          example, 18.7% gives a little less than 12,916.67 and 18.9% a little
+          more; at 18.8% the calculator shows 12,915.31. So 11% flat is roughly
+          18.8% on a reducing balance. For loans of one to seven years at flat
+          rates between 6% and 20%, the reducing-balance equivalent works out
+          at about 1.5 to 1.85 times the flat figure (lower multiples for
+          longer terms and higher rates), so read any flat quote as close to
+          double. The same check works on any quote where you know the EMI but
+          are unsure what rate it really reflects.
+        </p>
+
+        <h2>Prepaying: shorter term or lower EMI?</h2>
+        <p>
+          A part-prepayment goes straight to the principal, so every month
+          after it carries less interest. Lenders usually ask whether you want
+          to keep the EMI and finish sooner, or keep the end date and pay a
+          smaller EMI. The numbers favour finishing sooner.
+        </p>
+        <p>
+          Back to 500,000 at 11% over 5 years. After 12 payments the balance is
+          420,622.62, and the remaining 48 payments would carry about 101,196 of
+          interest. Suppose you prepay 100,000 at that point, leaving 320,622.62:
+        </p>
+        <ul>
+          <li>
+            <strong>Keep the term (48 months):</strong> the EMI drops to
+            8,286.66 and the remaining interest is about 77,137 — a saving of
+            about 24,059.
+          </li>
+          <li>
+            <strong>Keep the EMI (10,871.21):</strong> the loan is cleared in 35
+            more payments (the last one smaller) instead of 48, and the
+            remaining interest is about 54,902 — a saving of about 46,294,
+            nearly twice as much.
+          </li>
+        </ul>
+        <p>
+          To run the first option yourself, take the outstanding balance from
+          your lender&apos;s statement, subtract the prepayment, and enter that
+          with the remaining term in the EMI calculator. For the second, keep
+          the balance and shorten the term until the EMI is back to what you
+          pay now. Before prepaying, check for a prepayment or foreclosure
+          charge and whether a floating-rate loan is treated differently from a
+          fixed-rate one; rules on this vary by lender and country. Keeping an
+          emergency fund usually comes first — money paid into a loan is hard
+          to get back out.
+        </p>
+
+        <h2>What the EMI figure leaves out</h2>
+        <p>
+          The formula covers interest and principal. A real loan often has
+          more:
+        </p>
+        <ul>
+          <li>
+            <strong>Fees:</strong> processing, arrangement, documentation or
+            valuation fees, sometimes deducted from the amount paid out — so you
+            repay interest on money you never received.
+          </li>
+          <li>
+            <strong>Insurance and add-ons</strong> bundled into the loan, which
+            then accrue interest themselves.
+          </li>
+          <li>
+            <strong>Taxes on fees</strong>, where they apply.
+          </li>
+          <li>
+            <strong>Rounding and timing:</strong> lenders round the EMI, may
+            charge interest daily, and may charge extra interest for the days
+            between the loan being paid out and the first EMI date.
+          </li>
+          <li>
+            <strong>Rate changes:</strong> on a floating or variable rate, the
+            figures here hold only until the rate changes. Many lenders respond
+            to a rate rise by extending the term rather than raising the EMI,
+            which can quietly add years of payments.
+          </li>
+        </ul>
+        <p>
+          For a like-for-like comparison, ask each lender for the annual
+          percentage rate (APR) or the total amount payable. In many countries
+          lenders must state these in a standard key facts or disclosure
+          document because they fold the fees in, which the headline rate does
+          not.
+        </p>
+
+        <h2>Comparing two offers: a checklist</h2>
+        <ol>
+          <li>
+            Confirm whether each rate is reducing-balance or flat. If in doubt,
+            back out the real rate from the EMI as shown above.
+          </li>
+          <li>
+            Put both offers into the{" "}
+            <Link href="/tools/emi-calculator">EMI calculator</Link>{" "}
+            <em>over the same term</em>, and note the total paid, not just the
+            EMI.
+          </li>
+          <li>
+            Add every fee and compulsory add-on to each total, and compare
+            those totals (or the APRs).
+          </li>
+          <li>
+            Check the prepayment and foreclosure terms, and whether the rate
+            is fixed or floating.
+          </li>
+          <li>
+            Choose the shortest term whose EMI you can still pay comfortably in
+            a bad month, not just an average one.
+          </li>
+        </ol>
+        <p>
+          The calculator runs in your browser; nothing you type is sent or
+          stored. For quick percentage questions along the way — what a 2%
+          processing fee comes to, or how much one offer&apos;s total is above
+          another&apos;s — the{" "}
+          <Link href="/tools/percentage-calculator">percentage calculator</Link>{" "}
+          has a row for each. Figures in this guide are rounded to the nearest
+          unit where marked and were produced with the same formula the
+          calculator uses; your lender&apos;s schedule is the final word on
+          your own loan.
+        </p>
+      </>
+    ),
+  },
 ];
 
 export function getArticle(slug: string): Article | undefined {
@@ -1441,5 +1717,6 @@ export const toolGuides: Record<string, string[]> = {
   "gpa-calculator": ["gpa-scales-explained"],
   "grade-calculator": ["gpa-scales-explained"],
   "attendance-calculator": ["attendance-percentage-classes-you-can-miss", "gpa-scales-explained"],
-  "percentage-calculator": ["attendance-percentage-classes-you-can-miss"],
+  "percentage-calculator": ["attendance-percentage-classes-you-can-miss", "loan-emi-calculation-compare-loans"],
+  "emi-calculator": ["loan-emi-calculation-compare-loans"],
 };

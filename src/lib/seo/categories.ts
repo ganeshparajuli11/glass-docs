@@ -79,7 +79,7 @@ export const categoryPages: CategoryPage[] = [
       "Quick answers to the questions students actually ask: what's my GPA, what do I need on the final, and how many classes can I still miss. Each result explains its formula.",
       "The EMI calculator is general information, not financial advice — it shows the standard reducing-balance formula so you can sanity-check a lender's quote.",
     ],
-    guideSlugs: ["attendance-percentage-classes-you-can-miss", "gpa-scales-explained"],
+    guideSlugs: ["attendance-percentage-classes-you-can-miss", "loan-emi-calculation-compare-loans", "gpa-scales-explained"],
   },
   {
     path: "/student-tools",

@@ -1,5 +1,13 @@
 # Current Handoff
 
+## Session update (2026-10-30, daily contributor — SEO day: loan EMI guide)
+
+- New guide /learn/loan-emi-calculation-compare-loans (16 guides): formula + worked example, payment split (incl. 3M/9%/20y home-loan example), term and rate tables, flat vs reducing (11% flat ≈ 18.8% reducing; 1.5–1.85× rule for 1–7 y, 6–20%), prepayment keep-EMI vs keep-term, what EMI excludes, comparison checklist.
+- src/lib/calc/emi.ts gains pure `emiSchedule` and `monthsToRepay` (not yet used by the UI — a year-by-year breakdown on the tool would be a good small follow-up). tests/unit/emi-guide.test.ts pins every number in the guide.
+- Registry: +3 EMI FAQs. study.tsx EMI content links the guide. toolGuides emi-calculator + percentage-calculator; /calculators guideSlugs. New test in tests/seo/registry.test.ts: every tool links to ≥1 guide. T-316 Done.
+- Verified: npm run verify ✓ (352 tests) · build:static ✓ · audit 62 pages 0 problems ✓ · Playwright on out/: 320 dark + 1280 light, no h-scroll, Article + BreadcrumbList JSON-LD, links on emi/percentage tools, /calculators, /learn; calculator at 18.8% shows 12,915.31. Only console errors = sandbox-blocked AdSense loader.
+- Next: TOOL day — Protect/unlock PDF (queue 6) unless the owner unblocks HEIC (T-326). Following SEO day: (b) internal links/FAQs/JSON-LD for newest tools (remove-exif, ocr-pdf), or a guide for removing photo location data.
+
 ## Session update (2026-10-29, daily contributor — TOOL day: Remove EXIF & location data)
 
 - Queue item 4 (HEIC to JPG/PNG) SKIPPED, not built: every browser HEIC decoder (libheif-js, heic-to, and the libheif bundled inside heic2any/heic-decode) is LGPL-3.0 because HEVC decoding comes from libde265; the queue rule allows only MIT/Apache/BSD-style deps, and Chrome/Firefox cannot decode HEIC natively. OWNER DECISION needed (accept an LGPL WASM module loaded only on its page, or drop the item). Left in the queue marked BLOCKED.

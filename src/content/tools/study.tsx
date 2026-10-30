@@ -417,6 +417,15 @@ export const studyToolContent: ToolContentMap = {
               much more expensive than the same number quoted on a reducing
               balance.
             </p>
+            <p>
+              <Link href="/learn/loan-emi-calculation-compare-loans">
+                How loan EMI is calculated
+              </Link>{" "}
+              works through examples: how much of each payment is interest,
+              what a longer term really costs, how to find the reducing-balance
+              rate hidden in a flat quote with this calculator, and whether to
+              keep the EMI or the term after a prepayment.
+            </p>
           </>
         ),
       },

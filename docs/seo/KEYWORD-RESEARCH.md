@@ -41,6 +41,7 @@ and indexing quality.
 | gpa calculator | Direct tool | 3 | TODO | /tools/gpa-calculator | Tool | LIVE |
 | attendance calculator | Student | 3 | TODO | /tools/attendance-calculator | Tool | LIVE |
 | emi calculator | Direct tool | 3 | TODO | /tools/emi-calculator | Tool | LIVE |
+| how emi is calculated / flat vs reducing rate / prepayment | Informational | 3 | TODO | /learn/loan-emi-calculation-compare-loans | Guide | LIVE 2026-10-30 |
 | is online pdf converter safe | Privacy | 2 | TODO | /learn/are-online-pdf-tools-safe | Guide | LIVE |
 | how to remove pages from pdf | How-to | 2 | TODO | /learn/remove-pages-from-pdf | Guide | LIVE |
 | compress photo for email | How-to | 2 | TODO | /learn/shrink-images-for-email | Guide | LIVE |

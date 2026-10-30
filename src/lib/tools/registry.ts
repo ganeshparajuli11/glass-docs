@@ -879,6 +879,9 @@ export const tools: ToolDefinition[] = [
     ],
     faq: [
       { q: "Which formula is used?", a: "The standard reducing-balance EMI formula: P·r·(1+r)ⁿ ÷ ((1+r)ⁿ − 1) with monthly rate r." },
+      { q: "Why does a longer term cost more if the EMI is lower?", a: "You borrow the money for longer, so interest runs for more months. 500,000 at 11% costs about 152,273 in interest over 5 years and 326,500 over 10, although the EMI falls from 10,871 to 6,888." },
+      { q: "My lender quoted a flat rate. Can I use this calculator?", a: "Yes, to find the real rate: enter the amount and term, then change the rate until the monthly payment matches the EMI you were quoted. 11% flat over 5 years matches about 18.8% here, because a flat rate charges interest on the original amount for the whole term." },
+      { q: "Does the result include processing fees or insurance?", a: "No. It covers principal and interest only. Add fees and compulsory add-ons to the total paid, or compare lenders by APR or total amount payable, which include them." },
     ],
     lastVerifiedAt: VERIFIED,
   },

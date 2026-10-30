@@ -32,6 +32,33 @@ SEO audit flags.
 
 ## Log
 
+### 2026-10-30 — SEO — Loan EMI guide (last T-316 item)
+
+- New guide: **How loan EMI is calculated — and how to compare two loan
+  offers** — the reducing-balance formula with a worked example (500,000 at
+  11% over 5 years → 10,871.21), where each payment goes (a 3,000,000 / 9% /
+  20-year loan pays 22,500 interest vs 4,491.78 principal in month one;
+  principal overtakes interest only at payment 149), term and rate tables,
+  flat vs reducing rates (11% flat ≈ 18.8% reducing; how to back out the real
+  rate from a quoted EMI with the calculator), prepaying (keep the EMI saves
+  ~46,294 vs ~24,059 for keeping the term), what EMI leaves out (fees,
+  insurance, broken-period interest, floating-rate term extensions, APR), and
+  a comparison checklist. Not financial advice.
+- New pure helpers in src/lib/calc/emi.ts: `emiSchedule` (month-by-month
+  interest/principal/balance) and `monthsToRepay`; every figure in the guide
+  is pinned by tests/unit/emi-guide.test.ts.
+- EMI calculator: +3 FAQs (term vs total cost, flat rates, fees), tool content
+  links the guide. toolGuides: emi-calculator (first guide ever) and
+  percentage-calculator; /calculators lists the guide.
+- T-316 done — every one of the 33 tools now links to at least one guide; a
+  new registry test keeps it that way.
+- Tests: +15 (352 total). 62 pages audited, 0 problems. Browser check on out/:
+  320px dark + 1280px light, no horizontal scroll, table fits, Article +
+  BreadcrumbList JSON-LD; calculator shows 12,915.31 at 18.8% as the guide says.
+- URLs added: https://glasstools.net/learn/loan-emi-calculation-compare-loans
+- URLs changed: /tools/emi-calculator, /tools/percentage-calculator,
+  /calculators, /learn
+
 ### 2026-10-29 — TOOL — Remove EXIF & location data
 
 - New tool: **Remove EXIF & location data** — shows what each photo carries
