@@ -73,3 +73,7 @@ next-env.d.ts
 
 # pdf.js image decoders (JBIG2/CCITT, JPEG 2000, ICC), copied at build time
 /public/pdfjs/
+
+# qpdf WebAssembly build (Protect/Unlock PDF), copied at build time;
+# public/qpdf-worker.js is committed
+/public/qpdf/

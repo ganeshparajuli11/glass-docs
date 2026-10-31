@@ -1391,4 +1391,324 @@ export const pdfToolContent: ToolContentMap = {
       },
     ],
   },
+  "protect-pdf": {
+    lede: (
+      <>
+        Put a password on a PDF before you email it, upload it or leave it in
+        a shared folder. The file is encrypted with AES-256 — the strongest
+        method in the PDF standard — so nobody can read it without the
+        password. You can also ask PDF readers to block printing, copying or
+        editing. The encryption runs in your browser; the PDF and the password
+        never leave your device.
+      </>
+    ),
+    steps: [
+      <>
+        Drop the PDF onto the file area. The tool checks it first: if it is
+        already protected, it tells you instead of wrapping one password inside
+        another.
+      </>,
+      <>
+        Keep <strong>Require a password to open the PDF</strong> ticked, then
+        type the password twice. The second box catches typing mistakes that
+        would otherwise lock you out of your own file.
+      </>,
+      <>
+        Optionally untick <strong>Allow printing</strong>,{" "}
+        <strong>Allow copying text and images</strong> or{" "}
+        <strong>Allow editing</strong>, and choose a separate permissions
+        password that only you know.
+      </>,
+      <>
+        Select <strong>Protect PDF</strong>. The tool encrypts the file, then
+        reopens the result to confirm it needs your password and carries the
+        restrictions you chose, before offering the download.
+      </>,
+      <>
+        Open the downloaded <code>-protected.pdf</code> and type the password
+        once. Only delete your original after that check works and the password
+        is saved somewhere safe.
+      </>,
+    ],
+    sections: [
+      {
+        heading: "Open password versus permissions password",
+        body: (
+          <>
+            <p>
+              PDFs have two kinds of password, and they protect very different
+              things. The <strong>open password</strong> (the PDF standard calls
+              it the user password) encrypts the whole document: without it,
+              the pages are scrambled data that no reader can display. This is
+              the protection that matters for a payslip, a medical letter or a
+              signed contract.
+            </p>
+            <p>
+              The <strong>permissions password</strong> (the owner password)
+              does not stop anyone reading the file. It controls a set of flags
+              that ask the reader to disable printing, copying or editing, and
+              it is what you type to change those flags later. If you set
+              restrictions, make the permissions password different from the
+              open password; if they were the same, everyone you give the open
+              password to would also get full rights and the restrictions would
+              do nothing. The tool will not let you make that mistake.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "What printing and copying restrictions can and cannot do",
+        body: (
+          <>
+            <p>
+              Adobe Acrobat and Reader, the viewers in Chrome, Edge, Firefox
+              and Safari, and most phone apps honour the restrictions: the
+              print button is greyed out, or text cannot be selected. That is
+              enough to discourage casual copying of a worksheet or a draft.
+            </p>
+            <p>
+              It is not a lock. Once someone can open a PDF they can see every
+              page, so they can take screenshots, photograph the screen, or use
+              software that ignores the flags. Treat restrictions as a polite
+              &ldquo;please don&apos;t&rdquo; and use the open password for
+              anything that must stay confidential. Copy restrictions also keep
+              the accessibility permission on, so screen readers used by blind
+              and partially sighted readers can still read the text aloud.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Choosing a password that actually protects the file",
+        body: (
+          <>
+            <p>
+              AES-256 cannot be broken directly, so attackers guess passwords
+              instead, and password-cracking software can try millions of
+              guesses on a copy of the file without anyone noticing. A name, a
+              date of birth or a single dictionary word falls in seconds. The
+              tool warns you below eight characters, but longer is better: four
+              or five unrelated words (<code>lantern-mango-river-quiet</code>)
+              are easy to type and far harder to guess than a short jumble of
+              symbols.
+            </p>
+            <p>
+              Send the password by a different route from the file — if the
+              PDF goes by email, give the password by phone or text message. A
+              password in the same email as the attachment protects nothing.
+              And write it down somewhere safe: there is no &ldquo;forgot
+              password&rdquo; for a PDF, here or anywhere else.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Will it open for the person you send it to?",
+        body: (
+          <>
+            <p>
+              The tool always uses AES-256 encryption (revision 6 of the PDF
+              security handler, defined in PDF 2.0). It opens in Adobe Acrobat
+              and Reader X or later, in the PDF viewers built into current
+              browsers, and in the standard viewers on iPhone, iPad, Android,
+              Windows and macOS. Software from before about 2010 may refuse it;
+              that software also lacks years of security fixes, so the answer
+              is to update the reader rather than weaken the encryption.
+            </p>
+            <p>
+              Protecting a file changes nothing else: pages, fonts, images,
+              links, bookmarks and form fields stay as they were, and the file
+              size barely changes. One exception: a PDF that was
+              digitally signed will show its signature as invalid after any
+              re-save, including this one, so protect documents before they are
+              signed rather than after.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "How the encryption runs on your device",
+        body: (
+          <>
+            <p>
+              The work is done by qpdf, a long-established open-source PDF
+              library (Apache 2.0 licence), compiled to WebAssembly and loaded
+              from this site the first time you use the tool — about 1.3 MB,
+              cached afterwards. It runs in a background worker inside your
+              browser tab; the PDF and the password are handed to it in memory
+              and discarded as soon as your file is ready. Nothing is uploaded,
+              so it works the same on public Wi-Fi, and you can check it with
+              the method in{" "}
+              <Link href="/learn/are-online-pdf-tools-safe">
+                Are online PDF tools safe?
+              </Link>
+            </p>
+            <p>
+              Protect the file last. Tools such as{" "}
+              <Link href="/tools/merge-pdf">Merge PDF</Link>,{" "}
+              <Link href="/tools/compress-pdf">Compress PDF</Link> and{" "}
+              <Link href="/tools/page-numbers">Add page numbers</Link> cannot
+              open an encrypted PDF, so finish your edits first, then add the
+              password. To change a password later, remove it with{" "}
+              <Link href="/tools/unlock-pdf">Unlock PDF</Link> and protect the
+              unlocked copy again.
+            </p>
+          </>
+        ),
+      },
+    ],
+  },
+  "unlock-pdf": {
+    lede: (
+      <>
+        Tired of typing the password every time you open a bank statement,
+        payslip or exam admit card? If you know the password, this tool saves
+        a copy of the PDF without it — and without any printing, copying or
+        editing restrictions — so you can open, merge, compress or print it
+        normally. It works in your browser; the file and the password stay on
+        your device. It does not guess or crack passwords.
+      </>
+    ),
+    steps: [
+      <>
+        Drop the protected PDF onto the file area. The tool reads how it is
+        protected: a password to open it, restrictions only, or nothing at all.
+      </>,
+      <>
+        Type the password. For a PDF that asks for a password when you open
+        it, use that password. For a PDF that opens freely but blocks printing
+        or copying, the tool lists what is blocked and asks for the
+        permissions (owner) password.
+      </>,
+      <>
+        Select <strong>Unlock PDF</strong>. If the password is wrong you can
+        correct it and try again straight away; nothing is reset.
+      </>,
+      <>
+        Download the <code>-unlocked.pdf</code> copy. The tool checks the
+        result really is unencrypted before it offers it, and tells you what
+        it removed.
+      </>,
+    ],
+    sections: [
+      {
+        heading: "Finding the password for bank, payslip and utility PDFs",
+        body: (
+          <>
+            <p>
+              Statements that arrive by email are usually protected with a
+              password built from your own details, and the rule is normally in
+              the email itself or on the sender&apos;s website. Common patterns
+              are your date of birth (in a set format such as{" "}
+              <code>DDMMYYYY</code>), the last digits of an account, card or
+              customer number, part of your name in capitals or lower case, or
+              a combination like the first four letters of your name followed
+              by your birth day and month.
+            </p>
+            <p>
+              Passwords are case-sensitive, so <code>RAMA0512</code> and{" "}
+              <code>rama0512</code> are different. If the right-looking password
+              fails, check Caps Lock, the keyboard language, and whether a
+              space slipped in at the start or end. Tick{" "}
+              <strong>Show passwords</strong> to see exactly what you typed.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Open passwords versus restrictions: what gets removed",
+        body: (
+          <>
+            <p>
+              A PDF can be protected in two ways. An <strong>open
+              password</strong> encrypts the content so the file cannot be read
+              without it. <strong>Restrictions</strong> are flags, set with a
+              separate permissions password, that ask readers to block printing,
+              copying text or editing. Unlocking removes both: the copy you
+              download has no encryption at all, which is also why the other
+              tools on this site can work with it afterwards.
+            </p>
+            <p>
+              If your PDF needs a password to open, either the open password or
+              the permissions password unlocks it. If it opens freely but is
+              restricted, only the permissions password will do. This tool does
+              not override restrictions without that password, because they
+              were a deliberate choice by the person who made the document — ask
+              them for an unrestricted copy if you need one.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Why this tool cannot remove a password you have forgotten",
+        body: (
+          <>
+            <p>
+              Modern PDFs are encrypted with AES, and the password is the only
+              key. There is no master key, no back door and no way to skip the
+              check: the content simply cannot be decrypted without it. Sites
+              that claim to remove unknown passwords either work only on old,
+              weak 40-bit encryption from the 1990s, or upload your file to a
+              server that tries millions of guesses — slow, uncertain, and a
+              poor idea for a document sensitive enough to have a password.
+            </p>
+            <p>
+              If you have lost the password to your own file, look for an
+              unprotected original, ask the sender to re-issue it (banks and
+              employers can always send a new copy), or check the email the
+              file arrived with for the password rule.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Keep the unlocked copy private",
+        body: (
+          <>
+            <p>
+              The password existed to protect personal information. Once it is
+              gone, anyone who gets the file can read it, so store the unlocked
+              copy in a private folder rather than a shared drive, and avoid
+              forwarding it. If you only need the password removed to do one
+              job — say, merging statements for a loan application with{" "}
+              <Link href="/tools/merge-pdf">Merge PDF</Link> or getting under an
+              upload limit with{" "}
+              <Link href="/tools/compress-pdf">Compress PDF</Link> — you can put
+              a new password on the finished file with{" "}
+              <Link href="/tools/protect-pdf">Protect PDF</Link>.
+            </p>
+            <p>
+              Unlocking keeps everything else the same: pages, text, images,
+              links, bookmarks and form fields. A digitally signed PDF is the
+              exception — re-saving it in any way makes the signature show as
+              invalid, so keep the original if the signature matters.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Private by design: decryption happens in your browser",
+        body: (
+          <>
+            <p>
+              Uploading a bank statement and its password to a website is
+              exactly the kind of risk the password was meant to prevent. Here,
+              decryption is done by qpdf, an open-source PDF library, compiled
+              to WebAssembly and running in a background worker in your browser
+              tab. The engine (about 1.3 MB) is downloaded once from this site;
+              your PDF and password are never sent anywhere and are dropped
+              from memory when the job finishes.
+            </p>
+            <p>
+              It handles every standard PDF password scheme, from the old RC4
+              40-bit and 128-bit methods to AES-128 and AES-256. PDFs encrypted
+              to a digital certificate rather than a password (used by some
+              companies and governments) are not supported; open those in the
+              software they were made for.
+            </p>
+          </>
+        ),
+      },
+    ],
+  },
 };

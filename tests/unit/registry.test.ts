@@ -7,8 +7,10 @@ describe("tool registry", () => {
     expect(validateRegistry()).toEqual([]);
   });
 
-  it("contains all 33 tools (29 launch tools + compress-pdf + image-to-text + ocr-pdf + remove-exif)", () => {
-    expect(tools.length).toBe(33);
+  it("contains all 35 tools (29 launch tools + compress-pdf + image-to-text + ocr-pdf + remove-exif + protect-pdf + unlock-pdf)", () => {
+    expect(tools.length).toBe(35);
+    expect(getTool("protect-pdf")?.category).toBe("pdf");
+    expect(getTool("unlock-pdf")?.category).toBe("pdf");
     expect(getTool("remove-exif")?.category).toBe("image");
     expect(getTool("ocr-pdf")?.category).toBe("pdf");
     expect(getTool("compress-pdf")?.category).toBe("pdf");
@@ -32,6 +34,10 @@ describe("tool registry", () => {
     expect(searchTools("remove exif").map((t) => t.slug)).toContain("remove-exif");
     expect(searchTools("remove location from photo").map((t) => t.slug)).toContain("remove-exif");
     expect(searchTools("gps").map((t) => t.slug)).toContain("remove-exif");
+    expect(searchTools("password protect pdf").map((t) => t.slug)).toContain("protect-pdf");
+    expect(searchTools("encrypt pdf").map((t) => t.slug)).toContain("protect-pdf");
+    expect(searchTools("remove pdf password").map((t) => t.slug)).toContain("unlock-pdf");
+    expect(searchTools("unlock pdf").map((t) => t.slug)).toContain("unlock-pdf");
   });
 
   it("returns undefined for unknown slug", () => {

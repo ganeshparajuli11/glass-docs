@@ -82,3 +82,11 @@ Date: 2026-10-27 · Status: Accepted
 Decision: Copy pdfjs-dist/wasm (jbig2, openjpeg, qcms + their no-wasm JS fallbacks and licences; Apache-2.0/BSD/MIT) into public/pdfjs/wasm at build time (scripts/copy-pdf-worker.mjs, git-ignored) and pass `wasmUrl: "/pdfjs/wasm/"` to every getDocument call.
 Reason: Since pdf.js 5, CCITT fax, JBIG2 and JPEG 2000 images are decoded by WebAssembly modules fetched from `wasmUrl`. Without it, black-and-white office-scanner pages rendered blank in the viewer, PDF to images and the new scanned-PDF OCR tool (reproduced: blocking /pdfjs/wasm turns a CCITT page into "no text found").
 Consequences: ~1 MB of same-origin decoder files, fetched only when a PDF needs them. No CSP change ('wasm-unsafe-eval' already present from ADR-008).
+
+## ADR-010 — PDF encryption via qpdf compiled to WebAssembly (Protect/Unlock PDF)
+Date: 2026-10-31 · Status: Accepted
+Decision: Use @neslinesli93/qpdf-wasm 0.3 (ISC; qpdf 12.2 Apache-2.0, with zlib and libjpeg-turbo) for adding and removing PDF passwords. scripts/copy-qpdf-assets.mjs copies qpdf.js + qpdf.wasm (~1.3 MB) into public/qpdf (git-ignored) at build time; the committed classic worker public/qpdf-worker.js runs one fresh qpdf instance per job. Only /tools/protect-pdf and /tools/unlock-pdf request these files. Logic in src/lib/pdf/security.ts is pure with an injected runner, tested against the real WASM in Node.
+Reason: "Vetted library only" — qpdf is the reference open-source implementation of PDF encryption; pdf-lib cannot encrypt, and hand-rolled AES/RC4 + key derivation would be unreviewed crypto. Rejected @cantoo/pdf-lib (26 MB unpacked, encryption less battle-tested).
+Rules: new protection is always AES-256 (R6) with NFKC-normalised passwords; every output is re-inspected (protect: needs the password, R6/256, exact restrictions; unlock: not encrypted). Unlock never bypasses: open-password files need the open or owner password; restriction-only files need the owner password; only encrypted files with no password and no restrictions unlock without one.
+Consequences: No CSP change (script-src 'self' + 'wasm-unsafe-eval', worker-src 'self' already present). Other PDF tools' "password-protected" errors now point to Unlock PDF.
+

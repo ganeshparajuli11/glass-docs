@@ -18,7 +18,7 @@ Tool queue, in priority order (strike through when LIVE):
 3. ~~OCR for scanned PDFs~~ — LIVE 2026-10-27 (/tools/ocr-pdf; v2: searchable-PDF output, >50 pages — T-324)
 4. HEIC to JPG/PNG — BLOCKED 2026-10-29: every browser HEVC/HEIF decoder is LGPL-3.0 (libde265/libheif); needs the owner to accept an LGPL WASM module on its own page, or drop it (T-326)
 5. ~~Remove EXIF / location data from photos~~ — LIVE 2026-10-29 (/tools/remove-exif; v2: HEIC — T-327)
-6. Protect PDF with a password / unlock a PDF with a known password (vetted library only)
+6. ~~Protect PDF with a password / unlock a PDF with a known password~~ — LIVE 2026-10-31 (/tools/protect-pdf, /tools/unlock-pdf; qpdf WASM; v2: batch unlock, one-step change password — T-329)
 7. Sign PDF (draw/type/upload signature, place on page)
 8. PDF to Word, text-based (.docx keeping paragraphs and headings; complex layouts not preserved)
 9. QR code generator; Markdown to PDF; image to Base64
@@ -31,6 +31,42 @@ metadata and JSON-LD for the newest tools and category pages; (c) anything the
 SEO audit flags.
 
 ## Log
+
+### 2026-10-31 — TOOL — Protect PDF + Unlock PDF (queue item 6)
+
+- Two new tools (35 live, PDF hub 16), both powered by qpdf 12 compiled to
+  WebAssembly (@neslinesli93/qpdf-wasm, ISC; qpdf Apache-2.0), self-hosted
+  under /qpdf and run in a dedicated worker — the PDF and password never
+  leave the device. No CSP change needed.
+- **Protect PDF**: AES-256 (R6) open password typed twice, optional
+  print/copy/edit restrictions behind a separate permissions password,
+  short-password warning, refuses already-protected files (points to
+  Unlock). The output is re-opened and checked (needs the password, R6,
+  exact restrictions) before download.
+- **Unlock PDF**: reads how the file is protected first; open-password files
+  take the open or owner password, restriction-only files need the owner
+  password (lists what is blocked) — it never guesses or bypasses. Wrong
+  passwords show an inline error so you can retry; handles RC4 40/128,
+  AES-128 and AES-256; result verified unencrypted.
+- Internal links: 12 "password-protected PDFs are not supported" limitations
+  and the shared encrypted-PDF error now point to Unlock PDF; merge,
+  remove-pages, cannot-copy-text and are-online-pdf-tools-safe guides link
+  the tools; assignment guide gains a "Leave the password off" section;
+  /pdf-tools description + intro paragraph.
+- Tests: +38 (unit 18, integration 14 against the real WASM, registry). 390
+  total. 64 pages audited, 0 problems. Browser check on out/ with production
+  CSP: protect → download opens with password in pdf.js, poppler and qpdf
+  (AES-256, print:no); wrong password inline error; unlock → plain PDF with
+  pages and title intact; restriction-only AES-128 file unlocked with owner
+  password; 320px dark no horizontal scroll. Only console errors: the
+  sandbox-blocked AdSense loader.
+- URLs added: https://glasstools.net/tools/protect-pdf,
+  https://glasstools.net/tools/unlock-pdf
+- URLs changed: /pdf-tools, /learn/merge-pdfs-without-uploading,
+  /learn/remove-pages-from-pdf, /learn/cannot-copy-text-from-pdf,
+  /learn/are-online-pdf-tools-safe,
+  /learn/prepare-assignment-pdf-for-submission, and the 12 PDF tool pages
+  whose limitations mention passwords
 
 ### 2026-10-30 — SEO — Loan EMI guide (last T-316 item)
 

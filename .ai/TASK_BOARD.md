@@ -63,6 +63,8 @@ T-200/T-202 locally, or T-100/T-210 with user credentials.
 | T-325 | Remove EXIF & location data (lossless JPEG/PNG/WebP metadata stripper) | Done | 2026-10-29 · /tools/remove-exif · 33 tools live · no deps |
 | T-326 | HEIC to JPG/PNG | Blocked | All browser HEVC/HEIF decoders are LGPL-3.0 (libde265/libheif); needs owner OK for an LGPL WASM module or drop |
 | T-327 | Remove EXIF v2: HEIC metadata, PDF-embedded images | Backlog | v1 JPEG/PNG/WebP only |
+| T-328 | Protect PDF + Unlock PDF (qpdf WebAssembly, self-hosted) | Done | 2026-10-31 · /tools/protect-pdf, /tools/unlock-pdf · 35 tools live · ADR-010 |
+| T-329 | Security v2: batch unlock several statements with one password; "change password" in one step | Backlog | v1 is one file at a time; change = unlock then protect |
 | T-322 | Compress PDF v2: CMYK/indexed images, per-page DPI from content streams | Backlog | v1 skips these safely |
 
 Explicitly out of scope until backend exists: PDF↔Word, repair, advanced compression, e-signatures, AI features, cloud storage (do not list as working).

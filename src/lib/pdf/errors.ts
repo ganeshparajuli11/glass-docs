@@ -40,7 +40,7 @@ const messages: Record<ToolErrorCode, { message: string; recovery?: string }> = 
   },
   PDF_ENCRYPTED_UNSUPPORTED: {
     message: "This PDF is password-protected, which this tool cannot process yet.",
-    recovery: "Remove the password with the software that created it, then try again.",
+    recovery: "If you know the password, remove it with the Unlock PDF tool (it runs in your browser too), then try again.",
   },
   PDF_PARSE_FAILED: {
     message: "The PDF could not be read. It may be damaged or use unsupported features.",

@@ -44,8 +44,10 @@ export const articles: Article[] = [
         <p>
           The most frequent problem is page order: double-check the file list
           before merging, not after. Another is password-protected input — a
-          protected PDF cannot be read by the merger, so remove the password in
-          the app that created it first. Finally, merging very large scanned
+          protected PDF cannot be read by the merger, so if you know the
+          password, save an unlocked copy with{" "}
+          <Link href="/tools/unlock-pdf">Unlock PDF</Link> first (it also runs
+          in your browser). Finally, merging very large scanned
           files can be slow on phones; if a merge feels stuck, try it on a
           laptop.
         </p>
@@ -214,6 +216,12 @@ export const articles: Article[] = [
             <Link href="/tools/remove-exif">Remove EXIF &amp; location data</Link>,
             which also runs on your device.
           </li>
+          <li>
+            Emailing a sensitive PDF? Encrypt it first with{" "}
+            <Link href="/tools/protect-pdf">Protect PDF</Link> (AES-256, done in
+            your browser) and send the password by phone or text message —
+            never in the same email as the attachment.
+          </li>
         </ul>
       </>
     ),
@@ -250,8 +258,9 @@ export const articles: Article[] = [
         </p>
         <h2>Common problems</h2>
         <p>
-          A password-protected PDF cannot be edited — remove the password in
-          the app that created it first. And deletion is by position, so if
+          A password-protected PDF cannot be edited — if you know the password,
+          remove it with <Link href="/tools/unlock-pdf">Unlock PDF</Link>{" "}
+          first. And deletion is by position, so if
           you re-export the file from elsewhere afterwards, double-check page
           numbers before repeating the operation.
         </p>
@@ -356,6 +365,16 @@ export const articles: Article[] = [
           <Link href="/tools/compress-pdf">Compress PDF</Link> as the last
           step, after page numbers, and check that the smallest text in your
           scanned appendices is still readable.
+        </p>
+        <h2>Leave the password off</h2>
+        <p>
+          Do not password-protect a submission. Plagiarism checkers and most
+          submission portals cannot read an encrypted PDF, and may reject it or
+          return an empty similarity report. The same problem appears earlier
+          in the pipeline: a certificate or transcript that arrived with a
+          password cannot be merged until the password is removed. If you know
+          it, save an unprotected copy with{" "}
+          <Link href="/tools/unlock-pdf">Unlock PDF</Link> before you start.
         </p>
       </>
     ),
@@ -763,8 +782,12 @@ export const articles: Article[] = [
           Some PDFs contain real text but set a permission flag that asks
           viewers to disallow copying. That is a request honoured by software
           rather than encryption, and it usually accompanies a document whose
-          author had a reason for it. Tools on this site do not open
-          password-protected PDFs or work around document restrictions.
+          author had a reason for it. Tools on this site do not work around
+          document restrictions:{" "}
+          <Link href="/tools/unlock-pdf">Unlock PDF</Link> removes them only
+          when you enter the document&apos;s permissions password, and
+          otherwise the honest route is to ask the author for an unrestricted
+          copy.
         </p>
       </>
     ),
@@ -1699,6 +1722,14 @@ export const toolGuides: Record<string, string[]> = {
   "pdf-to-images": ["images-to-pdf-quality", "rotate-one-page-in-a-pdf"],
   "pdf-viewer": ["cannot-copy-text-from-pdf", "are-online-pdf-tools-safe"],
   "pdf-metadata": ["are-online-pdf-tools-safe"],
+  "protect-pdf": ["are-online-pdf-tools-safe"],
+  "unlock-pdf": [
+    "merge-pdfs-without-uploading",
+    "prepare-assignment-pdf-for-submission",
+    "remove-pages-from-pdf",
+    "cannot-copy-text-from-pdf",
+    "are-online-pdf-tools-safe",
+  ],
   "extract-text": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],
   "ocr-pdf": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],
   "image-to-text": ["cannot-copy-text-from-pdf", "clean-up-pasted-text", "are-online-pdf-tools-safe"],

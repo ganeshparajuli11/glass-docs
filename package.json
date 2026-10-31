@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/copy-pdf-worker.mjs && node scripts/copy-ocr-assets.mjs && next dev",
-    "build": "node scripts/copy-pdf-worker.mjs && node scripts/copy-ocr-assets.mjs && next build",
+    "dev": "node scripts/copy-pdf-worker.mjs && node scripts/copy-ocr-assets.mjs && node scripts/copy-qpdf-assets.mjs && next dev",
+    "build": "node scripts/copy-pdf-worker.mjs && node scripts/copy-ocr-assets.mjs && node scripts/copy-qpdf-assets.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
@@ -12,9 +12,10 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "verify": "npm run lint && npm run typecheck && npm run test && npm run build",
-    "build:static": "node scripts/copy-pdf-worker.mjs && node scripts/copy-ocr-assets.mjs && node scripts/build-static.mjs"
+    "build:static": "node scripts/copy-pdf-worker.mjs && node scripts/copy-ocr-assets.mjs && node scripts/copy-qpdf-assets.mjs && node scripts/build-static.mjs"
   },
   "dependencies": {
+    "@neslinesli93/qpdf-wasm": "^0.3.0",
     "@tesseract.js-data/eng": "^1.0.0",
     "@tesseract.js-data/hin": "^1.0.0",
     "@tesseract.js-data/nep": "^1.0.0",

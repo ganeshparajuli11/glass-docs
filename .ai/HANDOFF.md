@@ -1,5 +1,15 @@
 # Current Handoff
 
+## Session update (2026-10-31, daily contributor — TOOL day: Protect PDF + Unlock PDF)
+
+- Shipped /tools/protect-pdf and /tools/unlock-pdf (35 tools live, PDF hub 16). Engine: qpdf 12.2 WASM from @neslinesli93/qpdf-wasm 0.3 (ISC/Apache-2.0). scripts/copy-qpdf-assets.mjs (in dev/build/build:static) copies qpdf.js + qpdf.wasm + NOTICE.txt into public/qpdf (git-ignored); public/qpdf-worker.js (committed, classic worker, importScripts) runs one fresh instance per job and captures console output (qpdf.js binds console.log/error at instantiation — it ignores print/printErr). ADR-010.
+- Logic: src/lib/pdf/security.ts (pure, injected QpdfRunner): validateProtectInput, buildProtectArgs (AES-256 R6, NFKC passwords, owner=user when nothing restricted), inspectPdf via `--json=2 --json-key=encrypt`, protectPdf (re-verifies output), unlockPdf (open-pw files: user or owner pw; restriction-only: owner pw required; encrypted-but-unrestricted: no pw), describeRestrictions/describeEncryption, classifyQpdfFailure. Browser runner: src/lib/pdf/qpdf-client.ts. Note: qpdf `--requires-password` exit codes are unreliable in this build — use the JSON.
+- UI: src/features/protect-pdf/ProtectPdfTool.tsx, src/features/unlock-pdf/UnlockPdfTool.tsx, shared src/components/tool/PasswordField.tsx (+ Show passwords toggle). Registry engine union gains "qpdf". Icons FileLock / LockOpen.
+- Links: shared PDF_ENCRYPTED_UNSUPPORTED recovery + 12 registry limitations point to Unlock PDF; 5 guides edited (assignment guide: new "Leave the password off" section); toolGuides protect-pdf/unlock-pdf; /pdf-tools description + intro.
+- Tests: tests/unit/pdf-security.test.ts (18), tests/integration/pdf-security.test.ts (14, real WASM via tests/fixtures/qpdf-node.ts), registry 33→35 + search; 390 total.
+- Verified: npm run verify ✓ · build:static ✓ · audit 64 pages 0 problems ✓ · Playwright on out/ with production CSP (custom python server adding the CSP header + application/wasm): full protect/unlock flows, outputs cross-checked with pdf.js, poppler pdfinfo and system qpdf; 320 dark no h-scroll. Only console errors = sandbox-blocked AdSense loader.
+- Next: SEO day — (b) internal links/FAQs/JSON-LD for newest tools, or a guide "how to remove the password from a bank statement PDF / password-protect a PDF before emailing" wired to the two new tools. Following TOOL day: Sign PDF (queue 7) unless the owner unblocks HEIC (T-326).
+
 ## Session update (2026-10-30, daily contributor — SEO day: loan EMI guide)
 
 - New guide /learn/loan-emi-calculation-compare-loans (16 guides): formula + worked example, payment split (incl. 3M/9%/20y home-loan example), term and rate tables, flat vs reducing (11% flat ≈ 18.8% reducing; 1.5–1.85× rule for 1–7 y, 6–20%), prepayment keep-EMI vs keep-term, what EMI excludes, comparison checklist.

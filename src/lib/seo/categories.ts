@@ -21,11 +21,12 @@ export const categoryPages: CategoryPage[] = [
     title: "PDF tools",
     metaTitle: "Free PDF tools — merge, split, compress, rotate",
     description:
-      `${pdfToolCount} free PDF tools that run in your browser: merge, split, compress, remove pages, rotate, watermark, add page numbers, convert to images, extract text, OCR scanned PDFs and more.`,
+      `${pdfToolCount} free PDF tools that run in your browser: merge, split, compress, remove pages, rotate, watermark, add page numbers, password-protect or unlock, convert to images, extract text, OCR scanned PDFs and more.`,
     intro: [
       "Everything here works on your device: the PDF is read into your browser's memory, changed there, and handed back to you as a download. No account, no upload, no watermark added by us.",
       "Start with the task you need — combining files, pulling out pages, fixing rotation, or stamping a draft mark — and the tool page explains its limits honestly before you begin.",
       "Scanned documents get their own route: Scanned PDF to text reads each page with on-device OCR in English, Nepali or Hindi, and uses the PDF's real text instead wherever a page already has it.",
+      "Passwords are handled on your device too. Protect PDF encrypts a file with AES-256 before you send it, and Unlock PDF saves a password-free copy of a statement or payslip whose password you know — so it opens without prompting and works with the other tools here. Neither tool guesses or bypasses passwords.",
     ],
     guideSlugs: [
       "merge-pdfs-without-uploading",

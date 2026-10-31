@@ -33,6 +33,8 @@ import {
   ScanText,
   FileScan,
   MapPinOff,
+  FileLock,
+  LockOpen,
 } from "lucide-react";
 import type { ToolDefinition } from "@/lib/tools/registry";
 
@@ -52,6 +54,8 @@ const icons: Record<string, typeof FileText> = {
   "pdf-metadata": Info,
   "extract-text": Type,
   "ocr-pdf": FileScan,
+  "protect-pdf": FileLock,
+  "unlock-pdf": LockOpen,
   "image-compressor": Minimize2,
   "image-resizer": Scaling,
   "crop-image": Crop,

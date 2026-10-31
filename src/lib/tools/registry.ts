@@ -10,7 +10,7 @@ export interface ToolDefinition {
   category: "pdf" | "image" | "text" | "calculator" | "student";
   processingMode: ProcessingMode;
   status: ToolStatus;
-  engine: "pdf-lib" | "pdfjs" | "browser-canvas" | "combined" | "tesseract" | "byte-level";
+  engine: "pdf-lib" | "pdfjs" | "browser-canvas" | "combined" | "tesseract" | "byte-level" | "qpdf";
   acceptedMimeTypes: string[];
   outputMimeTypes: string[];
   maxRecommendedSizeMb: number;
@@ -41,7 +41,7 @@ export const tools: ToolDefinition[] = [
     keywords: ["merge", "combine", "join", "append", "concatenate"],
     relatedTools: ["split-pdf", "reorder-pages", "delete-pages"],
     knownLimitations: [
-      "Password-protected PDFs are not supported.",
+      "Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first.",
       "Bookmarks from source files are not carried over.",
     ],
     faq: [
@@ -70,7 +70,7 @@ export const tools: ToolDefinition[] = [
     supportsMultipleFiles: false,
     keywords: ["split", "separate", "divide", "ranges", "pages"],
     relatedTools: ["extract-pages", "merge-pdf", "delete-pages"],
-    knownLimitations: ["Password-protected PDFs are not supported."],
+    knownLimitations: ["Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first."],
     faq: [
       {
         q: "How do I write a page range?",
@@ -97,7 +97,7 @@ export const tools: ToolDefinition[] = [
     supportsMultipleFiles: false,
     keywords: ["extract", "select", "pages", "keep"],
     relatedTools: ["split-pdf", "delete-pages", "reorder-pages"],
-    knownLimitations: ["Password-protected PDFs are not supported."],
+    knownLimitations: ["Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first."],
     faq: [
       {
         q: "Does extraction change the original file?",
@@ -120,7 +120,7 @@ export const tools: ToolDefinition[] = [
     supportsMultipleFiles: false,
     keywords: ["rotate", "turn", "orientation", "landscape", "portrait"],
     relatedTools: ["reorder-pages", "delete-pages", "merge-pdf"],
-    knownLimitations: ["Password-protected PDFs are not supported."],
+    knownLimitations: ["Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first."],
     faq: [
       {
         q: "Which rotations are supported?",
@@ -143,7 +143,7 @@ export const tools: ToolDefinition[] = [
     supportsMultipleFiles: false,
     keywords: ["reorder", "rearrange", "move", "sort", "organize"],
     relatedTools: ["delete-pages", "extract-pages", "rotate-pdf"],
-    knownLimitations: ["Password-protected PDFs are not supported."],
+    knownLimitations: ["Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first."],
     faq: [
       {
         q: "Can I move pages without a mouse?",
@@ -167,7 +167,7 @@ export const tools: ToolDefinition[] = [
     keywords: ["delete", "remove", "pages", "clean"],
     relatedTools: ["extract-pages", "reorder-pages", "split-pdf"],
     knownLimitations: [
-      "Password-protected PDFs are not supported.",
+      "Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first.",
       "At least one page must remain in the document.",
     ],
     faq: [
@@ -195,7 +195,7 @@ export const tools: ToolDefinition[] = [
     knownLimitations: [
       "Text watermark only; image watermarks are planned.",
       "Non-Latin scripts may not render until font embedding ships.",
-      "Password-protected PDFs are not supported.",
+      "Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first.",
     ],
     faq: [
       {
@@ -219,7 +219,7 @@ export const tools: ToolDefinition[] = [
     supportsMultipleFiles: false,
     keywords: ["page numbers", "numbering", "pagination", "footer", "header"],
     relatedTools: ["watermark-pdf", "merge-pdf"],
-    knownLimitations: ["Password-protected PDFs are not supported."],
+    knownLimitations: ["Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first."],
     faq: [
       {
         q: "Can I skip the cover page?",
@@ -298,7 +298,7 @@ export const tools: ToolDefinition[] = [
       "Only images are compressed; a PDF that is mostly text or vector drawings will barely shrink.",
       "Images are re-encoded as JPEG, so sharp-edged graphics and screenshots can look slightly softer.",
       "CMYK, indexed-colour and masked images are left untouched.",
-      "Password-protected PDFs are not supported.",
+      "Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first.",
     ],
     faq: [
       {
@@ -334,7 +334,7 @@ export const tools: ToolDefinition[] = [
     supportsMultipleFiles: false,
     keywords: ["view", "read", "open", "preview"],
     relatedTools: ["extract-text", "pdf-metadata"],
-    knownLimitations: ["Password-protected PDFs are not supported."],
+    knownLimitations: ["Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first."],
     faq: [
       {
         q: "Is the document uploaded to view it?",
@@ -359,7 +359,7 @@ export const tools: ToolDefinition[] = [
     relatedTools: ["pdf-viewer", "extract-text"],
     knownLimitations: [
       "Only standard document-information fields can be edited.",
-      "Password-protected PDFs are not supported.",
+      "Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first.",
     ],
     faq: [
       {
@@ -425,7 +425,7 @@ export const tools: ToolDefinition[] = [
       "Plain text output: the PDF itself is not changed and no searchable PDF is produced.",
       "Up to 50 pages per run; each page takes a few seconds (longer on phones).",
       "English, Nepali and Hindi; two languages at a time at most.",
-      "Password-protected PDFs are not supported.",
+      "Password-protected PDFs are not supported — if you know the password, remove it with Unlock PDF first.",
     ],
     faq: [
       {
@@ -450,6 +450,115 @@ export const tools: ToolDefinition[] = [
       },
     ],
     lastVerifiedAt: "2026-10-27",
+  },
+  {
+    slug: "protect-pdf",
+    name: "Protect PDF with a password",
+    shortDescription: "Add an AES-256 open password to a PDF, and optionally block printing, copying or editing.",
+    category: "pdf",
+    processingMode: "local",
+    status: "stable",
+    engine: "qpdf",
+    acceptedMimeTypes: [PDF],
+    outputMimeTypes: [PDF],
+    maxRecommendedSizeMb: 100,
+    supportsMultipleFiles: false,
+    keywords: [
+      "protect pdf",
+      "password protect pdf",
+      "add password to pdf",
+      "encrypt pdf",
+      "lock pdf",
+      "secure pdf",
+      "pdf password",
+      "aes-256",
+      "restrict printing",
+      "prevent copying",
+    ],
+    relatedTools: ["unlock-pdf", "pdf-metadata", "compress-pdf"],
+    knownLimitations: [
+      "A forgotten password cannot be recovered — by this site or anyone else. Keep it somewhere safe.",
+      "Printing, copying and editing restrictions are honoured by mainstream PDF readers but are not enforced by encryption once the file is open.",
+      "An already-protected PDF must be unlocked first.",
+      "Digital signatures in the PDF stop validating after it is re-saved.",
+    ],
+    faq: [
+      {
+        q: "Is my PDF or password sent anywhere?",
+        a: "No. Encryption runs in your browser using qpdf, an open-source PDF library, compiled to WebAssembly. The PDF and the password stay on your device; the only download is the qpdf engine itself, from this site.",
+      },
+      {
+        q: "How strong is the protection?",
+        a: "The file is encrypted with AES-256, the strongest method in the PDF standard. Its real strength is your password: a long passphrase is practically impossible to guess, while a short word or date can be cracked by software that tries millions of guesses.",
+      },
+      {
+        q: "Will the protected PDF open on phones and in other apps?",
+        a: "Yes. AES-256 is supported by Adobe Acrobat and Reader (version X and later), the PDF viewers built into Chrome, Edge, Firefox and Safari, and the standard iPhone, iPad and Android viewers. Very old software from before about 2010 may not open it.",
+      },
+      {
+        q: "What is the difference between the open password and the permissions password?",
+        a: "The open password is needed to view the file at all. The permissions password (also called the owner password) is only needed to change the restrictions on printing, copying and editing. Use two different passwords; if they are the same, anyone who can open the file also gets full rights.",
+      },
+      {
+        q: "I forgot the password. Can you unlock it?",
+        a: "No. Nothing about the password is stored anywhere, and AES-256 cannot be bypassed. Keep the original, unprotected file until you are sure you have the password saved somewhere safe.",
+      },
+    ],
+    lastVerifiedAt: "2026-10-31",
+  },
+  {
+    slug: "unlock-pdf",
+    name: "Unlock PDF (remove password)",
+    shortDescription: "Remove the password and restrictions from a PDF when you know the password.",
+    category: "pdf",
+    processingMode: "local",
+    status: "stable",
+    engine: "qpdf",
+    acceptedMimeTypes: [PDF],
+    outputMimeTypes: [PDF],
+    maxRecommendedSizeMb: 100,
+    supportsMultipleFiles: false,
+    keywords: [
+      "unlock pdf",
+      "remove pdf password",
+      "remove password from pdf",
+      "decrypt pdf",
+      "pdf password remover",
+      "bank statement pdf password",
+      "remove pdf restrictions",
+      "unprotect pdf",
+      "unsecure pdf",
+    ],
+    relatedTools: ["protect-pdf", "merge-pdf", "compress-pdf"],
+    knownLimitations: [
+      "You need the password. This tool does not guess, crack or bypass passwords.",
+      "A PDF that opens freely but has printing or copying restrictions needs its permissions (owner) password.",
+      "Certificate-based (public-key) encryption is not supported.",
+      "Digital signatures in the PDF stop validating after it is re-saved.",
+    ],
+    faq: [
+      {
+        q: "Is my PDF or password uploaded?",
+        a: "No. The PDF is decrypted in your browser by qpdf, an open-source PDF library compiled to WebAssembly. The password is used once, on your device, and is not saved or sent anywhere.",
+      },
+      {
+        q: "Can it remove a password I don't know?",
+        a: "No. You must enter the correct password. Modern PDF encryption (AES) cannot be bypassed, and this tool does not try to guess passwords.",
+      },
+      {
+        q: "My bank or payslip PDF asks for a password every time. Can I remove it?",
+        a: "Yes, if you know the password (banks often use part of your date of birth or account number — check the email that came with the statement). Enter it once and download a copy that opens without it. Keep that copy somewhere private, because it is no longer protected.",
+      },
+      {
+        q: "Why does it ask for a permissions password when my PDF opens fine?",
+        a: "Some PDFs open without a password but block printing, copying or editing. Those restrictions are set with a separate permissions (owner) password, and this tool only removes them when you enter it — it does not override restrictions the document's author chose.",
+      },
+      {
+        q: "Will the unlocked PDF look the same?",
+        a: "Yes. Unlocking only removes the encryption; pages, text, images, links, bookmarks and form fields are kept as they are.",
+      },
+    ],
+    lastVerifiedAt: "2026-10-31",
   },
   // ---------- Image tools ----------
   {

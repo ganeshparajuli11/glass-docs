@@ -16,7 +16,7 @@ Trend-direction column; then re-rank.
 
 No page exists for a tool that does not work (site rule + Google helpful-content
 principle). Word→PDF, PDF→Word, Compress PDF, Protect/Unlock PDF are the four
-highest-demand seeds we deliberately did not target until built (Compress PDF went LIVE 2026-10-23; the other three remain build items) — they are build items,
+highest-demand seeds we deliberately did not target until built (Compress PDF went LIVE 2026-10-23 and Protect/Unlock PDF on 2026-10-31; Word↔PDF remain build items) — they are build items,
 not content items. Building thin "coming soon" pages for them would hurt trust
 and indexing quality.
 
@@ -56,7 +56,8 @@ and indexing quality.
 | ocr pdf / ocr scanned pdf / scanned pdf to text / pdf ocr | Direct tool | 1 | TODO | /tools/ocr-pdf (+ /learn/cannot-copy-text-from-pdf) | Tool | LIVE (2026-10-27) — pdf.js render at ~300 DPI + self-hosted tesseract.js, uses real text layer where present, ≤50 pages/run, nothing uploaded |
 | remove exif / remove location from photo / remove gps from photo / strip photo metadata / exif viewer | Direct tool | 2 | TODO | /tools/remove-exif | Tool | LIVE (2026-10-29) — lossless byte-level JPEG/PNG/WebP cleaner, keeps rotation flag, shows what was found, nothing uploaded |
 | heic to jpg / heic converter | Direct tool | BLOCKED | TODO | (future) | Tool | NOT BUILT — browser HEVC decoders are LGPL-3.0; owner decision |
-| password protect / unlock pdf | Direct tool | BLOCKED | TODO | (future) | Tool | Needs vetted browser crypto implementation |
+| password protect pdf / encrypt pdf / add password to pdf / lock pdf | Direct tool | 1 | TODO | /tools/protect-pdf | Tool | LIVE (2026-10-31) — qpdf 12 (WebAssembly, self-hosted), AES-256 R6, optional print/copy/edit restrictions, output re-verified, nothing uploaded |
+| unlock pdf / remove pdf password / bank statement pdf password / remove pdf restrictions | Direct tool | 1 | TODO | /tools/unlock-pdf | Tool | LIVE (2026-10-31) — needs the password (never cracks); restriction-only files need the owner password; RC4/AES-128/AES-256 |
 
 ## Cannibalisation guards
 
